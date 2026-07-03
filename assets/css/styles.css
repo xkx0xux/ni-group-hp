@@ -566,6 +566,114 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 }
 .news-list a:hover svg{transform:translateX(4px);color:var(--accent)}
 
+/* =========================================================
+   SYSTEM（トップの導線バンド＋system.html）
+   ========================================================= */
+/* トップページ：SYSTEMバンド */
+.sysband{background:var(--bg-soft);padding-bottom:120px}
+.sysband-card{
+  position:relative;overflow:hidden;
+  border-radius:calc(var(--radius) + 8px);
+  background:linear-gradient(150deg,#241243 0%,#4C1D95 55%,#5B21B6 100%);
+  color:#fff;
+  padding:64px 64px 60px;
+}
+.sysband-glow{
+  position:absolute;inset:-30%;pointer-events:none;
+  background:
+    radial-gradient(34% 40% at 78% 30%,rgba(167,139,250,.45),transparent 70%),
+    radial-gradient(30% 36% at 22% 76%,rgba(99,102,241,.4),transparent 70%);
+}
+.sysband-inner{position:relative;max-width:640px}
+.sysband .eyebrow{color:#D8CCF8}
+.sysband h2{
+  font-family:var(--font-head);font-weight:900;
+  font-size:clamp(1.5rem,2.8vw,2.2rem);
+  line-height:1.6;letter-spacing:.02em;
+  margin-top:14px;
+}
+.sysband p{margin-top:16px;color:#D8CCF8;font-size:.93rem;line-height:2.05}
+.sysband-tags{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px}
+.sysband-tags span{
+  font-size:.76rem;font-weight:500;color:#EDE9FA;
+  border:1px solid rgba(255,255,255,.28);border-radius:999px;
+  padding:5px 14px;background:rgba(255,255,255,.06);
+}
+.sysband .btn{margin-top:30px}
+
+/* system.html：サブヒーロー */
+.sys-hero{
+  position:relative;overflow:hidden;
+  padding:calc(var(--header-h) + 96px) 0 96px;
+  background:
+    radial-gradient(52% 42% at 82% 12%,rgba(139,92,246,.13),transparent 70%),
+    linear-gradient(180deg,var(--bg-violet) 0%,var(--bg) 62%);
+}
+.sys-hero-title{
+  font-family:var(--font-head);font-weight:900;
+  font-size:clamp(2rem,4.6vw,3.4rem);
+  line-height:1.4;letter-spacing:.015em;
+  margin-top:22px;
+}
+.sys-hero .text-dawn{background:var(--grad);-webkit-background-clip:text;background-clip:text}
+.sys-hero-lead{
+  margin-top:26px;color:var(--ink-2);
+  font-size:clamp(.93rem,1.3vw,1.02rem);line-height:2.15;font-weight:500;
+}
+
+/* system.html：実績グリッド */
+.sys-works{background:var(--bg)}
+.sys-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.sys-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:34px 32px 30px;
+  box-shadow:var(--shadow-sm);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .4s;
+}
+.sys-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);border-color:#E2DCF2}
+.sys-card h3{
+  font-family:var(--font-head);font-weight:700;
+  font-size:1.25rem;letter-spacing:.02em;
+}
+.sys-more{
+  margin-top:36px;text-align:center;
+  color:var(--ink-2);font-size:.93rem;line-height:2.1;
+}
+.sys-why{background:var(--bg-soft)}
+
+/* system.html：進め方 */
+.sys-flow{background:var(--bg)}
+.sys-steps{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
+  counter-reset:none;
+}
+.sys-steps li{
+  position:relative;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:30px 26px 28px;
+  box-shadow:var(--shadow-sm);
+}
+.sys-steps li:not(:last-child)::after{
+  content:"";position:absolute;top:50%;right:-16px;
+  width:12px;height:12px;
+  border-top:2px solid var(--accent-soft);border-right:2px solid var(--accent-soft);
+  transform:translateY(-50%) rotate(45deg);
+}
+.sys-step-num{
+  font-family:var(--font-en);font-weight:700;font-size:.8rem;letter-spacing:.16em;
+  background:var(--grad);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.sys-steps h3{
+  font-family:var(--font-head);font-weight:700;font-size:1.1rem;
+  margin-top:12px;letter-spacing:.02em;
+}
+.sys-steps p{margin-top:10px;font-size:.88rem;line-height:1.95;color:var(--ink-2)}
+
 /* ---------- ニュース詳細モーダル ---------- */
 .news-modal{
   position:fixed;inset:0;z-index:200;
@@ -706,6 +814,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
    ========================================================= */
 @media (max-width:1024px){
   .hero-mono{opacity:.55;right:-16%}
+  .sys-steps{grid-template-columns:1fr 1fr}
+  .sys-steps li:nth-child(2)::after{display:none}
   .biz-grid{
     grid-template-columns:1fr 1fr;
     grid-template-areas:
@@ -761,6 +871,14 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .biz-a h3{font-size:1.4rem}
 
   .reasons-grid{grid-template-columns:1fr;gap:14px}
+
+  .sysband{padding-bottom:76px}
+  .sysband-card{padding:40px 26px 38px}
+  .sysband .btn{width:100%;justify-content:center}
+  .sys-hero{padding:calc(var(--header-h) + 64px) 0 64px}
+  .sys-grid{grid-template-columns:1fr;gap:14px}
+  .sys-steps{grid-template-columns:1fr;gap:14px}
+  .sys-steps li::after{display:none!important}
 
   .news-list a{
     display:grid;grid-template-columns:76px auto 1fr;
