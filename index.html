@@ -17,7 +17,7 @@
 <body id="top">
 
 <!-- ===== Header ===== -->
-<header class="site-header" id="siteHeader">
+<header class="site-header on-night" id="siteHeader">
   <div class="container header-inner">
     <a href="#top" class="brand" aria-label="NI Group ホーム">
       <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true">
@@ -26,7 +26,7 @@
             <stop offset="0" stop-color="#7C3AED"/><stop offset="1" stop-color="#4F46E5"/>
           </linearGradient>
         </defs>
-        <path d="M10 38V10L28 38V10" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path class="mark-n" d="M10 38V10L28 38V10" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M38 10v28" fill="none" stroke="url(#markGrad)" stroke-width="4.5" stroke-linecap="round"/>
       </svg>
       <span class="brand-name">NI GROUP</span>
@@ -35,6 +35,7 @@
     <nav class="site-nav" id="siteNav" aria-label="メイン">
       <a href="#about">グループについて</a>
       <a href="#business">事業内容</a>
+      <a href="#ceo">代表メッセージ</a>
       <a href="#news">ニュース</a>
       <a href="#contact" class="btn btn-primary btn-sm">お問い合わせ</a>
     </nav>
@@ -47,50 +48,52 @@
 
 <main>
 
-  <!-- ===== Hero ===== -->
+  <!-- ===== Hero（夜） ===== -->
   <section class="hero" aria-label="メインビジュアル">
     <div class="hero-bg" aria-hidden="true">
-      <div class="hero-orb hero-orb-1"></div>
-      <div class="hero-orb hero-orb-2"></div>
-      <div class="hero-dots"></div>
+      <div class="hero-glow hero-glow-core"></div>
+      <div class="hero-glow hero-glow-wide"></div>
+      <div class="hero-stars" id="heroStars"></div>
       <svg class="hero-mono" viewBox="0 0 560 560" aria-hidden="true">
         <defs>
           <linearGradient id="monoGrad" x1="0" y1="0" x2="560" y2="560" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stop-color="#7C3AED"/><stop offset="1" stop-color="#4F46E5"/>
+            <stop offset="0" stop-color="#A78BFA"/><stop offset="1" stop-color="#6D28D9"/>
           </linearGradient>
+          <filter id="monoGlow" filterUnits="userSpaceOnUse" x="330" y="50" width="180" height="460">
+            <feGaussianBlur stdDeviation="10" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
         </defs>
-        <circle cx="300" cy="280" r="230" fill="none" stroke="#ECEAF2" stroke-width="1"/>
-        <circle cx="300" cy="280" r="168" fill="none" stroke="#ECEAF2" stroke-width="1"/>
-        <path d="M170 420V140L330 420V140" fill="none" stroke="#17141F" stroke-opacity="0.09" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M415 140v280" fill="none" stroke="url(#monoGrad)" stroke-opacity="0.22" stroke-width="14" stroke-linecap="round"/>
+        <circle cx="300" cy="280" r="230" fill="none" stroke="rgba(167,139,250,.14)" stroke-width="1"/>
+        <circle cx="300" cy="280" r="168" fill="none" stroke="rgba(167,139,250,.09)" stroke-width="1"/>
+        <path d="M170 420V140L330 420V140" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M415 140v280" fill="none" stroke="url(#monoGrad)" stroke-opacity=".85" stroke-width="14" stroke-linecap="round" filter="url(#monoGlow)"/>
       </svg>
+      <div class="hero-horizon"></div>
     </div>
 
     <div class="container hero-inner">
-      <p class="eyebrow hero-step" style="--d:.05s">NEW INNOVATION HOLDINGS</p>
-      <h1 class="hero-title hero-step" style="--d:.16s">
-        守れる人の数を、<br><span class="text-grad">増やす。</span>
+      <p class="eyebrow hero-step" style="--d:.1s">NEW INNOVATION HOLDINGS</p>
+      <h1 class="hero-title">
+        <span class="mask-line"><span style="--d:.25s">守れる人の数を、</span></span>
+        <span class="mask-line"><span style="--d:.42s"><em class="text-dawn">増やす。</em></span></span>
       </h1>
-      <p class="hero-lead hero-step" style="--d:.3s">
+      <p class="hero-lead hero-step" style="--d:.75s">
         設備工事・塗装・人材・システム開発・労務コンサルティング。<br class="pc-only">
         5つの専門会社をひとつに束ねるNIグループは、<br class="pc-only">
         「社員とその家族を守る経営」で、事業と人の未来を支えます。
       </p>
-      <div class="hero-actions hero-step" style="--d:.44s">
+      <div class="hero-actions hero-step" style="--d:.95s">
         <a href="#contact" class="btn btn-primary">お問い合わせ
           <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a href="#business" class="btn btn-ghost">事業内容を見る</a>
+        <a href="#business" class="btn btn-night">事業内容を見る</a>
       </div>
-      <div class="hero-fields hero-step" style="--d:.58s" aria-label="事業領域">
-        <span class="hero-fields-label">GROUP OF 5</span>
-        <ul>
-          <li>設備工事</li>
-          <li>塗装</li>
-          <li>人材・BPO</li>
-          <li>クラウド・システム</li>
-          <li>労務・助成金</li>
-        </ul>
+    </div>
+
+    <div class="hero-marquee hero-step" style="--d:1.2s" aria-hidden="true">
+      <div class="marquee-track">
+        <span>NEW INNOVATION&ensp;·&ensp;JMC&ensp;·&ensp;NEW BLOOM&ensp;·&ensp;SALES FINDER&ensp;·&ensp;NEW SPACE&ensp;·&ensp;</span><span>NEW INNOVATION&ensp;·&ensp;JMC&ensp;·&ensp;NEW BLOOM&ensp;·&ensp;SALES FINDER&ensp;·&ensp;NEW SPACE&ensp;·&ensp;</span>
       </div>
     </div>
 
@@ -100,7 +103,219 @@
     </div>
   </section>
 
-  <!-- Task3: ステートメント / Task4: 数字 / Task5: 事業5社 / Task6: CEO / Task7: 選ばれる理由 / Task8: ニュース / Task9: CTA -->
+  <!-- ===== ステートメント（夜明け） ===== -->
+  <section class="statement" id="about" aria-label="ミッション">
+    <div class="dawn-glow" aria-hidden="true"></div>
+    <div class="container statement-inner">
+      <p class="eyebrow st-eyebrow">OUR MISSION</p>
+      <p class="statement-text" id="statementText">
+        <span class="st-w">私たちは、</span><span class="st-w">社員と</span><span class="st-w">その家族を</span><span class="st-w">“守れる”</span><span class="st-w">会社を</span><span class="st-w">つくる。</span>
+      </p>
+      <p class="statement-sub" id="statementSub">
+        <span class="st-w">そして、</span><span class="st-w">守れる人の数を、</span><span class="st-w">社会へ</span><span class="st-w">広げていく。</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== 数字（昼・光のパート開始） ===== -->
+  <section class="section stats" aria-label="NIグループの今">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat reveal">
+          <div class="stat-num"><span data-count="5">0</span></div>
+          <div class="stat-label">グループ会社<em>GROUP COMPANIES</em></div>
+        </div>
+        <div class="stat reveal">
+          <div class="stat-num"><span data-count="5">0</span></div>
+          <div class="stat-label">事業領域<em>BUSINESS DOMAINS</em></div>
+        </div>
+        <div class="stat reveal">
+          <div class="stat-num"><span data-count="1">0</span></div>
+          <div class="stat-label">ミッション<em>ONE MISSION</em></div>
+        </div>
+        <div class="stat reveal">
+          <div class="stat-num stat-num-text">全員</div>
+          <div class="stat-label">が、主役。<em>EVERYONE PLAYS THE LEAD</em></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 事業（5社ベントー） ===== -->
+  <section class="section business" id="business" aria-label="事業内容">
+    <div class="container">
+      <header class="sec-head reveal">
+        <p class="eyebrow">BUSINESS</p>
+        <h2>5つの専門性が、<br class="sp-only">ひとつのチカラに。</h2>
+        <p class="sec-lead">現場の技術から、人材、テクノロジー、制度まで。NIグループは事業を横断して、企業と人の課題にワンストップで応えます。</p>
+      </header>
+
+      <div class="biz-grid">
+        <article class="biz-card biz-a">
+          <p class="biz-index">01</p>
+          <div class="biz-icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32"><path d="M6 26V12l10-6 10 6v14M13 26v-8h6v8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>株式会社<br>New innovation</h3>
+          <p class="biz-en">FACILITY ENGINEERING</p>
+          <p class="biz-desc">空調・給排水・電気設備の設計施工。暮らしと産業の基盤を、現場の技術力で支えるグループの中核会社。</p>
+          <p class="biz-tags"><span>空調設備</span><span>給排水</span><span>電気工事</span></p>
+        </article>
+
+        <article class="biz-card biz-b">
+          <p class="biz-index">02</p>
+          <div class="biz-icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32"><path d="M6 8h14v6H6zM20 10h5l1 14a2 2 0 0 1-2 2h-3zM10 14v12M14 14v6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>株式会社JMC</h3>
+          <p class="biz-en">PAINT WORKS</p>
+          <p class="biz-desc">建物の美観と寿命を塗装で守る、施工のプロフェッショナル。</p>
+          <p class="biz-tags"><span>塗装工事</span></p>
+        </article>
+
+        <article class="biz-card biz-c">
+          <p class="biz-index">03</p>
+          <div class="biz-icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32"><circle cx="12" cy="11" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 26c0-4 4-6.5 8-6.5s8 2.5 8 6.5M21 7.5a4 4 0 0 1 0 7M24 19.5c2.4 1 4 2.8 4 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <h3>株式会社New bloom</h3>
+          <p class="biz-en">HR &amp; BPO</p>
+          <p class="biz-desc">人材紹介・BPO・SES・採用コンサルティング。人と組織の成長を設計する。</p>
+          <p class="biz-tags"><span>人材紹介</span><span>BPO</span><span>SES</span></p>
+        </article>
+
+        <article class="biz-card biz-d">
+          <p class="biz-index">04</p>
+          <div class="biz-icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32"><path d="M10 22a5 5 0 0 1-1-9.9A7 7 0 0 1 22.5 10 5.5 5.5 0 0 1 23 21.9M13 25l3-3 3 3M16 22v7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>株式会社Sales Finder</h3>
+          <p class="biz-en">CLOUD &amp; SYSTEMS</p>
+          <p class="biz-desc">クラウドアプリケーション・システム開発・営業コンサルティング。テクノロジーで現場の生産性を変える。</p>
+          <p class="biz-tags"><span>クラウド</span><span>システム開発</span><span>営業支援</span></p>
+        </article>
+
+        <article class="biz-card biz-e">
+          <p class="biz-index">05</p>
+          <div class="biz-icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32"><path d="M16 4l10 4v7c0 6.5-4.2 11-10 13C10.2 26 6 21.5 6 15V8zM12 15.5l3 3 5.5-5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>合同会社New space</h3>
+          <p class="biz-en">LABOR CONSULTING</p>
+          <p class="biz-desc">労務・助成金コンサルティング。制度の力で、働く環境を強くする。</p>
+          <p class="biz-tags"><span>労務</span><span>助成金</span></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CEOメッセージ ===== -->
+  <section class="section ceo" id="ceo" aria-label="代表メッセージ">
+    <div class="container ceo-inner">
+      <figure class="ceo-visual reveal" aria-label="代表 内田雄真の写真（差し替え予定）">
+        <div class="ceo-photo" id="ceoPhoto">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M10 38V10L28 38V10" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M38 10v28" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="4.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <figcaption>
+          <span class="ceo-name">内田 雄真</span>
+          <span class="ceo-role">代表取締役 CEO</span>
+        </figcaption>
+      </figure>
+
+      <div class="ceo-body">
+        <header class="sec-head reveal">
+          <p class="eyebrow">MESSAGE</p>
+          <h2>全員が主役の会社</h2>
+        </header>
+        <div class="ceo-text">
+          <p class="reveal">私が起業したのは、「守れる人の数を増やしたい」という強い想いからでした。サラリーマン時代、決裁権や稟議の壁に阻まれ、大切な部下を守れない悔しさを経験しました。その経験から、「社員とその家族を守る経営」を信念にNIグループを創業しました。</p>
+          <p class="reveal">私は、20代でも得意分野を伸ばせば業界でトップを目指せると信じ、20代の組織を作り上げています。社員が安心して働ける環境を整え、全員の未来を守ることが私の使命です。</p>
+          <p class="reveal">これまで支えてくださった皆様、そして共に成長する社員たちへの感謝を忘れず、NIグループをさらに発展させてまいります。引き続きご支援のほど、よろしくお願いいたします。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 選ばれる理由 ===== -->
+  <section class="section reasons" aria-label="NIグループの強み">
+    <div class="container">
+      <header class="sec-head reveal">
+        <p class="eyebrow">WHY NI GROUP</p>
+        <h2>NIグループが選ばれる理由</h2>
+      </header>
+      <div class="reasons-grid">
+        <div class="reason reveal">
+          <p class="reason-num">01</p>
+          <h3>若手のプロ集団</h3>
+          <p>20代中心のフラットな組織。得意分野を伸ばし、スピードと吸収力で業界のトップ品質に挑む。</p>
+        </div>
+        <div class="reason reveal">
+          <p class="reason-num">02</p>
+          <h3>5領域ワンストップ</h3>
+          <p>設備・塗装・人材・IT・労務。現場から経営まで、グループ横断でまとめて任せられる。</p>
+        </div>
+        <div class="reason reveal">
+          <p class="reason-num">03</p>
+          <h3>「守る」経営</h3>
+          <p>社員とその家族を守る経営が、品質と責任あるサービスの土台。人を大切にする会社は、仕事も裏切らない。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ニュース ===== -->
+  <section class="section news" id="news" aria-label="ニュース">
+    <div class="container">
+      <header class="sec-head reveal">
+        <p class="eyebrow">NEWS</p>
+        <h2>ニュース</h2>
+      </header>
+      <ul class="news-list">
+        <li class="reveal">
+          <a href="#news">
+            <time datetime="2025-12-16">2025.12.16</time>
+            <span class="news-tag">お知らせ</span>
+            <span class="news-title">カスタマーハラスメントに対する当社の基本方針について</span>
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </li>
+        <li class="reveal">
+          <a href="#news">
+            <time datetime="2025-11-28">2025.11.28</time>
+            <span class="news-tag">受賞</span>
+            <span class="news-title">社員の井上 海選手が『第8回日本社会人選手権水泳競技大会』に出場＆入賞</span>
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </li>
+        <li class="reveal">
+          <a href="#news">
+            <time datetime="2025-06-16">2025.06.16</time>
+            <span class="news-tag">資格</span>
+            <span class="news-title">登録電気工事の免許を取得しました</span>
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== CTA（夕暮れの紫） ===== -->
+  <section class="cta" id="contact" aria-label="お問い合わせ">
+    <div class="cta-aurora" aria-hidden="true"></div>
+    <div class="container cta-inner">
+      <p class="eyebrow cta-eyebrow reveal">CONTACT</p>
+      <h2 class="reveal">守れる人の数を、<br class="sp-only">一緒に増やしませんか。</h2>
+      <p class="cta-lead reveal">お仕事のご相談・採用・グループへの参画など、お気軽にお問い合わせください。</p>
+      <div class="reveal">
+        <a class="btn btn-light" href="mailto:innovation1017@new2023.jp">メールで問い合わせる
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
 
 </main>
 
@@ -142,6 +357,9 @@
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>
