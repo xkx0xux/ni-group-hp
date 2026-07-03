@@ -228,70 +228,88 @@
   });
 
   /* ---------- ヒーロー：視差＋去り際のフェード ---------- */
-  gsap.to('.hero-bg', {
-    yPercent: 16, ease: 'none',
-    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
-  });
-  gsap.to('.hero-inner', {
-    y: -48, opacity: 0.15, ease: 'none',
-    scrollTrigger: { trigger: '.hero', start: '28% top', end: 'bottom top', scrub: true }
-  });
+  if (hero) {
+    gsap.to('.hero-bg', {
+      yPercent: 16, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+    });
+    gsap.to('.hero-inner', {
+      y: -48, opacity: 0.15, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: '28% top', end: 'bottom top', scrub: true }
+    });
+  }
 
   /* ---------- ステートメント：夜明け（ピン留め＋明転） ---------- */
   var statement = document.querySelector('.statement');
-  var stWords = document.querySelectorAll('#statementText .st-w');
-  var stSubWords = document.querySelectorAll('#statementSub .st-w');
-  var stEyebrow = document.querySelector('.st-eyebrow');
+  if (statement) {
+    var stWords = document.querySelectorAll('#statementText .st-w');
+    var stSubWords = document.querySelectorAll('#statementSub .st-w');
+    var stEyebrow = document.querySelector('.st-eyebrow');
 
-  /* 初期状態＝夜（CSSの基本は昼なのでJSで夜に巻き戻す） */
-  gsap.set(statement, { backgroundColor: '#0B0912' });
-  gsap.set(stWords, { color: 'rgba(255,255,255,0.13)' });
-  gsap.set(stSubWords, { color: 'rgba(255,255,255,0.10)' });
-  gsap.set(stEyebrow, { color: '#A78BFA' });
+    /* 初期状態＝夜（CSSの基本は昼なのでJSで夜に巻き戻す） */
+    gsap.set(statement, { backgroundColor: '#0B0912' });
+    gsap.set(stWords, { color: 'rgba(255,255,255,0.13)' });
+    gsap.set(stSubWords, { color: 'rgba(255,255,255,0.10)' });
+    gsap.set(stEyebrow, { color: '#A78BFA' });
 
-  var dawn = gsap.timeline({
-    scrollTrigger: {
-      trigger: statement,
-      start: 'top top',
-      end: '+=160%',
-      scrub: true,
-      pin: true,
-      anticipatePin: 1,
-      onUpdate: function (self) {
-        header.classList.toggle('on-night', self.progress < 0.72);
+    var dawn = gsap.timeline({
+      scrollTrigger: {
+        trigger: statement,
+        start: 'top top',
+        end: '+=160%',
+        scrub: true,
+        pin: true,
+        anticipatePin: 1,
+        onUpdate: function (self) {
+          header.classList.toggle('on-night', self.progress < 0.72);
+        }
       }
-    }
-  });
+    });
 
-  dawn
-    /* 言葉がひとつずつ灯る */
-    .to(stWords, { color: 'rgba(255,255,255,1)', stagger: 0.14, duration: 1.6, ease: 'none' }, 0)
-    .to('.dawn-glow', { opacity: 1, duration: 1.8, ease: 'none' }, 0.2)
-    .to(stSubWords, { color: 'rgba(255,255,255,0.92)', stagger: 0.1, duration: 0.9, ease: 'none' }, '>-0.5')
-    /* 夜明け：深紫の朝焼け → 薄紫 → 白（灰色を経由しない） */
-    .to(statement, { backgroundColor: '#4C1D95', duration: 0.8, ease: 'none' }, '>+0.2')
-    .to(statement, { backgroundColor: '#EDE9FA', duration: 1.2, ease: 'power1.in' }, '>')
-    .to(stWords, { color: '#17141F', duration: 1.1, ease: 'power1.inOut' }, '<+0.35')
-    .to(stSubWords, { color: '#5B5566', duration: 1.1, ease: 'power1.inOut' }, '<')
-    .to(stEyebrow, { color: '#6D28D9', duration: 1.1 }, '<')
-    .to(statement, { backgroundColor: '#FFFFFF', duration: 0.8, ease: 'none' }, '>-0.3')
-    .to('.dawn-glow', { opacity: 0, duration: 1.0 }, '<');
+    dawn
+      /* 言葉がひとつずつ灯る */
+      .to(stWords, { color: 'rgba(255,255,255,1)', stagger: 0.14, duration: 1.6, ease: 'none' }, 0)
+      .to('.dawn-glow', { opacity: 1, duration: 1.8, ease: 'none' }, 0.2)
+      .to(stSubWords, { color: 'rgba(255,255,255,0.92)', stagger: 0.1, duration: 0.9, ease: 'none' }, '>-0.5')
+      /* 夜明け：深紫の朝焼け → 薄紫 → 白（灰色を経由しない） */
+      .to(statement, { backgroundColor: '#4C1D95', duration: 0.8, ease: 'none' }, '>+0.2')
+      .to(statement, { backgroundColor: '#EDE9FA', duration: 1.2, ease: 'power1.in' }, '>')
+      .to(stWords, { color: '#17141F', duration: 1.1, ease: 'power1.inOut' }, '<+0.35')
+      .to(stSubWords, { color: '#5B5566', duration: 1.1, ease: 'power1.inOut' }, '<')
+      .to(stEyebrow, { color: '#6D28D9', duration: 1.1 }, '<')
+      .to(statement, { backgroundColor: '#FFFFFF', duration: 0.8, ease: 'none' }, '>-0.3')
+      .to('.dawn-glow', { opacity: 0, duration: 1.0 }, '<');
+  }
 
   /* ---------- 事業カード：時間差で立ち上がる ---------- */
-  gsap.from('.biz-card', {
-    y: 46, opacity: 0, duration: 0.85, ease: 'power3.out', stagger: 0.09,
-    scrollTrigger: { trigger: '.biz-grid', start: 'top 82%', once: true }
-  });
+  if (document.querySelector('.biz-grid')) {
+    gsap.from('.biz-card', {
+      y: 46, opacity: 0, duration: 0.85, ease: 'power3.out', stagger: 0.09,
+      scrollTrigger: { trigger: '.biz-grid', start: 'top 82%', once: true }
+    });
+  }
+
+  /* ---------- 実績カード（system.html）：時間差で立ち上がる ---------- */
+  if (document.querySelector('.sys-grid')) {
+    gsap.from('.sys-card', {
+      y: 46, opacity: 0, duration: 0.85, ease: 'power3.out', stagger: 0.09,
+      scrollTrigger: { trigger: '.sys-grid', start: 'top 82%', once: true }
+    });
+  }
 
   /* ---------- CEO写真：ゆっくり寄る ---------- */
-  gsap.from('.ceo-photo', {
-    scale: 1.07, duration: 1.4, ease: 'power2.out',
-    scrollTrigger: { trigger: '.ceo-inner', start: 'top 75%', once: true }
-  });
+  if (document.querySelector('.ceo-inner')) {
+    gsap.from('.ceo-photo', {
+      scale: 1.07, duration: 1.4, ease: 'power2.out',
+      scrollTrigger: { trigger: '.ceo-inner', start: 'top 75%', once: true }
+    });
+  }
 
   /* ---------- CTA：オーロラをわずかに視差 ---------- */
-  gsap.fromTo('.cta-aurora', { yPercent: -8 }, {
-    yPercent: 8, ease: 'none',
-    scrollTrigger: { trigger: '.cta', start: 'top bottom', end: 'bottom top', scrub: true }
-  });
+  if (document.querySelector('.cta')) {
+    gsap.fromTo('.cta-aurora', { yPercent: -8 }, {
+      yPercent: 8, ease: 'none',
+      scrollTrigger: { trigger: '.cta', start: 'top bottom', end: 'bottom top', scrub: true }
+    });
+  }
 })();
