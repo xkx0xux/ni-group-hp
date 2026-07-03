@@ -276,7 +276,8 @@
       </header>
       <ul class="news-list">
         <li class="reveal">
-          <a href="#news">
+          <a href="#news" data-news="0">
+            <img class="news-thumb" src="assets/img/news/policy.jpg" alt="" loading="lazy">
             <time datetime="2025-12-16">2025.12.16</time>
             <span class="news-tag">お知らせ</span>
             <span class="news-title">カスタマーハラスメントに対する当社の基本方針について</span>
@@ -284,7 +285,8 @@
           </a>
         </li>
         <li class="reveal">
-          <a href="#news">
+          <a href="#news" data-news="1">
+            <img class="news-thumb" src="assets/img/news/swim.jpg" alt="" loading="lazy">
             <time datetime="2025-11-28">2025.11.28</time>
             <span class="news-tag">受賞</span>
             <span class="news-title">社員の井上 海選手が『第8回日本社会人選手権水泳競技大会』に出場＆入賞</span>
@@ -292,7 +294,8 @@
           </a>
         </li>
         <li class="reveal">
-          <a href="#news">
+          <a href="#news" data-news="2">
+            <img class="news-thumb" src="assets/img/news/license.jpg" alt="" loading="lazy">
             <time datetime="2025-06-16">2025.06.16</time>
             <span class="news-tag">資格</span>
             <span class="news-title">登録電気工事の免許を取得しました</span>
@@ -357,6 +360,22 @@
     <p>© New innovation Co., Ltd. All Rights Reserved.</p>
   </div>
 </footer>
+
+<!-- ===== ニュース詳細モーダル ===== -->
+<div class="news-modal" id="newsModal" role="dialog" aria-modal="true" aria-labelledby="newsModalTitle" hidden>
+  <div class="news-modal-backdrop" data-close></div>
+  <article class="news-modal-panel">
+    <button class="news-modal-close" data-close aria-label="閉じる">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+    <figure class="news-modal-media"><img id="newsModalImg" src="" alt=""></figure>
+    <div class="news-modal-body">
+      <p class="news-modal-meta"><time id="newsModalDate"></time><span class="news-tag" id="newsModalTag"></span></p>
+      <h3 id="newsModalTitle"></h3>
+      <div class="news-modal-text" id="newsModalText"></div>
+    </div>
+  </article>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>

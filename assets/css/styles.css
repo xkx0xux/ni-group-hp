@@ -533,10 +533,17 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .news-list li:nth-child(3){transition-delay:.14s}
 .news-list a{
   display:flex;align-items:center;gap:26px;
-  padding:26px 8px;
+  padding:20px 8px;
   transition:background .3s;
 }
 .news-list a:hover{background:var(--bg-soft)}
+.news-thumb{
+  width:96px;height:64px;flex-shrink:0;
+  object-fit:cover;border-radius:10px;
+  border:1px solid var(--border);
+  transition:transform .35s var(--ease);
+}
+.news-list a:hover .news-thumb{transform:scale(1.04)}
 .news-list time{
   font-family:var(--font-en-body);font-size:.85rem;
   letter-spacing:.04em;color:var(--ink-3);
@@ -558,6 +565,65 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   transition:transform .3s var(--ease),color .3s;
 }
 .news-list a:hover svg{transform:translateX(4px);color:var(--accent)}
+
+/* ---------- ニュース詳細モーダル ---------- */
+.news-modal{
+  position:fixed;inset:0;z-index:200;
+  display:grid;place-items:center;padding:24px;
+}
+.news-modal[hidden]{display:none}
+.news-modal-backdrop{
+  position:absolute;inset:0;
+  background:rgba(11,9,18,.62);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  animation:fadeIn .3s ease-out;
+}
+.news-modal-panel{
+  position:relative;
+  width:min(720px,100%);
+  max-height:min(86vh,860px);
+  overflow:auto;overscroll-behavior:contain;
+  background:#fff;border-radius:24px;
+  box-shadow:0 40px 90px -30px rgba(11,9,18,.65);
+  animation:modalIn .45s var(--ease);
+}
+@keyframes fadeIn{from{opacity:0}}
+@keyframes modalIn{from{opacity:0;transform:translateY(26px) scale(.97)}}
+.news-modal-close{
+  position:absolute;top:16px;right:16px;z-index:2;
+  width:42px;height:42px;border-radius:50%;
+  display:grid;place-items:center;
+  background:rgba(11,9,18,.55);color:#fff;
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  transition:background .3s,transform .3s var(--ease);
+}
+.news-modal-close:hover{background:var(--accent);transform:rotate(90deg)}
+.news-modal-close svg{width:15px;height:15px}
+.news-modal-media{
+  aspect-ratio:16/9;overflow:hidden;
+  background:var(--bg-violet);
+}
+.news-modal-media img{width:100%;height:100%;object-fit:cover}
+.news-modal-media img.is-contain{object-fit:contain}
+.news-modal-body{padding:34px 40px 44px}
+.news-modal-meta{display:flex;align-items:center;gap:14px}
+.news-modal-meta time{
+  font-family:var(--font-en-body);font-size:.85rem;
+  letter-spacing:.04em;color:var(--ink-3);
+}
+.news-modal-body h3{
+  font-family:var(--font-head);font-weight:900;
+  font-size:1.4rem;line-height:1.65;letter-spacing:.02em;
+  margin-top:14px;
+}
+.news-modal-text{margin-top:18px;color:var(--ink-2);font-size:.95rem;line-height:2.15}
+.news-modal-text p+p{margin-top:16px}
+.news-modal-text .news-score{
+  background:var(--bg-soft);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:16px 20px;
+  color:var(--ink);font-weight:500;
+}
+.news-modal-text .news-sign{text-align:right;color:var(--ink);font-weight:700}
 
 /* =========================================================
    CTA（夕暮れの紫）
@@ -696,9 +762,19 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
   .reasons-grid{grid-template-columns:1fr;gap:14px}
 
-  .news-list a{flex-wrap:wrap;gap:10px 14px;padding:20px 4px}
-  .news-title{white-space:normal;width:100%;order:3}
+  .news-list a{
+    display:grid;grid-template-columns:76px auto 1fr;
+    grid-template-areas:"th tm tg" "th tt tt";
+    gap:6px 14px;padding:18px 4px;align-items:center;
+  }
+  .news-thumb{grid-area:th;width:76px;height:54px}
+  .news-list time{grid-area:tm}
+  .news-tag{grid-area:tg;justify-self:start}
+  .news-title{grid-area:tt;white-space:normal}
   .news-list svg{display:none}
+  .news-modal{padding:14px}
+  .news-modal-body{padding:26px 22px 36px}
+  .news-modal-body h3{font-size:1.2rem}
 
   .cta{padding-block:90px}
 
