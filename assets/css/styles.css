@@ -1,10 +1,11 @@
 /* =========================================================
    NI Group — Proposal Demo
-   明るい上質 × 紫の差し色 × 現代チック
+   「夜明け」構成：夜(シネマ) → 夜明け → 昼(上質な白) → 夕(紫)
    ========================================================= */
 
 /* ---------- Design Tokens ---------- */
 :root{
+  /* 昼（白基調） */
   --bg:#FFFFFF;
   --bg-soft:#FAF9FC;
   --bg-violet:#F5F3FF;
@@ -16,10 +17,20 @@
   --ink-3:#8E88A0;
   --ink-inv:#FFFFFF;
 
+  /* 夜（シネマパート） */
+  --night:#0B0912;
+  --night-2:#131020;
+  --night-line:rgba(255,255,255,.09);
+  --night-text:#F4F2F8;
+  --night-dim:#A79FB8;
+
+  /* 紫 */
   --accent:#6D28D9;
   --accent-deep:#4C1D95;
   --accent-soft:#8B5CF6;
+  --accent-glow:#A78BFA;
   --grad:linear-gradient(135deg,#7C3AED 0%,#4F46E5 100%);
+  --grad-dawn:linear-gradient(120deg,#C4B5FD 0%,#8B5CF6 45%,#6366F1 100%);
 
   --font-head:'Zen Kaku Gothic New','Noto Sans JP',sans-serif;
   --font-body:'Noto Sans JP',sans-serif;
@@ -41,6 +52,8 @@
 /* ---------- Reset / Base ---------- */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
+html.lenis{scroll-behavior:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
 body{
   font-family:var(--font-body);
   font-size:16px;
@@ -58,6 +71,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 .container{max-width:var(--container);margin-inline:auto;padding-inline:24px}
 .pc-only{display:inline}
+.sp-only{display:none}
 
 /* ---------- Type Utilities ---------- */
 .eyebrow{
@@ -67,8 +81,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   letter-spacing:.3em;
   color:var(--accent);
 }
-.text-grad{
-  background:var(--grad);
+.text-dawn{
+  font-style:normal;
+  background:var(--grad-dawn);
   -webkit-background-clip:text;
   background-clip:text;
   color:transparent;
@@ -84,19 +99,31 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .btn svg{width:15px;height:15px;transition:transform .3s var(--ease)}
 .btn-primary{
   background:var(--grad);color:#fff;
-  box-shadow:0 10px 26px -10px rgba(109,40,217,.5);
+  box-shadow:0 10px 26px -10px rgba(109,40,217,.6);
 }
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 34px -12px rgba(109,40,217,.55)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 38px -12px rgba(139,92,246,.65)}
 .btn-primary:hover svg{transform:translateX(3px)}
 .btn-ghost{
   background:var(--surface);color:var(--ink);
   border:1px solid var(--border);
 }
 .btn-ghost:hover{border-color:var(--accent-soft);color:var(--accent-deep);transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+.btn-night{
+  background:rgba(255,255,255,.04);color:var(--night-text);
+  border:1px solid rgba(255,255,255,.18);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+}
+.btn-night:hover{border-color:var(--accent-glow);color:#fff;transform:translateY(-2px);box-shadow:0 12px 30px -14px rgba(139,92,246,.5)}
+.btn-light{
+  background:#fff;color:var(--accent-deep);
+  box-shadow:0 14px 34px -14px rgba(11,9,18,.5);
+}
+.btn-light:hover{transform:translateY(-2px);box-shadow:0 20px 44px -16px rgba(11,9,18,.55)}
+.btn-light:hover svg{transform:translateX(3px)}
 .btn-sm{padding:10px 22px;font-size:.85rem}
 
 /* =========================================================
-   Header
+   Header（夜⇔昼テーマ切替）
    ========================================================= */
 .site-header{
   position:fixed;inset:0 0 auto 0;z-index:100;
@@ -104,7 +131,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   background:rgba(255,255,255,.82);
   -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
   border-bottom:1px solid transparent;
-  transition:border-color .3s,box-shadow .3s;
+  transition:border-color .4s,box-shadow .4s,background .4s;
 }
 .site-header.is-scrolled{
   border-bottom-color:var(--border);
@@ -114,7 +141,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   height:100%;
   display:flex;align-items:center;justify-content:space-between;gap:24px;
 }
-.brand{display:inline-flex;align-items:center;gap:12px;color:var(--ink)}
+.brand{display:inline-flex;align-items:center;gap:12px;color:var(--ink);transition:color .4s}
 .brand-mark{width:30px;height:30px}
 .brand-name{
   font-family:var(--font-en);font-weight:700;
@@ -124,7 +151,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .site-nav a:not(.btn){
   font-size:.9rem;font-weight:500;color:var(--ink-2);
   position:relative;padding:6px 0;
-  transition:color .25s;
+  transition:color .3s;
 }
 .site-nav a:not(.btn)::after{
   content:"";position:absolute;left:0;bottom:0;
@@ -136,10 +163,18 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .site-nav a:not(.btn):hover{color:var(--ink)}
 .site-nav a:not(.btn):hover::after{transform:scaleX(1)}
 
+/* 夜テーマ（ヒーロー上空） */
+.site-header.on-night{background:rgba(11,9,18,.55)}
+.site-header.on-night.is-scrolled{border-bottom-color:rgba(255,255,255,.08);box-shadow:0 4px 24px -12px rgba(0,0,0,.4)}
+.site-header.on-night .brand{color:#fff}
+.site-header.on-night .site-nav a:not(.btn){color:var(--night-dim)}
+.site-header.on-night .site-nav a:not(.btn):hover{color:#fff}
+.site-header.on-night .nav-toggle span{background:#fff}
+
 .nav-toggle{display:none;position:relative;width:44px;height:44px;border-radius:12px}
 .nav-toggle span{
   position:absolute;left:11px;width:22px;height:2px;border-radius:2px;
-  background:var(--ink);transition:transform .3s var(--ease),top .3s var(--ease);
+  background:var(--ink);transition:transform .3s var(--ease),top .3s var(--ease),background .4s;
 }
 .nav-toggle span:nth-child(1){top:17px}
 .nav-toggle span:nth-child(2){top:25px}
@@ -147,7 +182,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .nav-toggle[aria-expanded="true"] span:nth-child(2){top:21px;transform:rotate(-45deg)}
 
 /* =========================================================
-   Hero
+   Hero（夜のシネマ）
    ========================================================= */
 .hero{
   position:relative;
@@ -155,84 +190,101 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   display:flex;align-items:center;
   padding-top:var(--header-h);
   overflow:hidden;
+  background:
+    radial-gradient(120% 90% at 78% 30%,#1A1430 0%,transparent 55%),
+    linear-gradient(180deg,var(--night) 0%,var(--night-2) 100%);
+  color:var(--night-text);
 }
-.hero-bg{position:absolute;inset:0;pointer-events:none}
-.hero-orb{position:absolute;border-radius:50%}
-.hero-orb-1{
-  width:min(64vw,880px);aspect-ratio:1;
-  right:-14%;top:-24%;
-  background:radial-gradient(closest-side,rgba(124,58,237,.13),rgba(79,70,229,.05) 58%,transparent 72%);
+.hero-bg{position:absolute;inset:0;pointer-events:none;will-change:transform}
+.hero-glow{position:absolute;border-radius:50%}
+.hero-glow-core{
+  width:min(40vw,520px);aspect-ratio:1;
+  right:6%;top:22%;
+  background:radial-gradient(closest-side,rgba(139,92,246,.34),rgba(109,40,217,.12) 55%,transparent 72%);
+  animation:breath 7s ease-in-out infinite;
 }
-.hero-orb-2{
-  width:min(38vw,480px);aspect-ratio:1;
-  left:-10%;bottom:-18%;
-  background:radial-gradient(closest-side,rgba(79,70,229,.07),transparent 70%);
+.hero-glow-wide{
+  width:min(80vw,1100px);aspect-ratio:1;
+  right:-18%;top:-28%;
+  background:radial-gradient(closest-side,rgba(124,58,237,.16),rgba(79,70,229,.06) 55%,transparent 75%);
 }
-.hero-dots{
-  position:absolute;right:4%;top:14%;
-  width:42%;height:58%;
-  background:radial-gradient(circle at 1px 1px,rgba(23,20,31,.08) 1px,transparent 1.6px) 0 0/22px 22px;
-  -webkit-mask-image:radial-gradient(closest-side,#000 30%,transparent 92%);
-  mask-image:radial-gradient(closest-side,#000 30%,transparent 92%);
+@keyframes breath{
+  0%,100%{transform:scale(1);opacity:1}
+  50%{transform:scale(1.08);opacity:.85}
+}
+.hero-stars{position:absolute;inset:0}
+.hero-stars i{
+  position:absolute;border-radius:50%;
+  background:#fff;
+  animation:twinkle var(--tw,3s) ease-in-out infinite;
+  animation-delay:var(--twd,0s);
+}
+@keyframes twinkle{
+  0%,100%{opacity:var(--o,.5)}
+  50%{opacity:.08}
 }
 .hero-mono{
   position:absolute;
-  width:min(46vw,600px);
-  right:2%;top:50%;translate:0 -50%;
+  width:min(44vw,580px);
+  right:3%;top:50%;translate:0 -50%;
+}
+.hero-horizon{
+  position:absolute;left:0;right:0;bottom:-2px;height:34vh;
+  background:linear-gradient(180deg,transparent 0%,rgba(76,29,149,.14) 55%,rgba(109,40,217,.22) 100%);
 }
 
-.hero-inner{position:relative;width:100%;padding-block:72px}
+.hero-inner{position:relative;width:100%;padding-block:64px 140px}
 .hero-title{
   font-family:var(--font-head);font-weight:900;
   font-size:clamp(2.55rem,6.4vw,5rem);
-  line-height:1.24;letter-spacing:.015em;
-  margin-top:26px;
+  line-height:1.22;letter-spacing:.015em;
+  margin-top:26px;color:#fff;
 }
+.mask-line{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
+.mask-line>span{display:inline-block;translate:0 112%;animation:lineUp .95s var(--ease) forwards;animation-delay:var(--d,0s)}
+@keyframes lineUp{to{translate:0 0}}
+
 .hero-lead{
   margin-top:30px;
   font-size:clamp(.95rem,1.35vw,1.08rem);
-  line-height:2.15;color:var(--ink-2);
+  line-height:2.15;color:var(--night-dim);
   font-weight:500;
 }
 .hero-actions{margin-top:40px;display:flex;flex-wrap:wrap;gap:16px}
-.hero-fields{
-  margin-top:56px;
-  display:flex;align-items:center;flex-wrap:wrap;gap:14px 20px;
+
+/* 会社名マーキー（ヒーロー下端） */
+.hero-marquee{
+  position:absolute;left:0;right:0;bottom:0;
+  overflow:hidden;padding-block:18px 26px;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
 }
-.hero-fields-label{
-  font-family:var(--font-en);font-weight:600;font-size:.7rem;
-  letter-spacing:.24em;color:var(--ink-3);
-  padding-right:20px;border-right:1px solid var(--border);
+.marquee-track{display:flex;width:max-content;animation:marq 30s linear infinite}
+.marquee-track span{
+  font-family:var(--font-en);font-weight:700;
+  font-size:clamp(1.6rem,3.2vw,2.6rem);
+  letter-spacing:.06em;white-space:nowrap;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(255,255,255,.16);
 }
-.hero-fields ul{display:flex;flex-wrap:wrap;gap:10px}
-.hero-fields li{
-  display:inline-flex;align-items:center;gap:.55em;
-  font-size:.82rem;font-weight:500;color:var(--ink-2);
-  background:rgba(255,255,255,.7);
-  border:1px solid var(--border);border-radius:999px;
-  padding:7px 16px;
-}
-.hero-fields li::before{
-  content:"";width:5px;height:5px;border-radius:50%;
-  background:var(--grad);
-}
+@keyframes marq{to{transform:translateX(-50%)}}
 
 .scroll-cue{
-  position:absolute;left:24px;bottom:0;
+  position:absolute;left:24px;bottom:96px;
   display:flex;flex-direction:column;align-items:center;gap:10px;
 }
 .scroll-cue span{
   font-family:var(--font-en);font-size:.62rem;font-weight:600;
-  letter-spacing:.28em;color:var(--ink-3);
+  letter-spacing:.28em;color:var(--night-dim);
   writing-mode:vertical-rl;
 }
 .scroll-cue i{
-  width:1px;height:56px;background:var(--border);
+  width:1px;height:56px;background:rgba(255,255,255,.16);
   position:relative;overflow:hidden;
 }
 .scroll-cue i::after{
   content:"";position:absolute;left:0;top:-40%;
-  width:100%;height:40%;background:var(--accent);
+  width:100%;height:40%;background:var(--accent-glow);
   animation:cueDrop 2.1s var(--ease) infinite;
 }
 @keyframes cueDrop{
@@ -243,23 +295,301 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* Hero 出現ステップ */
 .hero-step{
   opacity:0;translate:0 18px;
-  animation:stepIn .66s var(--ease) forwards;
+  animation:stepIn .7s var(--ease) forwards;
   animation-delay:var(--d,0s);
 }
 @keyframes stepIn{to{opacity:1;translate:0 0}}
 
 /* =========================================================
-   Sections 共通（後続タスクで使用）
+   ステートメント（夜明け）
+   ※基本状態＝夜明け後（白・ink）。JSシネマ時に夜から明転。
+   ========================================================= */
+.statement{
+  position:relative;overflow:hidden;
+  min-height:100svh;
+  display:flex;align-items:center;
+  background:var(--bg);
+  padding-block:120px;
+}
+.dawn-glow{
+  position:absolute;left:50%;bottom:-30%;translate:-50% 0;
+  width:130vw;height:80vh;pointer-events:none;
+  background:radial-gradient(50% 60% at 50% 100%,rgba(139,92,246,.28),rgba(124,58,237,.10) 55%,transparent 75%);
+  opacity:0;
+}
+.statement-inner{position:relative;max-width:980px}
+.statement-text{
+  font-family:var(--font-head);font-weight:900;
+  font-size:clamp(1.9rem,4.6vw,3.4rem);
+  line-height:1.6;letter-spacing:.02em;
+  margin-top:34px;color:var(--ink);
+}
+.statement-sub{
+  font-family:var(--font-head);font-weight:700;
+  font-size:clamp(1.05rem,2vw,1.5rem);
+  line-height:1.9;color:var(--ink-2);
+  margin-top:26px;
+}
+.st-w{display:inline-block}
+
+/* =========================================================
+   セクション共通（昼）
    ========================================================= */
 .section{padding-block:120px}
-.reveal{opacity:0;translate:0 16px;transition:opacity .56s var(--ease),translate .56s var(--ease)}
+.sec-head{margin-bottom:56px}
+.sec-head h2{
+  font-family:var(--font-head);font-weight:900;
+  font-size:clamp(1.7rem,3.4vw,2.6rem);
+  line-height:1.5;letter-spacing:.02em;
+  margin-top:16px;
+}
+.sec-lead{margin-top:18px;color:var(--ink-2);max-width:640px}
+
+.reveal{opacity:0;translate:0 18px;transition:opacity .6s var(--ease),translate .6s var(--ease)}
 .reveal.is-in{opacity:1;translate:0 0}
+
+/* =========================================================
+   数字（昼の始まり）
+   ========================================================= */
+.stats{background:var(--bg);padding-top:20px}
+.stats-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--border);
+}
+.stat{
+  padding:44px 28px 40px;
+  border-bottom:1px solid var(--border);
+  position:relative;
+}
+.stat+.stat::before{
+  content:"";position:absolute;left:0;top:28px;bottom:28px;
+  width:1px;background:var(--border);
+}
+.stat:nth-child(1){transition-delay:.02s}
+.stat:nth-child(2){transition-delay:.1s}
+.stat:nth-child(3){transition-delay:.18s}
+.stat:nth-child(4){transition-delay:.26s}
+.stat-num{
+  font-family:var(--font-en);font-weight:700;
+  font-size:clamp(3rem,5.4vw,4.4rem);
+  line-height:1.1;letter-spacing:-.01em;
+  background:var(--grad);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.stat-num-text{font-family:var(--font-head);letter-spacing:.04em}
+.stat-label{
+  margin-top:10px;font-weight:700;font-size:.95rem;
+}
+.stat-label em{
+  display:block;font-style:normal;
+  font-family:var(--font-en);font-weight:600;
+  font-size:.62rem;letter-spacing:.2em;color:var(--ink-3);
+  margin-top:6px;text-transform:uppercase;
+}
+
+/* =========================================================
+   事業5社（ベントー）
+   ========================================================= */
+.business{background:var(--bg-soft)}
+.biz-grid{
+  display:grid;gap:20px;
+  grid-template-columns:repeat(3,1fr);
+  grid-template-areas:
+    "a a b"
+    "c d e";
+}
+.biz-a{grid-area:a}
+.biz-b{grid-area:b}
+.biz-c{grid-area:c}
+.biz-d{grid-area:d}
+.biz-e{grid-area:e}
+
+.biz-card{
+  position:relative;overflow:hidden;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:34px 32px 30px;
+  box-shadow:var(--shadow-sm);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .4s;
+}
+.biz-card::before{
+  content:"";position:absolute;inset:0 0 auto 0;height:3px;
+  background:var(--grad);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .45s var(--ease);
+}
+.biz-card:hover{
+  transform:translateY(-6px);
+  box-shadow:var(--shadow-md);
+  border-color:#E2DCF2;
+}
+.biz-card:hover::before{transform:scaleX(1)}
+.biz-index{
+  position:absolute;top:26px;right:28px;
+  font-family:var(--font-en);font-weight:700;font-size:.8rem;
+  letter-spacing:.14em;color:var(--ink-3);
+}
+.biz-icon{
+  width:52px;height:52px;border-radius:14px;
+  display:grid;place-items:center;
+  background:var(--bg-violet);color:var(--accent);
+  margin-bottom:22px;
+}
+.biz-icon svg{width:28px;height:28px}
+.biz-card h3{
+  font-family:var(--font-head);font-weight:700;
+  font-size:1.3rem;line-height:1.45;letter-spacing:.02em;
+}
+.biz-en{
+  font-family:var(--font-en);font-weight:600;
+  font-size:.66rem;letter-spacing:.22em;color:var(--accent);
+  margin-top:8px;
+}
+.biz-desc{margin-top:14px;font-size:.92rem;line-height:1.95;color:var(--ink-2)}
+.biz-tags{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
+.biz-tags span{
+  font-size:.74rem;font-weight:500;color:var(--ink-2);
+  border:1px solid var(--border);border-radius:999px;
+  padding:4px 12px;background:var(--bg);
+}
+.biz-a h3{font-size:1.6rem}
+.biz-a .biz-desc{max-width:520px}
+
+/* =========================================================
+   CEO
+   ========================================================= */
+.ceo{background:var(--bg)}
+.ceo-inner{
+  display:grid;grid-template-columns:5fr 7fr;gap:72px;
+  align-items:start;
+}
+.ceo-visual{position:sticky;top:calc(var(--header-h) + 40px)}
+.ceo-photo{
+  aspect-ratio:4/5;border-radius:var(--radius);
+  background:
+    radial-gradient(120% 100% at 20% 0%,rgba(167,139,250,.55),transparent 55%),
+    linear-gradient(160deg,#2A1E4F 0%,#4C1D95 55%,#6D28D9 100%);
+  display:grid;place-items:center;
+  overflow:hidden;
+  box-shadow:var(--shadow-md);
+}
+.ceo-photo svg{width:38%;opacity:.9}
+.ceo-visual figcaption{
+  display:flex;align-items:baseline;gap:14px;margin-top:18px;
+}
+.ceo-name{font-family:var(--font-head);font-weight:700;font-size:1.15rem}
+.ceo-role{font-size:.8rem;color:var(--ink-3)}
+.ceo-text p{
+  color:var(--ink-2);line-height:2.2;
+}
+.ceo-text p+p{margin-top:26px}
+.ceo-text p:first-child{
+  color:var(--ink);font-weight:500;
+}
+
+/* =========================================================
+   選ばれる理由
+   ========================================================= */
+.reasons{background:var(--bg-soft)}
+.reasons-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+}
+.reason{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:36px 32px;
+  box-shadow:var(--shadow-sm);
+}
+.reason:nth-child(2){transition-delay:.08s}
+.reason:nth-child(3){transition-delay:.16s}
+.reason-num{
+  font-family:var(--font-en);font-weight:700;
+  font-size:.8rem;letter-spacing:.16em;
+  background:var(--grad);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.reason h3{
+  font-family:var(--font-head);font-weight:700;
+  font-size:1.25rem;margin-top:14px;letter-spacing:.02em;
+}
+.reason p{margin-top:12px;font-size:.92rem;line-height:2;color:var(--ink-2)}
+
+/* =========================================================
+   ニュース
+   ========================================================= */
+.news{background:var(--bg)}
+.news-list{border-top:1px solid var(--border)}
+.news-list li{border-bottom:1px solid var(--border)}
+.news-list li:nth-child(2){transition-delay:.07s}
+.news-list li:nth-child(3){transition-delay:.14s}
+.news-list a{
+  display:flex;align-items:center;gap:26px;
+  padding:26px 8px;
+  transition:background .3s;
+}
+.news-list a:hover{background:var(--bg-soft)}
+.news-list time{
+  font-family:var(--font-en-body);font-size:.85rem;
+  letter-spacing:.04em;color:var(--ink-3);
+  flex-shrink:0;
+}
+.news-tag{
+  flex-shrink:0;
+  font-size:.7rem;font-weight:700;color:var(--accent);
+  border:1px solid #DDD3F5;border-radius:999px;
+  padding:3px 12px;background:var(--bg-violet);
+}
+.news-title{
+  font-size:.95rem;font-weight:500;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.news-list svg{
+  width:14px;height:14px;margin-left:auto;flex-shrink:0;
+  color:var(--ink-3);
+  transition:transform .3s var(--ease),color .3s;
+}
+.news-list a:hover svg{transform:translateX(4px);color:var(--accent)}
+
+/* =========================================================
+   CTA（夕暮れの紫）
+   ========================================================= */
+.cta{
+  position:relative;overflow:hidden;
+  padding-block:130px;
+  background:linear-gradient(150deg,#241243 0%,#4C1D95 48%,#5B21B6 100%);
+  color:#fff;text-align:center;
+}
+.cta-aurora{
+  position:absolute;inset:-40%;
+  background:
+    radial-gradient(38% 42% at 30% 60%,rgba(167,139,250,.5),transparent 70%),
+    radial-gradient(34% 38% at 72% 34%,rgba(99,102,241,.55),transparent 70%),
+    radial-gradient(30% 34% at 58% 76%,rgba(196,181,253,.32),transparent 70%);
+  animation:aurora 16s ease-in-out infinite alternate;
+  pointer-events:none;
+}
+@keyframes aurora{
+  0%{transform:rotate(0deg) scale(1)}
+  100%{transform:rotate(8deg) scale(1.12)}
+}
+.cta-inner{position:relative}
+.cta-eyebrow{color:#D8CCF8}
+.cta h2{
+  font-family:var(--font-head);font-weight:900;
+  font-size:clamp(1.8rem,3.8vw,2.9rem);
+  line-height:1.5;letter-spacing:.02em;
+  margin-top:18px;
+}
+.cta-lead{margin-top:18px;color:#D8CCF8;font-size:.95rem}
+.cta .btn{margin-top:38px}
 
 /* =========================================================
    Footer
    ========================================================= */
 .site-footer{
-  background:var(--ink);color:#CFCAD9;
+  background:var(--night);color:#CFCAD9;
   padding-top:88px;
 }
 .footer-inner{
@@ -269,7 +599,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   padding-bottom:72px;
 }
 .footer-logo{color:#fff}
-.footer-logo .brand-mark path:first-child{stroke:#fff}
 .footer-tagline{
   margin-top:22px;font-size:.9rem;line-height:2.1;color:#A79FB8;
 }
@@ -279,7 +608,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   color:#fff;border-bottom:1px solid rgba(255,255,255,.3);
   padding-bottom:2px;transition:border-color .25s,color .25s;
 }
-.footer-mail:hover{color:var(--accent-soft);border-color:var(--accent-soft)}
+.footer-mail:hover{color:var(--accent-glow);border-color:var(--accent-glow)}
 .footer-col h2{
   font-family:var(--font-en);font-size:.72rem;font-weight:600;
   letter-spacing:.26em;color:#8E86A3;
@@ -303,12 +632,23 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
    Responsive
    ========================================================= */
 @media (max-width:1024px){
-  .hero-mono{opacity:.6;right:-14%}
+  .hero-mono{opacity:.55;right:-16%}
+  .biz-grid{
+    grid-template-columns:1fr 1fr;
+    grid-template-areas:
+      "a a"
+      "b c"
+      "d e";
+  }
+  .ceo-inner{grid-template-columns:1fr;gap:48px}
+  .ceo-visual{position:static;max-width:420px}
 }
 
 @media (max-width:768px){
-  .section{padding-block:72px}
+  .section{padding-block:76px}
+  .sec-head{margin-bottom:40px}
   .pc-only{display:none}
+  .sp-only{display:inline}
 
   /* Nav → パネル */
   .nav-toggle{display:block}
@@ -323,18 +663,37 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     transition:opacity .3s var(--ease),translate .3s var(--ease),visibility .3s;
   }
   body.nav-open .site-nav{opacity:1;visibility:visible;translate:0 0}
-  .site-nav a:not(.btn){font-size:1rem;padding:10px 0;width:100%}
+  .site-nav a:not(.btn){font-size:1rem;padding:10px 0;width:100%;color:var(--ink-2)!important}
   .site-nav .btn{margin-top:14px}
 
-  .hero{min-height:auto}
-  .hero-inner{padding-block:96px 120px}
+  .hero-inner{padding-block:88px 150px}
   .hero-mono{display:none}
-  .hero-dots{right:-10%;top:4%;width:70%;height:34%}
+  .hero-glow-core{right:-20%;top:6%}
   .hero-lead{line-height:2.05}
   .hero-actions .btn{width:100%;justify-content:center}
-  .hero-fields{margin-top:44px}
-  .hero-fields-label{border-right:0;padding-right:0;width:100%}
   .scroll-cue{display:none}
+
+  .statement{padding-block:96px}
+
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .stat{padding:30px 20px 26px}
+  .stat:nth-child(odd)::before{display:none}
+
+  .biz-grid{
+    grid-template-columns:1fr;
+    grid-template-areas:"a" "b" "c" "d" "e";
+    gap:14px;
+  }
+  .biz-card{padding:28px 24px 26px}
+  .biz-a h3{font-size:1.4rem}
+
+  .reasons-grid{grid-template-columns:1fr;gap:14px}
+
+  .news-list a{flex-wrap:wrap;gap:10px 14px;padding:20px 4px}
+  .news-title{white-space:normal;width:100%;order:3}
+  .news-list svg{display:none}
+
+  .cta{padding-block:90px}
 
   .footer-inner{grid-template-columns:1fr;gap:40px;padding-bottom:56px}
 }
@@ -343,7 +702,12 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .hero-step{animation:none;opacity:1;translate:0 0}
+  .mask-line>span{animation:none;translate:0 0}
   .reveal{opacity:1;translate:0 0;transition:none}
   .scroll-cue i::after{animation:none}
+  .marquee-track{animation:none}
+  .hero-glow-core{animation:none}
+  .cta-aurora{animation:none}
+  .hero-stars i{animation:none}
   .btn,.footer-col a{transition:none}
 }
