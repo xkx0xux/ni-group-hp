@@ -62,7 +62,8 @@
   - ✅ OG画像済（assets/img/og.png・1200x630・og-card.htmlをPlaywright撮影で生成→og-card.htmlは削除済。全ページにOGP/Twitterカード。**URLはGitHub Pages絶対URL→独自ドメイン切替時に要更新**）
   - ✅ お問い合わせフォーム済（名前/会社/メール/内容・**mailto方式**＝依存ゼロで即動く。JSはmain.js末尾#contactForm）。⚠️"送信で直接届く版"は未（Formspree無料 or Cloudflare Pages移行時にPages Functionsで対応）
   - ✅ 内田会長の個人CEOセクションを撤去→**「各社代表(社長)ラインナップ」**に刷新（#leaders・5社の縦型カード・写真枠＋名前プレースホルダ「お名前」）。理由=内田は会長のため非掲載、各社社長を載せる方針(マスター 2026-07-05)。
-  - ⏳ 素材待ち：**各社5人の社長の氏名＋顔写真**（枠用意済・氏名は「お名前」プレースホルダ）／現場写真／実数字（今は捏造ゼロ構成）。※内田雄真は会長=サイトに出さない。
+  - ✅ 各社代表を**確定3名**に（氏名反映済）：New innovation=阿部 公亮／New creation=石山 滉人／New bloom=笠原 悠司（全員「代表取締役社長」）。**Sales Finder・New spaceはカード非掲載**（マスター「他2つはいらない」2026-07-05）。※内田雄真=会長でサイト非掲載。
+  - ⏳ 素材待ち：**上記3名の顔写真**（#leadersの紫枠に差し替え・portrait 4:5想定）／現場写真／実数字（今は捏造ゼロ構成）。
   - ⏳ go-live時：noindex解除・robots.txt見直し・OG URL更新
 - **移行の順番厳守**：①本番品質に仕上げ →②ni-holdings.comを新HP(GitHub Pages/Cloudflare Pages)に向けて表示確認 →③**その後にWix解約**（先に解約するとサイトが消える）。詳細＝~/Cloudflare集約/TODO.md「Phase 2.5」。
 - 注意：元々「内田氏への提案デモ」。本番差し替えは先方の合意/権限前提（マスターが判断）。
