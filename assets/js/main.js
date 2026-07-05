@@ -195,6 +195,36 @@
     });
   }
 
+  /* ---------- お問い合わせフォーム（mailto方式・依存ゼロ） ---------- */
+  var cform = document.getElementById('contactForm');
+  if (cform) {
+    cform.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!cform.checkValidity()) { cform.reportValidity(); return; }
+      var val = function (n) {
+        var el = cform.querySelector('[name="' + n + '"]');
+        return el ? el.value.trim() : '';
+      };
+      var name = val('name'), company = val('company'), email = val('email'), message = val('message');
+      var subject = '【お問い合わせ】' + name + (company ? '（' + company + '）' : '');
+      var body =
+        'お名前：' + name + '\n' +
+        '会社名：' + (company || '（未記入）') + '\n' +
+        'メール：' + email + '\n' +
+        '--------------------\n' +
+        message + '\n';
+      window.location.href = 'mailto:innovation1017@new2023.jp'
+        + '?subject=' + encodeURIComponent(subject)
+        + '&body=' + encodeURIComponent(body);
+      if (!cform.querySelector('.cf-ok')) {
+        var ok = document.createElement('p');
+        ok.className = 'cf-ok';
+        ok.textContent = 'メールソフトを開きました。開かない場合は上記アドレスへ直接お送りください。';
+        cform.appendChild(ok);
+      }
+    });
+  }
+
   /* =========================================================
      シネマ演出（GSAP + Lenis）
      ========================================================= */
