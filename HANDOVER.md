@@ -57,7 +57,12 @@
 
 ## ★方針転換（2026-07-04）：このデモを「本番の正式サイト」にしてWixを置き換える
 マスター決定＝「HPはシエルが作るからWixは要らない」。現行のWix製HP（ni-holdings.com）を、このデモに差し替える方針。効果＝Wix代(年1.5〜3万級)が消える＝[[cloudflare-consolidation]]（~/Cloudflare集約）の最大の節約。
-- **本番化に必要な仕上げ**：CEO写真・各社ロゴ（実ロゴ=assets/img/ni-logo.png所持）・実数字・お問い合わせ手段（mailto→必要なら簡易フォーム）・OG画像・noindex解除。
+- **本番化に必要な仕上げ**：
+  - ✅ 実ロゴ差し替え済（assets/img/ni-mark.png=白／ni-mark-dark.png=濃色。元の白ロゴni-logo.pngをPILで加工。ヘッダー夜白/昼濃色を自動切替・フッター・ヒーロー背景・CEO枠・system.html）
+  - ✅ OG画像済（assets/img/og.png・1200x630・og-card.htmlをPlaywright撮影で生成→og-card.htmlは削除済。全ページにOGP/Twitterカード。**URLはGitHub Pages絶対URL→独自ドメイン切替時に要更新**）
+  - ✅ お問い合わせフォーム済（名前/会社/メール/内容・**mailto方式**＝依存ゼロで即動く。JSはmain.js末尾#contactForm）。⚠️"送信で直接届く版"は未（Formspree無料 or Cloudflare Pages移行時にPages Functionsで対応）
+  - ⏳ 素材待ち：CEO写真・現場写真（枠は用意済み）・実数字（今は捏造ゼロ構成）
+  - ⏳ go-live時：noindex解除・robots.txt見直し・OG URL更新
 - **移行の順番厳守**：①本番品質に仕上げ →②ni-holdings.comを新HP(GitHub Pages/Cloudflare Pages)に向けて表示確認 →③**その後にWix解約**（先に解約するとサイトが消える）。詳細＝~/Cloudflare集約/TODO.md「Phase 2.5」。
 - 注意：元々「内田氏への提案デモ」。本番差し替えは先方の合意/権限前提（マスターが判断）。
 
