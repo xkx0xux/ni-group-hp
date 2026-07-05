@@ -539,7 +539,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   font-size:1.15rem;letter-spacing:.03em;
 }
 .leader-name.is-ph{color:var(--ink-3);font-weight:500}
-.leader-role{margin-top:4px;font-size:.78rem;color:var(--ink-3)}
+.leader-en{
+  margin-top:4px;
+  font-family:var(--font-en);font-weight:600;
+  font-size:.66rem;letter-spacing:.16em;color:var(--ink-3);
+  text-transform:uppercase;
+}
+.leader-role{margin-top:7px;font-size:.78rem;color:var(--ink-3)}
 
 /* =========================================================
    選ばれる理由
