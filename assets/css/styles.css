@@ -516,7 +516,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
    各社代表（社長ラインナップ）
    ========================================================= */
 .leaders{background:var(--bg)}
-.leaders-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px}
+.leaders-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:860px;margin-inline:auto}
 .leader:nth-child(2){transition-delay:.06s}
 .leader:nth-child(3){transition-delay:.12s}
 .leader:nth-child(4){transition-delay:.18s}
