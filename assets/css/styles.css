@@ -513,6 +513,35 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 }
 
 /* =========================================================
+   各社代表（社長ラインナップ）
+   ========================================================= */
+.leaders{background:var(--bg)}
+.leaders-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px}
+.leader:nth-child(2){transition-delay:.06s}
+.leader:nth-child(3){transition-delay:.12s}
+.leader:nth-child(4){transition-delay:.18s}
+.leader:nth-child(5){transition-delay:.24s}
+.leader-photo{
+  aspect-ratio:4/5;border-radius:16px;overflow:hidden;
+  background:
+    radial-gradient(120% 100% at 20% 0%,rgba(167,139,250,.5),transparent 55%),
+    linear-gradient(160deg,#2A1E4F 0%,#4C1D95 55%,#6D28D9 100%);
+  display:grid;place-items:center;
+  box-shadow:var(--shadow-sm);
+}
+.leader-photo img{width:46%;height:auto;opacity:.82}
+.leader-company{
+  margin-top:16px;font-size:.8rem;font-weight:700;color:var(--accent);
+  letter-spacing:.01em;
+}
+.leader-name{
+  margin-top:6px;font-family:var(--font-head);font-weight:700;
+  font-size:1.15rem;letter-spacing:.03em;
+}
+.leader-name.is-ph{color:var(--ink-3);font-weight:500}
+.leader-role{margin-top:4px;font-size:.78rem;color:var(--ink-3)}
+
+/* =========================================================
    選ばれる理由
    ========================================================= */
 .reasons{background:var(--bg-soft)}
@@ -872,6 +901,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 @media (max-width:1024px){
   .hero-mono{opacity:.1;right:-6%}
   .hero-mono-ring{display:none}
+  .leaders-grid{grid-template-columns:repeat(3,1fr)}
   .sys-steps{grid-template-columns:1fr 1fr}
   .sys-steps li:nth-child(2)::after{display:none}
   .biz-grid{
@@ -929,6 +959,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .biz-a h3{font-size:1.4rem}
 
   .reasons-grid{grid-template-columns:1fr;gap:14px}
+
+  .leaders-grid{grid-template-columns:1fr 1fr}
 
   .sysband{padding-bottom:76px}
   .sysband-card{padding:40px 26px 38px}
