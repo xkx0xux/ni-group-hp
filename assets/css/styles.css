@@ -373,6 +373,16 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 .reveal{opacity:0;translate:0 18px;transition:opacity .6s var(--ease),translate .6s var(--ease)}
 .reveal.is-in{opacity:1;translate:0 0}
+/* シネマ時：CSS版revealを止めてGSAP(batch stagger)へ引き継ぐ */
+body.gsap-motion .reveal{transition:none;translate:0 0;opacity:1}
+
+/* 見出し下の“描かれる”ライン（シネマ時にJSが挿入） */
+.sec-rule{display:block;width:120px;height:12px;margin-top:16px}
+
+/* 背景の浮遊オーブ（奥行き用・シネマ時にJSが挿入） */
+.bg-orb{position:absolute;border-radius:50%;pointer-events:none;z-index:0}
+.business,.reasons,.news,.leaders{position:relative;overflow:hidden}
+.business>.container,.reasons>.container,.news>.container,.leaders>.container{position:relative;z-index:1}
 
 /* =========================================================
    数字（昼の始まり）

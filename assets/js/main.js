@@ -59,9 +59,9 @@
     starField.appendChild(frag);
   }
 
-  /* ---------- スクロール出現（IO・GSAP非依存の土台） ---------- */
+  /* ---------- スクロール出現（IO・GSAP非依存の土台／シネマ時はGSAPが担当） ---------- */
   var revealEls = document.querySelectorAll('.reveal');
-  if (revealEls.length && 'IntersectionObserver' in window && !reduceMotion) {
+  if (revealEls.length && 'IntersectionObserver' in window && !reduceMotion && !cinematic) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
@@ -71,7 +71,7 @@
       });
     }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
     revealEls.forEach(function (el) { io.observe(el); });
-  } else {
+  } else if (!cinematic) {
     revealEls.forEach(function (el) { el.classList.add('is-in'); });
   }
 
@@ -90,7 +90,7 @@
     }
     requestAnimationFrame(tick);
   }
-  if (counters.length) {
+  if (counters.length && !cinematic) {
     if ('IntersectionObserver' in window && !reduceMotion) {
       var cio = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
@@ -231,6 +231,70 @@
   if (!cinematic) return;
 
   gsap.registerPlugin(ScrollTrigger);
+  document.body.classList.add('gsap-motion'); /* CSS版revealを止める */
+
+  /* ---------- セクション出現：下からふわっと、順番に（batch stagger） ---------- */
+  gsap.set('.reveal', { autoAlpha: 0, y: 30 });
+  ScrollTrigger.batch('.reveal', {
+    start: 'top 86%',
+    once: true,
+    onEnter: function (els) {
+      gsap.to(els, { autoAlpha: 1, y: 0, duration: 1.05, ease: 'power3.out', stagger: 0.13, overwrite: true });
+    }
+  });
+
+  /* ---------- 数字：0からぬるっとカウントアップ ---------- */
+  counters.forEach(function (el) {
+    var target = parseFloat(el.getAttribute('data-count'));
+    ScrollTrigger.create({
+      trigger: el, start: 'top 86%', once: true,
+      onEnter: function () {
+        var obj = { v: 0 };
+        gsap.to(obj, {
+          v: target, duration: 1.8, ease: 'power3.out',
+          onUpdate: function () { el.textContent = Math.round(obj.v).toLocaleString('ja-JP'); }
+        });
+      }
+    });
+  });
+
+  /* ---------- 見出し下のライン：SVGで“描かれる” ---------- */
+  document.querySelectorAll('main .section .sec-head h2').forEach(function (h2, i) {
+    var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('viewBox', '0 0 120 12');
+    svg.setAttribute('class', 'sec-rule');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.innerHTML =
+      '<defs><linearGradient id="secRule' + i + '" x1="0" y1="0" x2="120" y2="0" gradientUnits="userSpaceOnUse">' +
+      '<stop offset="0" stop-color="#7C3AED"/><stop offset="1" stop-color="#4F46E5"/></linearGradient></defs>' +
+      '<path d="M2 7 C 28 3, 64 11, 118 5" fill="none" stroke="url(#secRule' + i + ')" stroke-width="2.4" stroke-linecap="round"/>';
+    h2.after(svg);
+    var path = svg.querySelector('path');
+    var len = path.getTotalLength();
+    gsap.set(path, { strokeDasharray: len, strokeDashoffset: len });
+    gsap.to(path, {
+      strokeDashoffset: 0, duration: 1.2, ease: 'power2.inOut',
+      scrollTrigger: { trigger: svg, start: 'top 90%', once: true }
+    });
+  });
+
+  /* ---------- 背景の浮遊オーブ：セクションに奥行き（軽い視差） ---------- */
+  ['.business', '.leaders', '.reasons', '.news'].forEach(function (sel, idx) {
+    var sec = document.querySelector(sel);
+    if (!sec) return;
+    var orb = document.createElement('div');
+    orb.className = 'bg-orb';
+    var size = 420 + (idx % 2) * 140;
+    orb.style.width = orb.style.height = size + 'px';
+    orb.style[idx % 2 ? 'left' : 'right'] = '-150px';
+    orb.style.top = '10%';
+    orb.style.background = 'radial-gradient(closest-side, rgba(139,92,246,.10), transparent 72%)';
+    sec.appendChild(orb);
+    gsap.fromTo(orb, { yPercent: 28 }, {
+      yPercent: -28, ease: 'none',
+      scrollTrigger: { trigger: sec, start: 'top bottom', end: 'bottom top', scrub: true }
+    });
+  });
 
   /* ---------- Lenis 慣性スクロール ---------- */
   if (typeof window.Lenis !== 'undefined') {
