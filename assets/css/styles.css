@@ -248,6 +248,12 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .hero-horizon{
   position:absolute;left:0;right:0;bottom:-2px;height:34vh;
   background:linear-gradient(180deg,transparent 0%,rgba(76,29,149,.14) 55%,rgba(109,40,217,.22) 100%);
+  transform-origin:bottom center;
+}
+/* 朝焼けの気配（地平線の中央がほのかに明るい・JSでゆっくり明滅） */
+.hero-horizon::after{
+  content:"";position:absolute;inset:auto 0 0 0;height:100%;
+  background:radial-gradient(58% 92% at 50% 100%,rgba(167,139,250,.20),rgba(124,58,237,.07) 55%,transparent 78%);
 }
 
 .hero-inner{position:relative;width:100%;padding-block:64px 140px}
@@ -260,6 +266,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .mask-line{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
 .mask-line>span{display:inline-block;translate:0 112%;animation:lineUp .95s var(--ease) forwards;animation-delay:var(--d,0s)}
 @keyframes lineUp{to{translate:0 0}}
+/* シネマ時：行アニメを止めてJSの一字ずつ演出に引き継ぐ */
+.mask-line>span.is-split{animation:none;translate:0 0}
+.hero-title .ch{display:inline-block;will-change:transform,opacity}
 
 .hero-lead{
   margin-top:30px;
