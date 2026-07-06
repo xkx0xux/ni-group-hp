@@ -257,15 +257,74 @@
     });
   });
 
-  /* ---------- ヒーロー：視差＋去り際のフェード ---------- */
-  if (hero) {
-    gsap.to('.hero-bg', {
-      yPercent: 16, ease: 'none',
-      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+  /* ---------- ヒーロー見出し：一字ずつ、ぬるっと立ち上がる ---------- */
+  function splitChars(el) {
+    var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
+    var textNodes = [];
+    while (walker.nextNode()) textNodes.push(walker.currentNode);
+    textNodes.forEach(function (node) {
+      var frag = document.createDocumentFragment();
+      Array.from(node.textContent).forEach(function (c) {
+        var s = document.createElement('span');
+        s.className = 'ch';
+        s.textContent = c;
+        frag.appendChild(s);
+      });
+      node.parentNode.replaceChild(frag, node);
     });
+  }
+
+  var titleLines = document.querySelectorAll('.hero-title .mask-line > span');
+  if (titleLines.length) {
+    titleLines.forEach(function (line) {
+      line.classList.add('is-split'); /* CSSの行アニメを止めてJSへ引き継ぐ */
+      splitChars(line);
+    });
+    /* グラデ文字は一字ずつでも「行として連続したグラデ」に見えるよう再現 */
+    document.querySelectorAll('.hero-title .text-dawn').forEach(function (em) {
+      em.style.background = 'none'; /* 親の塗りを消し、二重描画・ズレを防ぐ */
+      var chs = em.querySelectorAll('.ch');
+      var n = chs.length;
+      chs.forEach(function (ch, i) {
+        ch.style.background = 'linear-gradient(120deg,#C4B5FD 0%,#8B5CF6 45%,#6366F1 100%)';
+        ch.style.backgroundSize = (n * 100) + '% 100%';
+        ch.style.backgroundPosition = (n > 1 ? (i / (n - 1)) * 100 : 0) + '% 0';
+        ch.style.webkitBackgroundClip = 'text';
+        ch.style.backgroundClip = 'text';
+        ch.style.color = 'transparent';
+      });
+    });
+    gsap.fromTo('.hero-title .ch',
+      { y: '1.02em', opacity: 0 },
+      { y: 0, opacity: 1, duration: 1.15, ease: 'expo.out', stagger: 0.048, delay: 0.32 });
+  }
+
+  /* ---------- ヒーロー：背景がゆっくり“生きている”（アンビエント） ---------- */
+  if (hero) {
+    gsap.set('.hero-glow-core', { animation: 'none' }); /* CSSのbreathと競合させない */
+    gsap.to('.hero-glow-core', { x: 46, y: -26, scale: 1.07, opacity: .88, duration: 9, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+    gsap.to('.hero-glow-wide', { x: -60, y: 24, duration: 14, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+    gsap.to('.hero-mono', { y: 16, rotation: 0.4, duration: 8, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+    gsap.to('.hero-stars', { x: -24, duration: 26, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+    /* 夜明けのグラデが地平線で滲む */
+    gsap.to('.hero-horizon', { scaleY: 1.15, opacity: .8, duration: 7, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+  }
+
+  /* ---------- ヒーロー：層別パララックス（奥ほど遅く＝奥行き） ---------- */
+  if (hero) {
+    var heroLayer = function (target, vars) {
+      vars.ease = 'none';
+      vars.scrollTrigger = { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true };
+      gsap.to(target, vars);
+    };
+    heroLayer('.hero-stars', { yPercent: 7 });      /* 最奥：ほぼ動かない */
+    heroLayer('.hero-glow-wide', { yPercent: 12 });
+    heroLayer('.hero-glow-core', { yPercent: 18 });
+    heroLayer('.hero-horizon', { yPercent: 10 });
+    heroLayer('.hero-mono', { yPercent: 26 });      /* 最前：いちばん流れる */
     gsap.to('.hero-inner', {
-      y: -48, opacity: 0.15, ease: 'none',
-      scrollTrigger: { trigger: '.hero', start: '28% top', end: 'bottom top', scrub: true }
+      y: -64, opacity: 0.12, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: '26% top', end: 'bottom top', scrub: true }
     });
   }
 
