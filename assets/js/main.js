@@ -3,6 +3,7 @@
   'use strict';
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var supportsHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   var hasGsap = typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';
   var cinematic = hasGsap && !reduceMotion;
 
@@ -13,9 +14,9 @@
   /* ---------- Header: スクロールで影 ---------- */
   function onScroll() {
     header.classList.toggle('is-scrolled', window.scrollY > 8);
-    /* シネマ無効時のフォールバック：ヒーローを抜けたら昼テーマへ */
-    if (!cinematic && hero) {
-      header.classList.toggle('on-night', window.scrollY < hero.offsetHeight - 90);
+    /* 全面ダーク：ヘッダーは常に暗ガラス（on-nightを維持） */
+    if (!cinematic) {
+      header.classList.add('on-night');
     }
   }
   window.addEventListener('scroll', onScroll, { passive: true });
@@ -53,7 +54,7 @@
       star.style.setProperty('--o', String(0.18 + Math.random() * 0.5));
       star.style.setProperty('--tw', (2.4 + Math.random() * 3.6).toFixed(2) + 's');
       star.style.setProperty('--twd', (Math.random() * 4).toFixed(2) + 's');
-      if (Math.random() < 0.3) star.style.background = '#C4B5FD';
+      if (Math.random() < 0.3) star.style.background = '#9FB8FF';
       frag.appendChild(star);
     }
     starField.appendChild(frag);
@@ -107,6 +108,90 @@
       });
     }
   }
+
+  /* ---------- スクロール進捗バー ---------- */
+  var sProg = document.getElementById('scrollProgress');
+  if (sProg) {
+    var updateProg = function () {
+      var doc = document.documentElement;
+      var max = doc.scrollHeight - doc.clientHeight;
+      var y = window.pageYOffset || doc.scrollTop || 0;
+      sProg.style.width = (max > 0 ? Math.min(y / max, 1) * 100 : 0) + '%';
+    };
+    window.addEventListener('scroll', updateProg, { passive: true });
+    window.addEventListener('resize', updateProg);
+    updateProg();
+  }
+
+  /* ---------- カスタムカーソル＋磁石ボタン（デスクトップのみ） ---------- */
+  if (supportsHover && !reduceMotion) {
+    var cursor = document.getElementById('cursor');
+    if (cursor) {
+      var cDot = cursor.querySelector('.cursor-dot');
+      var cRing = cursor.querySelector('.cursor-ring');
+      document.body.classList.add('has-cursor');
+      var cmx = window.innerWidth / 2, cmy = window.innerHeight / 2, crx = cmx, cry = cmy;
+      window.addEventListener('mousemove', function (e) {
+        cmx = e.clientX; cmy = e.clientY;
+        cDot.style.transform = 'translate(' + cmx + 'px,' + cmy + 'px) translate(-50%,-50%)';
+      });
+      (function ringLoop() {
+        crx += (cmx - crx) * 0.2; cry += (cmy - cry) * 0.2;
+        cRing.style.transform = 'translate(' + crx + 'px,' + cry + 'px) translate(-50%,-50%)';
+        requestAnimationFrame(ringLoop);
+      })();
+      document.querySelectorAll('a,button,[data-magnetic],input,textarea,.news-list a,.nav-toggle').forEach(function (el) {
+        el.addEventListener('mouseenter', function () { document.body.classList.add('cursor-hover'); });
+        el.addEventListener('mouseleave', function () { document.body.classList.remove('cursor-hover'); });
+      });
+    }
+    document.querySelectorAll('[data-magnetic]').forEach(function (el) {
+      el.addEventListener('mousemove', function (e) {
+        var r = el.getBoundingClientRect();
+        var dx = e.clientX - (r.left + r.width / 2);
+        var dy = e.clientY - (r.top + r.height / 2);
+        el.style.transform = 'translate(' + (dx * 0.35) + 'px,' + (dy * 0.35) + 'px)';
+      });
+      el.addEventListener('mouseleave', function () { el.style.transform = ''; });
+    });
+  }
+
+  /* ---------- 生きた夜明け：canvasで流れる暁の光 ---------- */
+  (function dawnCanvas() {
+    var cv = document.getElementById('dawnCanvas');
+    if (!cv) return;
+    var ctx = cv.getContext('2d');
+    var W = 0, H = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var blobs = [
+      { x: .20, y: .34, r: .52, c: [91, 141, 239], ph: 0.0, sp: .00013, ax: .10, ay: .07 },
+      { x: .72, y: .26, r: .60, c: [139, 91, 239], ph: 2.1, sp: .00017, ax: .12, ay: .09 },
+      { x: .54, y: .72, r: .55, c: [47, 214, 196], ph: 4.2, sp: .00011, ax: .13, ay: .06 },
+      { x: .86, y: .58, r: .42, c: [91, 141, 239], ph: 1.3, sp: .00015, ax: .08, ay: .10 }
+    ];
+    function resize() {
+      W = cv.clientWidth; H = cv.clientHeight;
+      cv.width = W * dpr; cv.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    window.addEventListener('resize', resize); resize();
+    function draw(t) {
+      ctx.clearRect(0, 0, W, H);
+      ctx.globalCompositeOperation = 'lighter';
+      for (var i = 0; i < blobs.length; i++) {
+        var b = blobs[i];
+        var cx = (b.x + Math.sin(t * b.sp + b.ph) * b.ax) * W;
+        var cy = (b.y + Math.cos(t * b.sp * 1.1 + b.ph) * b.ay) * H;
+        var rad = b.r * Math.max(W, H);
+        var g = ctx.createRadialGradient(cx, cy, 0, cx, cy, rad);
+        g.addColorStop(0, 'rgba(' + b.c[0] + ',' + b.c[1] + ',' + b.c[2] + ',0.26)');
+        g.addColorStop(1, 'rgba(' + b.c[0] + ',' + b.c[1] + ',' + b.c[2] + ',0)');
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(cx, cy, rad, 0, 6.2832); ctx.fill();
+      }
+    }
+    if (reduceMotion) { draw(0); return; }
+    (function loop(t) { draw(t || 0); requestAnimationFrame(loop); })(0);
+  })();
 
   /* =========================================================
      ニュース詳細モーダル（GSAP非依存）
@@ -266,7 +351,7 @@
     svg.setAttribute('aria-hidden', 'true');
     svg.innerHTML =
       '<defs><linearGradient id="secRule' + i + '" x1="0" y1="0" x2="120" y2="0" gradientUnits="userSpaceOnUse">' +
-      '<stop offset="0" stop-color="#7C3AED"/><stop offset="1" stop-color="#4F46E5"/></linearGradient></defs>' +
+      '<stop offset="0" stop-color="#2FD6C4"/><stop offset="1" stop-color="#5B8DEF"/></linearGradient></defs>' +
       '<path d="M2 7 C 28 3, 64 11, 118 5" fill="none" stroke="url(#secRule' + i + ')" stroke-width="2.4" stroke-linecap="round"/>';
     h2.after(svg);
     var path = svg.querySelector('path');
@@ -288,7 +373,7 @@
     orb.style.width = orb.style.height = size + 'px';
     orb.style[idx % 2 ? 'left' : 'right'] = '-150px';
     orb.style.top = '10%';
-    orb.style.background = 'radial-gradient(closest-side, rgba(139,92,246,.10), transparent 72%)';
+    orb.style.background = 'radial-gradient(closest-side, rgba(91,141,239,.10), transparent 72%)';
     sec.appendChild(orb);
     gsap.fromTo(orb, { yPercent: 28 }, {
       yPercent: -28, ease: 'none',
@@ -350,7 +435,7 @@
       var chs = em.querySelectorAll('.ch');
       var n = chs.length;
       chs.forEach(function (ch, i) {
-        ch.style.background = 'linear-gradient(120deg,#C4B5FD 0%,#8B5CF6 45%,#6366F1 100%)';
+        ch.style.background = 'linear-gradient(105deg,#7FE9DC 0%,#8FB0FF 50%,#B9C4FF 100%)';
         ch.style.backgroundSize = (n * 100) + '% 100%';
         ch.style.backgroundPosition = (n > 1 ? (i / (n - 1)) * 100 : 0) + '% 0';
         ch.style.webkitBackgroundClip = 'text';
@@ -399,11 +484,11 @@
     var stSubWords = document.querySelectorAll('#statementSub .st-w');
     var stEyebrow = document.querySelector('.st-eyebrow');
 
-    /* 初期状態＝夜（CSSの基本は昼なのでJSで夜に巻き戻す） */
-    gsap.set(statement, { backgroundColor: '#0B0912' });
+    /* 初期状態＝薄暗い言葉。背景は終始ダーク（白へ転じない） */
+    gsap.set(statement, { backgroundColor: '#06070B' });
     gsap.set(stWords, { color: 'rgba(255,255,255,0.13)' });
     gsap.set(stSubWords, { color: 'rgba(255,255,255,0.10)' });
-    gsap.set(stEyebrow, { color: '#A78BFA' });
+    gsap.set(stEyebrow, { color: '#2FD6C4' });
 
     var dawn = gsap.timeline({
       scrollTrigger: {
@@ -413,32 +498,72 @@
         scrub: true,
         pin: true,
         anticipatePin: 1,
-        onUpdate: function (self) {
-          header.classList.toggle('on-night', self.progress < 0.72);
+        onUpdate: function () {
+          header.classList.add('on-night'); /* 全面ダーク：ヘッダーは常に暗ガラス */
         }
       }
     });
 
     dawn
-      /* 言葉がひとつずつ灯る */
+      /* 言葉がひとつずつ灯る（dim → 白）。地は暗いまま */
       .to(stWords, { color: 'rgba(255,255,255,1)', stagger: 0.14, duration: 1.6, ease: 'none' }, 0)
+      /* クールなオーロラの光がふわっと満ちる */
       .to('.dawn-glow', { opacity: 1, duration: 1.8, ease: 'none' }, 0.2)
-      .to(stSubWords, { color: 'rgba(255,255,255,0.92)', stagger: 0.1, duration: 0.9, ease: 'none' }, '>-0.5')
-      /* 夜明け：深紫の朝焼け → 薄紫 → 白（灰色を経由しない） */
-      .to(statement, { backgroundColor: '#4C1D95', duration: 0.8, ease: 'none' }, '>+0.2')
-      .to(statement, { backgroundColor: '#EDE9FA', duration: 1.2, ease: 'power1.in' }, '>')
-      .to(stWords, { color: '#17141F', duration: 1.1, ease: 'power1.inOut' }, '<+0.35')
-      .to(stSubWords, { color: '#5B5566', duration: 1.1, ease: 'power1.inOut' }, '<')
-      .to(stEyebrow, { color: '#6D28D9', duration: 1.1 }, '<')
-      .to(statement, { backgroundColor: '#FFFFFF', duration: 0.8, ease: 'none' }, '>-0.3')
-      .to('.dawn-glow', { opacity: 0, duration: 1.0 }, '<');
+      .to(stSubWords, { color: 'rgba(255,255,255,0.9)', stagger: 0.1, duration: 0.9, ease: 'none' }, '>-0.5')
+      /* ピークで地をほんの少しだけ持ち上げる（#06070B → #0C0E17） */
+      .to(statement, { backgroundColor: '#0C0E17', duration: 1.2, ease: 'power1.inOut' }, '>+0.2')
+      /* 余韻：光をゆっくり引かせる（消し切らない） */
+      .to('.dawn-glow', { opacity: 0.5, duration: 1.0, ease: 'none' }, '>');
   }
 
-  /* ---------- 事業カード：時間差で立ち上がる ---------- */
-  if (document.querySelector('.biz-grid')) {
-    gsap.from('.biz-card', {
-      y: 46, opacity: 0, duration: 0.85, ease: 'power3.out', stagger: 0.09,
-      scrollTrigger: { trigger: '.biz-grid', start: 'top 82%', once: true }
+  /* ---------- 事業：横スクロール・シネマショーケース ---------- */
+  var showcase = document.querySelector('.showcase');
+  var showTrack = document.getElementById('showcaseTrack');
+  if (showcase && showTrack && window.innerWidth > 860) {
+    showcase.classList.add('is-horizontal');
+    var travel = function () { return Math.max(0, showTrack.scrollWidth - window.innerWidth); };
+    var hTween = gsap.to(showTrack, {
+      x: function () { return -travel(); },
+      ease: 'none',
+      scrollTrigger: {
+        trigger: showcase,
+        start: 'top top',
+        end: function () { return '+=' + travel(); },
+        scrub: 1, pin: true, anticipatePin: 1, invalidateOnRefresh: true
+      }
+    });
+    gsap.utils.toArray('.company-panel').forEach(function (p) {
+      var ghost = p.querySelector('.panel-ghost');
+      if (ghost) {
+        gsap.fromTo(ghost, { xPercent: 20 }, {
+          xPercent: -20, ease: 'none',
+          scrollTrigger: { trigger: p, containerAnimation: hTween, start: 'left right', end: 'right left', scrub: true }
+        });
+      }
+      var body = p.querySelector('.panel-body');
+      if (body) {
+        gsap.from(body, {
+          y: 46, autoAlpha: 0, duration: 0.7, ease: 'power2.out',
+          scrollTrigger: { trigger: p, containerAnimation: hTween, start: 'left 78%' }
+        });
+      }
+    });
+  }
+
+  /* ---------- ヒーロー：マウス視差（奥行き） ---------- */
+  if (supportsHover) {
+    var pxEls = document.querySelectorAll('.hero [data-parallax]');
+    var tgx = 0, tgy = 0, curx = 0, cury = 0;
+    window.addEventListener('mousemove', function (e) {
+      tgx = (e.clientX / window.innerWidth - 0.5);
+      tgy = (e.clientY / window.innerHeight - 0.5);
+    });
+    gsap.ticker.add(function () {
+      curx += (tgx - curx) * 0.06; cury += (tgy - cury) * 0.06;
+      pxEls.forEach(function (el) {
+        var s = parseFloat(el.getAttribute('data-parallax')) || 1;
+        el.style.transform = 'translate3d(' + (curx * s * 12) + 'px,' + (cury * s * 12) + 'px,0)';
+      });
     });
   }
 
