@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<script>document.documentElement.className+=" js";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>NI Group｜Official Site</title>
@@ -14,7 +15,7 @@
   --blue:#1D2DE8; --blue-d:#0F1BC9; --navy:#0A1636; --paper:#EFF1F6; --ink:#0E1430; --mut:#5A6280;
   --en:'Inter','Noto Sans JP',sans-serif; --jp:'Noto Sans JP',sans-serif;
 }
-html{scroll-behavior:smooth;overflow-x:clip}
+html{scroll-behavior:smooth}
 body{background:var(--paper);color:var(--ink);font-family:var(--jp);line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{display:block;max-width:100%}
 .wrap{max-width:1280px;margin:0 auto;padding:0 46px}
@@ -26,7 +27,16 @@ img{display:block;max-width:100%}
 .h-label{font-family:var(--en);font-weight:600;font-size:.8rem;letter-spacing:.22em}
 .h-label::before{content:"";display:inline-block;width:9px;height:9px;background:currentColor;margin-right:12px;vertical-align:1px}
 .vside{position:absolute;right:28px;top:110px;writing-mode:vertical-rl;font-family:var(--en);font-weight:600;font-size:.64rem;letter-spacing:.34em;color:rgba(14,20,48,.34);user-select:none}
-.rv{opacity:0;transform:translateY(24px)}
+.js .rv{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1)}
+.js .rv.on{opacity:1;transform:none}
+.js .bz .blk{opacity:0;transform:translateX(46px);transition:opacity .8s cubic-bezier(.22,.61,.36,1),transform .8s cubic-bezier(.22,.61,.36,1)}
+.js .bz.r .blk{transform:translateX(-46px)}
+.js .bz .blk.on{opacity:1;transform:none}
+.js .lead-g .c{opacity:0;transform:translateY(34px)}
+.js .lead-g .c.on{opacity:1;transform:none}
+.js .news .ph{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.22,.61,.36,1),transform .8s cubic-bezier(.22,.61,.36,1)}
+.js .news .ph.on{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .rv,.js .bz .blk,.js .lead-g .c,.js .news .ph{opacity:1 !important;transform:none !important;transition:none !important}}
 
 /* 固定ロゴ＆MENU */
 .brand{position:fixed;top:26px;left:34px;z-index:70;font-family:var(--en);font-weight:800;font-size:1rem;letter-spacing:.16em;color:#fff;mix-blend-mode:difference;pointer-events:none}
@@ -338,30 +348,31 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;font-
 <script>
   gsap.registerPlugin(ScrollTrigger);
   var REDUCE=matchMedia('(prefers-reduced-motion:reduce)').matches;
-  gsap.utils.toArray('.rv').forEach(function(el){
-    gsap.to(el,{opacity:1,y:0,duration:.7,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%'}});
-  });
+  /* 登場アニメ＝IntersectionObserver(確実・レイアウト非依存) */
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(en){
+      if(!en.isIntersecting) return;
+      var el=en.target;
+      if(el.classList.contains('lead-g')){
+        Array.prototype.forEach.call(el.children,function(c,i){setTimeout(function(){c.classList.add('on');}, i*120);});
+      } else { el.classList.add('on'); }
+      io.unobserve(el);
+    });
+  },{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+  document.querySelectorAll('.rv, .bz .blk, .news .ph').forEach(function(el){io.observe(el);});
+  var lg=document.querySelector('.lead-g'); if(lg) io.observe(lg);
+  /* 質感系(スクラブ)はGSAPのまま＝失敗しても表示は消えない */
   if(!REDUCE){
-    /* ヒーロー：スクロールで写真がゆっくり沈む(パララックス) */
     gsap.to('.hero .ph',{yPercent:14,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:.3}});
     gsap.to('.hero .lockup',{yPercent:-18,opacity:.0,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'70% top',scrub:.3}});
-    /* 事業：写真は奥行き(内側ズーム+縦ずれ)、青ブロックは左右からスッと */
     gsap.utils.toArray('.bz').forEach(function(sec){
-      var img=sec.querySelector('.ph img'), blk=sec.querySelector('.blk');
-      var fromX=sec.classList.contains('l')?46:-46;
+      var img=sec.querySelector('.ph img');
       if(img){gsap.fromTo(img,{scale:1.12,yPercent:-6},{scale:1.02,yPercent:6,ease:'none',scrollTrigger:{trigger:sec,start:'top bottom',end:'bottom top',scrub:.35}});}
-      if(blk){gsap.from(blk,{x:fromX,opacity:0,duration:.8,ease:'power3.out',scrollTrigger:{trigger:sec,start:'top 74%'}});}
       var bw=sec.querySelector('.bgword');
       if(bw){gsap.fromTo(bw,{x:sec.classList.contains('l')?60:-60},{x:sec.classList.contains('l')?-40:40,ease:'none',scrollTrigger:{trigger:sec,start:'top bottom',end:'bottom top',scrub:.4}});}
     });
-    /* ミッション：背景写真パララックス */
     gsap.fromTo('.mission .ph img',{yPercent:-10},{yPercent:10,ease:'none',scrollTrigger:{trigger:'.mission',start:'top bottom',end:'bottom top',scrub:.35}});
-    /* 代表カード：順番にスッと立ち上がる */
-    gsap.utils.toArray('.lead-g .c').forEach(function(c,i){
-      gsap.from(c,{y:34,opacity:0,duration:.7,delay:i*.12,ease:'power3.out',scrollTrigger:{trigger:'.lead-g',start:'top 82%'}});
-    });
-    /* NEWS：写真とブロックが互い違いに */
-    gsap.from('.news .ph',{y:40,opacity:0,duration:.8,ease:'power3.out',scrollTrigger:{trigger:'.news',start:'top 74%'}});
+    addEventListener('load',function(){ScrollTrigger.refresh();});
   }
   /* メニュー */
   var ov=document.getElementById('ov'),btn=document.getElementById('menuBtn');
