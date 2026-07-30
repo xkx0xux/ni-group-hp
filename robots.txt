@@ -1,2 +1,5 @@
 User-agent: *
-Disallow: /
+Allow: /
+Disallow: /concepts/
+
+Sitemap: https://ni-holdings.com/sitemap.xml
