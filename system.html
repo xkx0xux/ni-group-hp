@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <script>document.documentElement.className+=" js";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>システム開発・提供｜NI Group</title>
-<meta name="description" content="NI Group（NIグループ）の業務システム。請求書管理・入出金管理・建設業務管理・経営ダッシュボードなど、自社の現場で毎日使い込んで磨いたシステムを、完成した形のまま月額プランでご利用いただけます。">
+<title>業務の自動化・月額で使える業務システム｜NI Group</title>
+<meta name="description" content="転記・集計・書類づくりなど、社内の毎日の作業を仕組みに置き換えます。NI Groupが自社の現場で使い込んできた業務システム（請求書管理・入出金管理・建設業務管理・経営ダッシュボード）は、完成した形のまま月額プランでもご利用いただけます。">
 <meta name="google-site-verification" content="9DYA7MUmz2LumfmEYdoawmO2z3OSdLluN1M4z0mL2JU" />
 <link rel="canonical" href="https://ni-holdings.com/system.html">
 <link rel="icon" type="image/png" href="assets/img/ni-mark-dark.png">
@@ -13,8 +13,8 @@
 <meta property="og:locale" content="ja_JP">
 <meta property="og:url" content="https://ni-holdings.com/system.html">
 <meta property="og:site_name" content="NI GROUP">
-<meta property="og:title" content="システム開発・提供｜NI Group">
-<meta property="og:description" content="自社の現場で磨いた業務システムを、完成した形のまま月額プランでご提供します。">
+<meta property="og:title" content="業務の自動化・月額で使える業務システム｜NI Group">
+<meta property="og:description" content="社内の毎日の作業を自動化。自社で使い込んだ業務システムは月額プランでもご利用いただけます。">
 <meta property="og:image" content="https://ni-holdings.com/assets/img/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -92,7 +92,8 @@ img{display:block;max-width:100%}
 @media (prefers-reduced-motion:reduce){.tick .in2{animation:none;padding-left:24px}}
 
 /* 実績＝左右交互コラージュ */
-.works{padding:120px 0 40px;position:relative;overflow:hidden}
+.works{padding:20px 0 40px;position:relative;overflow:hidden}
+.works .wk:first-child{margin-top:86px}
 .works h2{font-weight:900;font-size:clamp(1.5rem,3vw,2.2rem);line-height:1.5;margin-top:14px}
 .works .lead{margin-top:16px;font-size:.92rem;color:var(--mut);max-width:64ch;line-height:2.05}
 .wk{position:relative;margin-top:120px}
@@ -170,6 +171,33 @@ footer a:hover{color:#BF8FFF}
   .btn{padding:14px 24px}
 }
 @media(max-width:560px){ .rail{grid-template-columns:1fr} }
+
+/* 自動化＝before→after の一覧 */
+.auto{padding:120px 0 40px;position:relative;overflow:hidden}
+.auto h2{font-weight:900;font-size:clamp(1.6rem,3.4vw,2.5rem);line-height:1.5;margin-top:14px}
+.auto .lead{margin-top:18px;font-size:.95rem;color:var(--mut);max-width:66ch;line-height:2.05}
+.ba{margin-top:54px;border-top:1px solid rgba(28,14,48,.18)}
+.ba .row{display:grid;grid-template-columns:1fr 74px 1fr;align-items:center;gap:0;
+  border-bottom:1px solid rgba(28,14,48,.18);padding:26px 0}
+.ba .now{font-size:.95rem;color:var(--mut);line-height:1.9;padding-right:20px}
+.ba .arw{font-family:var(--en);font-weight:700;font-size:1.1rem;color:var(--blue);text-align:center;user-select:none}
+.ba .aft{font-size:1rem;font-weight:700;color:var(--ink);line-height:1.9;border-left:3px solid var(--blue);padding-left:20px}
+.auto .note{margin-top:34px;font-size:.9rem;color:var(--mut);line-height:2.05;max-width:70ch}
+.auto .bgword2{position:absolute;left:0;top:56px;font-family:var(--en);font-weight:800;font-size:clamp(3rem,9vw,8rem);letter-spacing:.02em;color:transparent;-webkit-text-stroke:1px rgba(28,14,48,.1);line-height:1;user-select:none;white-space:nowrap;z-index:0}
+.auto .wrap{position:relative;z-index:1}
+/* 製品セクションの導入 */
+.pintro{background:var(--navy);color:#fff;padding:70px 0;position:relative;overflow:hidden}
+.pintro::before{content:"MONTHLY";position:absolute;right:-20px;bottom:-34px;font-family:var(--en);font-weight:800;font-size:clamp(4rem,13vw,11rem);color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.09);line-height:1;user-select:none;white-space:nowrap}
+.pintro .wrap{position:relative;z-index:2}
+.pintro .h-label{color:#C69FFF}
+.pintro h2{font-weight:900;font-size:clamp(1.4rem,3vw,2.1rem);line-height:1.5;margin-top:14px}
+.pintro p{margin-top:14px;font-size:.93rem;line-height:2.05;color:rgba(255,255,255,.85);max-width:66ch}
+@media(max-width:820px){
+  .ba .row{grid-template-columns:1fr;gap:10px;padding:22px 0}
+  .ba .arw{text-align:left;transform:rotate(90deg);width:20px}
+  .ba .now{padding-right:0}
+  .ba .aft{padding-left:16px}
+}
 </style>
 </head>
 <body>
@@ -178,7 +206,8 @@ footer a:hover{color:#BF8FFF}
 <div class="ov" id="ov"><nav>
   <a href="index.html">HOME<small>トップ</small></a>
   <a href="index.html#business">BUSINESS<small>事業</small></a>
-  <a href="#works">WORKS<small>開発実績</small></a>
+  <a href="#auto">AUTOMATION<small>業務の自動化</small></a>
+  <a href="#works">SYSTEMS<small>月額で使えるシステム</small></a>
   <a href="#flow">FLOW<small>進め方</small></a>
   <a href="index.html#news">NEWS<small>ニュース</small></a>
   <a href="#contact">CONTACT<small>お問い合わせ</small></a>
@@ -188,26 +217,48 @@ footer a:hover{color:#BF8FFF}
 <section class="hero">
   <div class="ph"><img src="assets/img/gen/biz-facility-warm.jpg" alt=""></div>
   <div class="tint"></div><div class="tint2"></div><div class="glow"></div>
-  <p class="edge">SYSTEM DEVELOPMENT ／ NI GROUP</p>
+  <p class="edge">BUSINESS AUTOMATION ／ NI GROUP</p>
   <div class="in wrap">
-    <p class="h-label">＋ SYSTEM DEVELOPMENT</p>
-    <h1>現場で生まれたシステムを、<br><em>御社の仕事にも。</em></h1>
-    <p class="lead">NI Groupのシステムは、机上の設計から生まれたものではありません。自社の現場課題を解決するために作り、毎日使い込んで磨いた業務システム。それを完成した形のまま、月額プランで御社にもお使いいただけます。</p>
+    <p class="h-label">＋ BUSINESS AUTOMATION</p>
+    <h1>その毎日の作業、<br><em>仕組みに任せませんか。</em></h1>
+    <p class="lead">転記、集計、書類づくり、進捗の確認——毎日くり返している作業のほとんどは、仕組みに置き換えられます。NI Groupは自社の現場でそれを実践し、業務システムを作って毎日使い込んできました。同じことを、御社の仕事にも。</p>
     <div class="acts">
-      <a class="btn p" href="#contact">開発の相談をする
+      <a class="btn p" href="#contact">自動化の相談をする
         <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
-      <a class="btn g" href="#works">開発実績を見る</a>
+      <a class="btn g" href="#works">月額で使えるシステムを見る</a>
     </div>
   </div>
 </section>
-<div class="tick"><p class="in2">＋ INVOICE　請求書管理　　＋ CASH FLOW　入出金管理　　＋ CONSTRUCTION ERP　建設業務管理　　＋ MANAGEMENT BOARD　経営ダッシュボード　　＋ 勤怠・在庫・予約・書類の自動作成　　</p></div>
+<div class="tick"><p class="in2">＋ 転記をなくす　　＋ 集計を自動化　　＋ 書類を自動作成　　＋ 期日を自動で通知　　＋ 進捗を全員で共有　　＋ INVOICE 請求書管理　　＋ CASH FLOW 入出金管理　　＋ CONSTRUCTION ERP 建設業務管理　　＋ MANAGEMENT BOARD 経営ダッシュボード　　</p></div>
 
-<!-- 開発実績 -->
-<section class="works checker" id="works"><p class="vside">WORKS ― 開発実績</p><div class="wrap">
-  <p class="h-label rv" style="color:var(--blue)">＋ WORKS</p>
-  <h2 class="rv">自社の現場で、毎日動いているシステム。</h2>
-  <p class="lead rv">これらはすべて、NI Groupが自社業務のために開発し、実際に運用している実務システムです。すでに完成しているので、<strong>月額プランでそのままご利用いただけます</strong>。</p>
+<!-- ① 業務の自動化 -->
+<section class="auto checker" id="auto"><p class="vside">AUTOMATION ― 業務の自動化</p>
+  <p class="bgword2">AUTOMATION</p>
+  <div class="wrap">
+  <p class="h-label rv" style="color:var(--blue)">＋ AUTOMATION</p>
+  <h2 class="rv">その作業、まだ人がやっていますか。</h2>
+  <p class="lead rv">「うちは特殊だから」とよく言われます。でも中身を聞いていくと、消せる手間はたいてい見つかります。まずは今の業務を聞かせてください。</p>
+
+  <div class="ba">
+    <div class="row rv"><p class="now">同じ数字を、紙・Excel・メールに何度も打ち直している</p><p class="arw">→</p><p class="aft">一度入れれば、必要な書類にぜんぶ回る</p></div>
+    <div class="row rv"><p class="now">月末の集計に、何時間もかかっている</p><p class="arw">→</p><p class="aft">画面を開けば、いつでも最新の数字</p></div>
+    <div class="row rv"><p class="now">見積書や報告書を、毎回ゼロから作っている</p><p class="arw">→</p><p class="aft">決まった形は、ボタンひとつで自動作成</p></div>
+    <div class="row rv"><p class="now">支払い漏れ・請求漏れが、いつも不安</p><p class="arw">→</p><p class="aft">期日が近づいたら、システムが先に知らせる</p></div>
+    <div class="row rv"><p class="now">「あれどうなった？」を、電話とLINEで確認している</p><p class="arw">→</p><p class="aft">同じ画面を見れば、全員が同じ状況を把握</p></div>
+  </div>
+
+  <p class="note rv">勤怠・在庫・予約・日報・書類の自動作成——業種や規模に合わせて、必要な形にお作りします。「これは無理かな」と思うことこそ、一度ぶつけてみてください。</p>
+</div></section>
+
+<!-- ② 月額で使えるシステム -->
+<section class="pintro"><div class="wrap">
+  <p class="h-label">＋ MONTHLY PLAN</p>
+  <h2>ゼロから作らなくていい場合もあります。</h2>
+  <p>NI Groupが自社のために開発し、いま毎日動かしている業務システム。この4つは<strong>すでに完成している</strong>ので、月額プランでそのままお使いいただけます。まず既製品で足りるかを見て、足りない部分だけ作る——それがいちばん早くて、安く済みます。</p>
+</div></section>
+
+<section class="works checker" id="works"><p class="vside">SYSTEMS ― 月額で使えるシステム</p><div class="wrap">
 
   <div class="wk l rv">
     <p class="bgword">INVOICE</p>
@@ -317,7 +368,7 @@ footer a:hover{color:#BF8FFF}
     </div>
   </div>
 
-  <p class="more rv">ほかにも——勤怠・在庫・予約・書類の自動作成・定型業務の自動化など、「毎日の面倒」を消すシステムを、業務に合わせてお作りすることもできます。まずはご相談ください。</p>
+  <p class="more rv">どのシステムも、御社の業務に合わせた調整ができます。「この部分だけ変えたい」「この機能を足したい」もご相談ください。月額プランの詳細はお問い合わせいただければお伝えします。</p>
 </div></section>
 
 <!-- 選ばれる理由 -->
