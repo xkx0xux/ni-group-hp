@@ -13,3 +13,6 @@ concepts/purple-*.html
 
 # 旧デザインの下書き（氏名・写真を含み、非表示の判断が効かないため公開しない）
 concepts/
+
+# 一時非表示中の代表写真（削除禁止・復帰時に git add で戻す）
+assets/img/leaders/abe.jpg
