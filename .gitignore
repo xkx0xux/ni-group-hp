@@ -1,1 +1,12 @@
-.superpowers/
+# 引き継ぎ・設計メモは公開しない（GitHub repo も ni-holdings.com も公開のため）
+# ローカル(~/NIグループHP)には残す。中身＝社内事情・費用・判断経緯
+CLAUDE.md
+HANDOVER.md
+TODO.md
+CHANGELOG.md
+DESIGN.md
+docs/
+
+# 作業中の中間素材（元から未追跡だが明示）
+.backup-warm-2026-07-26/
+concepts/purple-*.html
