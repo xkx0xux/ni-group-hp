@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<script>document.documentElement.className+=" js";</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>経営ダッシュボード｜業務システム - NI Group</title>
+<meta name="description" content="業績・経営計画・移動年計をひと目で。数字が見えるから、判断が速くなります。NI Groupの経営会議で実際に使っているダッシュボードです。">
+<meta name="google-site-verification" content="9DYA7MUmz2LumfmEYdoawmO2z3OSdLluN1M4z0mL2JU" />
+<link rel="canonical" href="https://ni-holdings.com/systems/dashboard.html">
+<link rel="icon" type="image/png" href="../assets/img/ni-mark-dark.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:url" content="https://ni-holdings.com/systems/dashboard.html">
+<meta property="og:site_name" content="NI GROUP">
+<meta property="og:title" content="経営ダッシュボード｜NI Group">
+<meta property="og:description" content="数字が「見える」から、判断が速くなる。経営会議が、画面ひとつで回ります。">
+<meta property="og:image" content="https://ni-holdings.com/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#831DE8;--blue-d:#6F0FC9;--navy:#180A36;--paper:#F1EFF6;--ink:#1C0E30;--mut:#685A80;
+ --en:'Inter','Noto Sans JP',sans-serif;--jp:'Noto Sans JP',sans-serif;}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--jp);line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+.wrap{max-width:1180px;margin:0 auto;padding:0 46px}
+.checker{background-image:
+ url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='264' height='264'%3E%3Cpath d='M0 9H18M9 0V18' stroke='%23831DE8' stroke-opacity='.20'/%3E%3C/svg%3E"),
+ linear-gradient(rgba(28,14,48,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(28,14,48,.05) 1px,transparent 1px);
+ background-size:264px 264px,88px 88px,88px 88px}
+.h-label{font-family:var(--en);font-weight:600;font-size:.8rem;letter-spacing:.22em}
+.h-label::before{content:"";display:inline-block;width:9px;height:9px;background:currentColor;margin-right:12px;vertical-align:1px}
+.js .rv{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1)}
+.js .rv.on{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .rv{opacity:1!important;transform:none!important;transition:none!important}}
+.brand{position:fixed;top:26px;left:34px;z-index:70;font-family:var(--en);font-weight:800;font-size:1rem;letter-spacing:.16em;color:#fff;mix-blend-mode:difference;text-decoration:none}
+.menu{position:fixed;top:0;right:0;z-index:70;width:104px;height:104px;background:var(--blue);color:#fff;border:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;cursor:pointer;transition:background .3s;font-family:var(--en)}
+.menu:hover{background:var(--blue-d)}
+.menu span{font-weight:600;font-size:.72rem;letter-spacing:.34em;margin-left:.34em}
+.menu i{display:block;width:1px;height:12px;background:#fff}
+.ov{position:fixed;inset:0;z-index:65;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .45s,visibility .45s}
+.ov.on{opacity:1;visibility:visible}
+.ov nav{display:grid;gap:6px;text-align:center}
+.ov a{color:#fff;text-decoration:none;font-family:var(--en);font-weight:800;font-size:clamp(1.6rem,4.2vw,2.9rem);letter-spacing:.1em;line-height:1.5;transition:color .25s}
+.ov a small{display:block;font-family:var(--jp);font-weight:500;font-size:.76rem;letter-spacing:.3em;color:rgba(255,255,255,.5);margin-top:-6px}
+.ov a:hover{color:#BF8FFF}
+/* HERO */
+.hero{position:relative;background:var(--navy);color:#fff;padding:150px 0 90px;overflow:hidden}
+.hero::after{content:"MANAGEMENT BOARD";position:absolute;right:-30px;bottom:-40px;font-family:var(--en);font-weight:800;font-size:clamp(4rem,13vw,11rem);letter-spacing:.02em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.1);line-height:1;user-select:none;white-space:nowrap}
+.hero .glow{position:absolute;inset:0;background:radial-gradient(58% 50% at 24% 42%,rgba(123,60,220,.45),transparent 70%)}
+.hero .in{position:relative;z-index:2}
+.hero .h-label{color:#C69FFF}
+.hero .back{display:inline-block;font-family:var(--en);font-size:.72rem;letter-spacing:.2em;color:rgba(255,255,255,.65);text-decoration:none;margin-bottom:26px}
+.hero .back:hover{color:#BF8FFF}
+.hero h1{font-weight:900;font-size:clamp(1.9rem,4.4vw,3.1rem);line-height:1.45;margin-top:18px}
+.hero h1 small{display:block;font-family:var(--en);font-weight:600;font-size:.78rem;letter-spacing:.24em;opacity:.85;margin-top:12px}
+.hero .lead{margin-top:24px;font-size:1rem;line-height:2.05;color:rgba(255,255,255,.88);max-width:60ch}
+.hero .acts{margin-top:34px;display:flex;flex-wrap:wrap;gap:14px}
+.btn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:.9rem;padding:15px 30px;transition:.3s}
+.btn.p{background:var(--blue);color:#fff} .btn.p:hover{background:var(--blue-d)}
+.btn.g{border:1px solid rgba(255,255,255,.6);color:#fff} .btn.g:hover{background:#fff;color:var(--navy)}
+.btn.l{background:#fff;color:var(--blue)} .btn.l:hover{background:var(--paper)}
+.btn svg{width:15px;height:15px}
+/* 課題 */
+.pain{padding:110px 0 40px;position:relative}
+.pain h2{font-weight:900;font-size:clamp(1.5rem,3vw,2.1rem);line-height:1.5;margin-top:14px}
+.pl{margin-top:46px;border-top:1px solid rgba(28,14,48,.18)}
+.pl .row{display:grid;grid-template-columns:1fr 74px 1fr;align-items:center;border-bottom:1px solid rgba(28,14,48,.18);padding:26px 0}
+.pl .now{font-size:.95rem;color:var(--mut);line-height:1.9;padding-right:20px}
+.pl .arw{font-family:var(--en);font-weight:700;font-size:1.1rem;color:var(--blue);text-align:center;user-select:none}
+.pl .aft{font-size:1rem;font-weight:700;line-height:1.9;border-left:3px solid var(--blue);padding-left:20px}
+/* 機能 */
+.feat{padding:100px 0 60px;position:relative}
+.feat h2{font-weight:900;font-size:clamp(1.5rem,3vw,2.1rem);line-height:1.5;margin-top:14px}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:46px;background:rgba(28,14,48,.18)}
+.fg .c{background:var(--paper);padding:30px 32px 32px}
+.fg .n{font-family:var(--en);font-weight:700;font-size:.7rem;letter-spacing:.2em;color:var(--blue)}
+.fg h3{font-weight:900;font-size:1.08rem;margin-top:12px;line-height:1.5}
+.fg p{margin-top:10px;font-size:.88rem;color:var(--mut);line-height:2}
+.figbox{margin-top:56px;background:#fff;border:1px solid rgba(28,14,48,.18);padding:0;overflow:hidden}
+.figcap{font-size:.76rem;color:var(--mut);margin-top:10px;text-align:right}
+.note{margin-top:30px;font-size:.86rem;color:var(--mut);border-left:3px solid var(--blue);padding-left:18px;line-height:2}
+/* CTA */
+.cta{background:var(--navy);color:#fff;padding:110px 0 100px;position:relative;overflow:hidden;margin-top:90px}
+.cta::before{content:"NI GROUP";position:absolute;right:-20px;bottom:-30px;font-family:var(--en);font-weight:800;font-size:clamp(4rem,12vw,10rem);color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.08);line-height:1;user-select:none}
+.cta .in{position:relative;z-index:2;max-width:660px;margin:0 auto;padding:0 46px;text-align:center}
+.cta .h-label{color:#BF8FFF}
+.cta h2{font-weight:900;font-size:clamp(1.5rem,3.2vw,2.2rem);line-height:1.6;margin-top:16px}
+.cta p{margin-top:14px;font-size:.9rem;color:rgba(255,255,255,.85)}
+.cta .acts{margin-top:34px;display:flex;justify-content:center;flex-wrap:wrap;gap:14px}
+footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.6);padding:30px 0}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;font-family:var(--en);font-size:.72rem;letter-spacing:.1em}
+footer a{color:rgba(255,255,255,.85);text-decoration:none} footer a:hover{color:#BF8FFF}
+/* 他システムへ */
+.others{padding:90px 0 0}
+.og{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:34px;background:rgba(28,14,48,.18)}
+.og a{background:var(--paper);padding:26px 24px 28px;text-decoration:none;color:var(--ink);transition:background .25s}
+.og a:hover{background:#fff}
+.og .n{font-family:var(--en);font-weight:700;font-size:.68rem;letter-spacing:.2em;color:var(--blue)}
+.og h3{font-weight:900;font-size:1rem;margin-top:10px;line-height:1.5}
+.og span{display:inline-block;margin-top:12px;font-size:.8rem;color:var(--mut)}
+@media(max-width:820px){
+ .wrap{padding:0 22px} .brand{left:22px;top:22px} .menu{width:84px;height:84px}
+ .hero{padding:120px 0 70px}
+ .pl .row{grid-template-columns:1fr;gap:10px;padding:22px 0}
+ .pl .arw{text-align:left;transform:rotate(90deg);width:20px} .pl .now{padding-right:0} .pl .aft{padding-left:16px}
+ .fg{grid-template-columns:1fr} .og{grid-template-columns:1fr}
+ .cta .in{padding:0 22px} .btn{padding:14px 24px}
+}
+</style>
+</head>
+<body>
+<a class="brand" href="../index.html">NI GROUP</a>
+<button class="menu" id="menuBtn" aria-label="メニュー"><i></i><span>MENU</span><i></i></button>
+<div class="ov" id="ov"><nav>
+  <a href="../index.html">HOME<small>トップ</small></a>
+  <a href="../system.html">SYSTEMS<small>業務の自動化・システム</small></a>
+  <a href="../index.html#business">BUSINESS<small>事業</small></a>
+  <a href="../index.html#contact">CONTACT<small>お問い合わせ</small></a>
+</nav></div>
+
+<section class="hero">
+  <div class="glow"></div>
+  <div class="in wrap">
+    <a class="back" href="../system.html">← 業務システム一覧へ</a>
+    <p class="h-label">＋ SYSTEM 04</p>
+    <h1>経営ダッシュボード<small>MANAGEMENT BOARD</small></h1>
+    <p class="lead">数字が「見える」から、判断が速くなる。経営会議が、画面ひとつで回ります。</p>
+    <div class="acts">
+      <a class="btn p" href="../index.html#contact">このシステムを相談する
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a class="btn g" href="../system.html#works">他のシステムを見る</a>
+    </div>
+  </div>
+</section>
+
+<section class="pain checker"><div class="wrap">
+  <p class="h-label rv" style="color:var(--blue)">＋ BEFORE / AFTER</p>
+  <h2 class="rv">こんな手間、ありませんか。</h2>
+  <div class="pl">
+    <div class="row rv"><p class="now">先月の数字が出るのが、翌月の後半になる</p><p class="arw">→</p><p class="aft">入力された時点で反映されるので、締めを待ちません</p></div>
+    <div class="row rv"><p class="now">会議資料を毎回作り直している</p><p class="arw">→</p><p class="aft">同じ画面を開けば済みます</p></div>
+    <div class="row rv"><p class="now">計画は立てたが、実績と並べて見ていない</p><p class="arw">→</p><p class="aft">計画と実績を同じ画面に並べます</p></div>
+    <div class="row rv"><p class="now">季節の波なのか、本当の下降なのかが分からない</p><p class="arw">→</p><p class="aft">移動年計で、季節変動を除いた流れが見えます</p></div></div>
+</div></section>
+
+<section class="feat checker"><div class="wrap">
+  <p class="h-label rv" style="color:var(--blue)">＋ FEATURES</p>
+  <h2 class="rv">できること</h2>
+  <div class="fg">
+    <div class="c rv"><p class="n">FEATURE 01</p><h3>業績の見える化</h3><p>売上・粗利・利益の推移をグラフで</p></div>
+    <div class="c rv"><p class="n">FEATURE 02</p><h3>経営計画と実績の対比</h3><p>立てた計画に対して、いまどこにいるのかが分かります</p></div>
+    <div class="c rv"><p class="n">FEATURE 03</p><h3>移動年計</h3><p>直近12ヶ月の合計で推移を見るので、季節の波に惑わされません</p></div>
+    <div class="c rv"><p class="n">FEATURE 04</p><h3>MQ会計の図</h3><p>売上・変動費・粗利・固定費・利益の関係を図で把握</p></div>
+    <div class="c rv"><p class="n">FEATURE 05</p><h3>環境整備のチェック</h3><p>数字以外の日々の取り組みも同じ画面で</p></div>
+    <div class="c rv"><p class="n">FEATURE 06</p><h3>会議のための画面</h3><p>資料を作らず、そのまま会議で開けます</p></div></div>
+  <div class="figbox rv"><svg viewBox="0 0 480 300" role="img" aria-label="経営数値のダッシュボードイメージ図">
+  <rect width="480" height="300" fill="#F1EFF6"/>
+  <g fill="#fff" stroke="#1C0E30" stroke-opacity=".18"><rect x="56" y="44" width="112" height="58"/><rect x="184" y="44" width="112" height="58"/><rect x="312" y="44" width="112" height="58"/></g>
+  <g fill="#831DE8"><rect x="70" y="62" width="40" height="10"/><rect x="198" y="62" width="56" height="10"/><rect x="326" y="62" width="30" height="10"/></g>
+  <g fill="#1C0E30" fill-opacity=".14"><rect x="70" y="82" width="66" height="5"/><rect x="198" y="82" width="66" height="5"/><rect x="326" y="82" width="66" height="5"/></g>
+  <rect x="56" y="126" width="368" height="132" fill="#fff" stroke="#1C0E30" stroke-opacity=".18"/>
+  <path d="M78 226l62-30 58 16 62-52 60 22 62-42" fill="none" stroke="#831DE8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M78 240l62-14 58 12 62-24 60 10 62-20" fill="none" stroke="#180A36" stroke-opacity=".45" stroke-width="2" stroke-dasharray="6 6" stroke-linecap="round"/></svg></div>
+  <p class="figcap">※画面の構成を示すイメージ図です（実際の画面ではありません）</p>
+  <p class="note rv">※NI Groupの経営会議で実際に運用しているシステムです。<br>月額プランでご利用いただけます。料金・お試しについてはお問い合わせください。御社の業務に合わせた調整も承ります。</p>
+
+  <div class="others">
+    <p class="h-label rv" style="color:var(--blue)">＋ OTHER SYSTEMS</p>
+    <div class="og">
+      <a href="invoice.html"><p class="n">SYSTEM 01</p><h3>請求書管理システム</h3><span>詳しく見る →</span></a>
+      <a href="cashflow.html"><p class="n">SYSTEM 02</p><h3>入出金管理システム</h3><span>詳しく見る →</span></a>
+      <a href="construction.html"><p class="n">SYSTEM 03</p><h3>建設業務管理システム</h3><span>詳しく見る →</span></a></div>
+  </div>
+</div></section>
+
+<section class="cta">
+  <div class="in rv">
+    <p class="h-label">＋ CONTACT</p>
+    <h2>まずは、今の業務を<br>聞かせてください。</h2>
+    <p>「うちの場合はどうなる？」のご相談だけでも歓迎です。デモ画面をお見せしながらご説明します。</p>
+    <div class="acts">
+      <a class="btn l" href="../index.html#contact">お問い合わせフォームへ
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a class="btn g" href="mailto:info@ni-holdings.com">メールで相談する</a>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap"><span><a href="../index.html">NI GROUP</a></span><span>© 2026 New Innovation Holdings</span></div></footer>
+<script>
+  var io=new IntersectionObserver(function(es){es.forEach(function(en){if(!en.isIntersecting)return;en.target.classList.add('on');io.unobserve(en.target);});},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+  var ov=document.getElementById('ov'),btn=document.getElementById('menuBtn');
+  btn.addEventListener('click',function(){ov.classList.toggle('on');});
+  ov.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){ov.classList.remove('on');});});
+</script>
+</body>
+</html>
