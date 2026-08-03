@@ -208,6 +208,11 @@ img{display:block;max-width:100%}
 .contact button{margin-top:26px;width:100%;background:var(--blue);color:#fff;border:0;font-family:inherit;font-weight:700;font-size:.95rem;padding:16px;cursor:pointer;transition:background .3s}
 .contact button:hover{background:var(--blue-d)}
 .contact .note{margin-top:14px;font-size:.74rem;color:rgba(255,255,255,.55);text-align:center}
+.contact .cfmsg{margin-top:16px;font-size:.86rem;line-height:1.8;text-align:center;min-height:1px}
+.contact .cfmsg.ok{color:#BF8FFF;font-weight:700}
+.contact .cfmsg.ng{color:#FFB4B4}
+.contact .cfmsg a{color:#BF8FFF}
+.contact button:disabled{opacity:.6;cursor:default}
 .contact .note a{color:#BF8FFF}
 
 footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.6);padding:30px 0}
@@ -372,8 +377,10 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;font-
       </div>
       <label>メールアドレス <em>*</em><input type="email" name="email" required placeholder="you@example.com"></label>
       <label>お問い合わせ内容 <em>*</em><textarea name="message" required placeholder="ご相談内容をご記入ください"></textarea></label>
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
       <button type="submit">送信する →</button>
-      <p class="note">送信ボタンでメールソフトが開きます。開かない場合は <a href="mailto:innovation1017@new2023.jp">innovation1017@new2023.jp</a> まで直接どうぞ。</p>
+      <p class="cfmsg" id="cfmsg" role="status" aria-live="polite"></p>
+      <p class="note">担当者より折り返しご連絡いたします。お急ぎの場合は <a href="mailto:info@ni-holdings.com">info@ni-holdings.com</a> まで直接どうぞ。</p>
     </form>
   </div>
 </section>
@@ -478,13 +485,31 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;font-
     nm.querySelectorAll('[data-close]').forEach(function(el){el.addEventListener('click',nmClose);});
     document.addEventListener('keydown',function(e){if(e.key==='Escape'&&nm.classList.contains('on'))nmClose();});
   }
-  /* フォーム→mailto */
+  /* フォーム送信＝Google Apps Script経由でinfo@へ直接届く（mailto方式は廃止） */
+  var FORM_EP='https://script.google.com/macros/s/AKfycbyHAio_MgQPvX3yF6a1csvfPVFZpxfe49XaNWGCXojhiZsaY67KQGJKBgYysuOD1Gxw9g/exec';
   var cf=document.getElementById('cform');
-  cf&&cf.addEventListener('submit',function(e){e.preventDefault();if(!cf.checkValidity()){cf.reportValidity();return;}
+  cf&&cf.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!cf.checkValidity()){cf.reportValidity();return;}
     var v=function(n){var el=cf.querySelector('[name="'+n+'"]');return el?el.value.trim():'';};
-    var s='【お問い合わせ】'+v('name')+(v('company')?'（'+v('company')+'）':'');
-    var b='お名前：'+v('name')+'\nメール：'+v('email')+'\n--------------------\n'+v('message')+'\n';
-    location.href='mailto:innovation1017@new2023.jp?subject='+encodeURIComponent(s)+'&body='+encodeURIComponent(b);});
+    var btn=cf.querySelector('button[type="submit"]');
+    var note=document.getElementById('cfmsg');
+    btn.disabled=true; var org=btn.textContent; btn.textContent='送信中…';
+    note.textContent=''; note.className='cfmsg';
+    fetch(FORM_EP,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body:JSON.stringify({name:v('name'),company:v('company'),email:v('email'),message:v('message'),website:v('website')})})
+    .then(function(){
+      cf.reset();
+      note.textContent='送信しました。担当者より折り返しご連絡いたします。';
+      note.className='cfmsg ok';
+      btn.textContent=org; btn.disabled=false;
+    })
+    .catch(function(){
+      note.innerHTML='送信に失敗しました。お手数ですが <a href="mailto:info@ni-holdings.com">info@ni-holdings.com</a> まで直接ご連絡ください。';
+      note.className='cfmsg ng';
+      btn.textContent=org; btn.disabled=false;
+    });
+  });
 </script>
 </body>
 </html>
