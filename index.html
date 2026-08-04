@@ -219,7 +219,16 @@ img{display:block;max-width:100%}
 .contact .note a{color:#BF8FFF}
 
 footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.6);padding:30px 0}
-footer .wrap{display:flex;justify-content:space-between;align-items:center;font-family:var(--en);font-size:.72rem;letter-spacing:.1em}
+footer .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:24px}
+footer .f-info{display:flex;flex-direction:column;gap:4px;align-items:flex-start;font-style:normal}
+footer .f-nm{font-family:var(--en);font-weight:800;letter-spacing:.16em;color:#fff;font-size:.8rem}
+footer .f-co{font-family:var(--jp);letter-spacing:.02em;font-size:.72rem;color:rgba(255,255,255,.75)}
+footer .f-ad{font-family:var(--jp);letter-spacing:.02em;font-size:.72rem;color:rgba(255,255,255,.6);font-style:normal}
+footer .f-ml{font-family:var(--en);font-size:.72rem;letter-spacing:.04em;color:rgba(255,255,255,.85);text-decoration:none}
+footer .f-ml:hover{color:#BF8FFF}
+footer .f-cp{font-family:var(--en);font-size:.68rem;letter-spacing:.1em;color:rgba(255,255,255,.5);white-space:nowrap}
+@media(max-width:820px){footer .wrap{flex-direction:column;align-items:flex-start;gap:14px}}
+
 
 @media(max-width:820px){
   .wrap{padding:0 22px}.vside{display:none}
@@ -264,7 +273,8 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;font-
           "email": "info@ni-holdings.com",
           "availableLanguage": [
             "ja"
-          ]
+          ],
+          "areaServed": "JP"
         }
       ],
       "subOrganization": [
@@ -283,7 +293,15 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;font-
           "name": "株式会社New creation",
           "description": "建設塗装・空調設備・建物メンテナンス。"
         }
-      ]
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "築地3-7-11 CUBE TSUKIJI 3階",
+        "addressLocality": "中央区",
+        "addressRegion": "東京都",
+        "postalCode": "104-0045",
+        "addressCountry": "JP"
+      }
     },
     {
       "@type": "WebSite",
@@ -465,7 +483,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;font-
   </div>
 </section>
 
-<footer><div class="wrap"><span>NI GROUP</span><span>© 2026 New Innovation Holdings</span></div></footer>
+<footer><div class="wrap"><address class="f-info"><a class="f-nm" href="index.html" style="text-decoration:none">NI GROUP</a><span class="f-co">株式会社New innovation（NI GROUP 本社）</span><span class="f-ad">〒104-0045　東京都中央区築地3-7-11　CUBE TSUKIJI 3階</span><a class="f-ml" href="mailto:info@ni-holdings.com">info@ni-holdings.com</a></address><span class="f-cp">© 2026 New Innovation Holdings</span></div></footer>
 
 <!-- NEWS詳細モーダル -->
 <div class="nm" id="nm" role="dialog" aria-modal="true" aria-labelledby="nmTitle" hidden>
