@@ -16,3 +16,10 @@ concepts/
 
 # 一時非表示中の代表写真（削除禁止・復帰時に git add で戻す）
 assets/img/leaders/abe.jpg
+
+# 作業用ファイル（公開不要・サービスIDやメモを含むため）
+_tools_*
+
+# その他（公開不要）
+.superpowers/
+Icon
