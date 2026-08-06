@@ -122,6 +122,14 @@ footer a{color:rgba(255,255,255,.85);text-decoration:none} footer a:hover{color:
  .fg{grid-template-columns:1fr} .og{grid-template-columns:1fr}
  .cta .in{padding:0 22px} .btn{padding:14px 24px}
 }
+.price{margin-top:56px;background:var(--blue);color:#fff;padding:34px 40px 36px;display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px 34px}
+.price .lb{font-family:var(--en);font-weight:600;font-size:.72rem;letter-spacing:.22em;display:block;opacity:.85;margin-bottom:8px}
+.price .amt{font-family:var(--en);font-weight:800;font-size:clamp(2.4rem,6vw,3.6rem);line-height:1;letter-spacing:.01em}
+.price .amt small{font-family:var(--jp);font-weight:700;font-size:1rem;margin-left:6px}
+.price .per{font-size:.9rem;font-weight:700}
+.price .tax{font-family:var(--jp);font-size:.78rem;font-weight:600;color:rgba(255,255,255,.9);margin-left:6px}
+.price .sub{flex:1;min-width:240px;font-size:.84rem;line-height:1.95;color:rgba(255,255,255,.9);border-left:1px solid rgba(255,255,255,.35);padding-left:26px}
+@media(max-width:820px){.price{padding:26px 24px 28px}.price .sub{border-left:0;border-top:1px solid rgba(255,255,255,.35);padding:14px 0 0;min-width:0}}
 </style>
 <script type="application/ld+json">
 {
@@ -171,7 +179,22 @@ footer a{color:rgba(255,255,255,.85);text-decoration:none} footer a:hover{color:
         "name": "日本"
       },
       "description": "ケイカクコンパスは、業績・経営計画・移動年計をひと目で見渡せる経営ダッシュボードです。経営会議がそのまま画面ひとつで回ります。",
-      "alternateName": "経営ダッシュボード"
+      "alternateName": "経営ダッシュボード",
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "JPY",
+        "price": "33000",
+        "availability": "https://schema.org/InStock",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "33000",
+          "priceCurrency": "JPY",
+          "billingDuration": 1,
+          "billingIncrement": 1,
+          "unitText": "月",
+          "valueAddedTaxIncluded": true
+        }
+      }
     }
   ]
 }
@@ -220,7 +243,7 @@ footer a{color:rgba(255,255,255,.85);text-decoration:none} footer a:hover{color:
     <div class="c rv"><p class="n">FEATURE 02</p><h3>経営計画と実績の対比</h3><p>立てた計画に対して、いまどこにいるのかが分かります</p></div>
     <div class="c rv"><p class="n">FEATURE 03</p><h3>移動年計</h3><p>直近12ヶ月の合計で推移を見るので、季節の波に惑わされません</p></div>
     <div class="c rv"><p class="n">FEATURE 04</p><h3>MQ会計の図</h3><p>売上・変動費・粗利・固定費・利益の関係を図で把握</p></div>
-    <div class="c rv"><p class="n">FEATURE 05</p><h3>環境整備のチェック</h3><p>数字以外の日々の取り組みも同じ画面で</p></div>
+    <div class="c rv"><p class="n">FEATURE 05</p><h3>損益分岐点</h3><p>いくら売れば赤字にならないか。固定費から自動で算出</p></div>
     <div class="c rv"><p class="n">FEATURE 06</p><h3>会議のための画面</h3><p>資料を作らず、そのまま会議で開けます</p></div></div>
   <div class="figbox rv"><svg viewBox="0 0 480 300" role="img" aria-label="経営数値のダッシュボードイメージ図">
   <rect width="480" height="300" fill="#F1EFF6"/>
@@ -231,7 +254,14 @@ footer a{color:rgba(255,255,255,.85);text-decoration:none} footer a:hover{color:
   <path d="M78 226l62-30 58 16 62-52 60 22 62-42" fill="none" stroke="#831DE8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M78 240l62-14 58 12 62-24 60 10 62-20" fill="none" stroke="#180A36" stroke-opacity=".45" stroke-width="2" stroke-dasharray="6 6" stroke-linecap="round"/></svg></div>
   <p class="figcap">※画面の構成を示すイメージ図です（実際の画面ではありません）</p>
-  <p class="note rv">※NI Groupの経営会議で実際に運用しているシステムです。<br>月額プランでご利用いただけます。料金・お試しについてはお問い合わせください。御社の業務に合わせた調整も承ります。</p>
+  <div class="price rv">
+    <div>
+      <span class="lb">MONTHLY PLAN</span>
+      <span class="amt">33,000<small>円</small></span> <span class="per">／ 月</span><span class="tax">（税込）</span>
+    </div>
+    <p class="sub">初期費用なし。クレジットカードまたは銀行振込でお支払いいただけます。<br>まずはデモ画面をご覧ください。お気軽にご相談ください。</p>
+  </div>
+  <p class="note rv">※NI Groupの経営会議で実際に使っているシステムです。<br>御社の業務に合わせた調整も承ります（内容により別途お見積り）。</p>
 
   <div class="others">
     <p class="h-label rv" style="color:var(--blue)">＋ OTHER SYSTEMS</p>
