@@ -23,3 +23,16 @@ _tools_*
 # その他（公開不要）
 .superpowers/
 Icon
+
+# Claude Code のプロジェクト設定・作業状態（公開不要）
+.claude/
+
+# 代表写真の中間素材（阿部さんの顔を含む・削除禁止だが公開もしない）
+# 「まず全部除外 → 公開中の2枚だけ許可」にして、うっかり git add . を防ぐ
+assets/img/leaders/*
+!assets/img/leaders/kasahara.jpg
+!assets/img/leaders/ishiyama.jpg
+
+# 事業写真の中間素材（公開しているのは *-warm.jpg のみ）
+assets/img/gen/*
+!assets/img/gen/*-warm.jpg
