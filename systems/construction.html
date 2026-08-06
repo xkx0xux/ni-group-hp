@@ -179,21 +179,40 @@ footer a{color:rgba(255,255,255,.85);text-decoration:none} footer a:hover{color:
         "name": "日本"
       },
       "description": "見積・発注・請求・原価管理を現場単位でひとつに。建設業の商流に合わせた業務基盤。",
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "JPY",
-        "price": "9800",
-        "availability": "https://schema.org/InStock",
-        "priceSpecification": {
-          "@type": "UnitPriceSpecification",
-          "price": "9800",
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "月額プラン",
           "priceCurrency": "JPY",
-          "billingDuration": 1,
-          "billingIncrement": 1,
-          "unitText": "月",
-          "valueAddedTaxIncluded": true
+          "price": "9800",
+          "availability": "https://schema.org/InStock",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "9800",
+            "priceCurrency": "JPY",
+            "billingDuration": 1,
+            "billingIncrement": 1,
+            "unitText": "月",
+            "valueAddedTaxIncluded": true
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "年額プラン",
+          "priceCurrency": "JPY",
+          "price": "98000",
+          "availability": "https://schema.org/InStock",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "98000",
+            "priceCurrency": "JPY",
+            "billingDuration": 1,
+            "billingIncrement": 1,
+            "unitText": "年",
+            "valueAddedTaxIncluded": true
+          }
         }
-      }
+      ]
     }
   ]
 }

@@ -179,21 +179,40 @@ footer a{color:rgba(255,255,255,.85);text-decoration:none} footer a:hover{color:
         "name": "日本"
       },
       "description": "見積・納品・請求・領収をワンクリックで発行。インボイス制度に対応し、金額は自動計算。",
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "JPY",
-        "price": "2980",
-        "availability": "https://schema.org/InStock",
-        "priceSpecification": {
-          "@type": "UnitPriceSpecification",
-          "price": "2980",
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "月額プラン",
           "priceCurrency": "JPY",
-          "billingDuration": 1,
-          "billingIncrement": 1,
-          "unitText": "月",
-          "valueAddedTaxIncluded": true
+          "price": "2980",
+          "availability": "https://schema.org/InStock",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "2980",
+            "priceCurrency": "JPY",
+            "billingDuration": 1,
+            "billingIncrement": 1,
+            "unitText": "月",
+            "valueAddedTaxIncluded": true
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "年額プラン",
+          "priceCurrency": "JPY",
+          "price": "29800",
+          "availability": "https://schema.org/InStock",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "29800",
+            "priceCurrency": "JPY",
+            "billingDuration": 1,
+            "billingIncrement": 1,
+            "unitText": "年",
+            "valueAddedTaxIncluded": true
+          }
         }
-      }
+      ]
     }
   ]
 }

@@ -180,21 +180,40 @@ footer a{color:rgba(255,255,255,.85);text-decoration:none} footer a:hover{color:
       },
       "description": "ケイカクコンパスは、業績・経営計画・移動年計をひと目で見渡せる経営ダッシュボードです。経営会議がそのまま画面ひとつで回ります。",
       "alternateName": "経営ダッシュボード",
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "JPY",
-        "price": "33000",
-        "availability": "https://schema.org/InStock",
-        "priceSpecification": {
-          "@type": "UnitPriceSpecification",
-          "price": "33000",
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "月額プラン",
           "priceCurrency": "JPY",
-          "billingDuration": 1,
-          "billingIncrement": 1,
-          "unitText": "月",
-          "valueAddedTaxIncluded": true
+          "price": "33000",
+          "availability": "https://schema.org/InStock",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "33000",
+            "priceCurrency": "JPY",
+            "billingDuration": 1,
+            "billingIncrement": 1,
+            "unitText": "月",
+            "valueAddedTaxIncluded": true
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "年額プラン",
+          "priceCurrency": "JPY",
+          "price": "330000",
+          "availability": "https://schema.org/InStock",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "330000",
+            "priceCurrency": "JPY",
+            "billingDuration": 1,
+            "billingIncrement": 1,
+            "unitText": "年",
+            "valueAddedTaxIncluded": true
+          }
         }
-      }
+      ]
     }
   ]
 }
