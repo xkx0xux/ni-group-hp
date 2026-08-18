@@ -217,6 +217,56 @@ img{display:block;max-width:100%}
 .contact .cfmsg a{color:#BF8FFF}
 .contact button:disabled{opacity:.6;cursor:default}
 .contact .note a{color:#BF8FFF}
+/* PARTNER 協力会社募集 */
+.partner{padding:120px 0 110px;position:relative;overflow:hidden}
+.partner .bgword{position:absolute;right:0;top:44px;font-family:var(--en);font-weight:800;font-size:clamp(3.4rem,9vw,7rem);letter-spacing:.02em;color:transparent;-webkit-text-stroke:1px rgba(28,14,48,.13);line-height:1;user-select:none;white-space:nowrap;pointer-events:none}
+.partner .p-h{font-weight:900;font-size:clamp(1.5rem,2.8vw,2.1rem);line-height:1.5;margin-top:16px}
+.partner .p-h small{display:block;font-family:var(--en);font-weight:600;font-size:.72rem;letter-spacing:.2em;color:var(--mut);margin-top:8px}
+.partner .lead2{margin-top:22px;font-size:.95rem;line-height:2.05;max-width:60ch;color:#3d2f57}
+.partner .scope{margin-top:16px;font-family:var(--en);font-size:.72rem;letter-spacing:.06em;color:var(--mut);border-top:1px solid rgba(28,14,48,.18);padding-top:14px;max-width:60ch}
+.partner .scope b{font-family:var(--jp);font-weight:700;color:var(--ink)}
+.partner .spec-h{margin-top:46px;font-family:var(--en);font-weight:600;font-size:.72rem;letter-spacing:.2em;color:var(--blue)}
+.partner .spec-h::before{content:"";display:inline-block;width:7px;height:7px;background:currentColor;margin-right:10px;vertical-align:1px}
+.partner .spec{margin-top:16px;border-top:2px solid var(--blue)}
+.partner .spec .r{display:grid;grid-template-columns:190px 1fr;gap:26px;border-bottom:1px solid rgba(28,14,48,.18);padding:16px 4px}
+.partner .spec dt{font-weight:700;font-size:.86rem}
+.partner .spec dt small{display:block;font-family:var(--en);font-weight:600;font-size:.62rem;letter-spacing:.14em;color:var(--mut);margin-top:3px}
+.partner .spec dd{font-size:.9rem;color:#3d2f57;line-height:1.95}
+.partner .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.partner .flow .s{border:1px solid rgba(28,14,48,.22);background:#fff;padding:6px 13px;font-size:.82rem;font-weight:500}
+.partner .flow .ar{font-family:var(--en);color:var(--blue);font-weight:600}
+.partner .grid2{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;margin-top:44px;align-items:start}
+.partner .pitch .pt{border-top:1px solid rgba(28,14,48,.18);padding:18px 0 16px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start}
+.partner .pitch .pt .n{font-family:var(--en);font-weight:800;font-size:1.2rem;color:transparent;-webkit-text-stroke:1.2px var(--blue);line-height:1.2}
+.partner .pitch .pt h4{font-weight:900;font-size:1rem}
+.partner .pitch .pt p{font-size:.85rem;color:#4a3c63;margin-top:4px;line-height:1.9}
+.partner .form{background:rgba(255,255,255,.72);border:1px solid rgba(28,14,48,.18);padding:38px 40px 40px}
+.partner .form .ttl{font-weight:900;font-size:1.05rem}
+.partner .form .fnote{font-size:.78rem;color:var(--mut);margin-top:6px}
+.partner .field{margin-top:22px}
+.partner .field label{display:block;font-size:.82rem;font-weight:700;margin-bottom:8px}
+.partner .field label .req{color:var(--blue);margin-left:6px;font-size:.74rem}
+.partner .field label .opt{color:var(--mut);margin-left:6px;font-size:.72rem;font-weight:500}
+.partner .field input,.partner .field textarea{width:100%;font-family:inherit;font-size:.92rem;color:var(--ink);background:#fff;border:1px solid rgba(28,14,48,.22);padding:13px 14px;transition:border .2s,box-shadow .2s}
+.partner .field textarea{min-height:96px;resize:vertical;line-height:1.8}
+.partner .field input::placeholder,.partner .field textarea::placeholder{color:#9a8fb0}
+.partner .field input:focus,.partner .field textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 2px rgba(131,29,232,.22)}
+.partner .row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.partner .chips{display:flex;flex-wrap:wrap;gap:8px}
+.partner .chip{display:inline-flex;align-items:center;gap:7px;border:1px solid rgba(28,14,48,.22);background:#fff;padding:8px 13px;font-size:.8rem;cursor:pointer;user-select:none;transition:.2s}
+.partner .chip input{appearance:none;-webkit-appearance:none;width:13px;height:13px;border:1px solid var(--mut);background:#fff;position:relative;margin:0}
+.partner .chip input:checked{background:var(--blue);border-color:var(--blue)}
+.partner .chip input:checked::after{content:"";position:absolute;left:3px;top:1px;width:4px;height:7px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.partner .chip:hover{border-color:var(--blue)}
+.partner .submit{margin-top:28px;display:inline-flex;align-items:center;gap:12px;background:var(--blue);color:#fff;border:0;font-family:inherit;font-weight:700;font-size:.92rem;letter-spacing:.06em;padding:15px 40px;cursor:pointer;transition:.25s}
+.partner .submit:hover{background:var(--blue-d);transform:translateY(-1px)}
+.partner .submit:disabled{opacity:.6;cursor:default}
+.partner .cfmsg{margin-top:14px;font-size:.84rem;line-height:1.8}
+.partner .cfmsg.ok{color:var(--blue);font-weight:700}
+.partner .cfmsg.ng{color:#C0392B}
+.partner .privacy{font-size:.72rem;color:var(--mut);margin-top:14px}
+@media(max-width:880px){.partner .grid2{grid-template-columns:1fr;gap:36px}.partner .form{padding:30px 24px 32px}}
+@media(max-width:520px){.partner .row2{grid-template-columns:1fr;gap:0}.partner .bgword{font-size:3rem;top:30px}.partner .lead2,.partner .scope{max-width:none}.partner .spec .r{grid-template-columns:1fr;gap:6px;padding:14px 2px}}
 
 footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.6);padding:30px 0}
 footer .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:24px}
@@ -381,6 +431,7 @@ footer .f-cp{font-family:var(--en);font-size:.68rem;letter-spacing:.1em;color:rg
   <a href="#mission">MISSION<small>理念</small></a>
   <a href="#leaders">LEADERS<small>代表</small></a>
   <a href="#news">NEWS<small>ニュース</small></a>
+  <a href="#partner">PARTNER<small>協力会社募集</small></a>
   <a href="#contact">CONTACT<small>お問い合わせ</small></a>
 </nav></div>
 
@@ -503,6 +554,59 @@ footer .f-cp{font-family:var(--en);font-size:.68rem;letter-spacing:.1em;color:rg
     <div class="ph"><img src="assets/img/gen/biz-hr-warm.jpg" alt=""></div>
   </div>
 </div></section>
+
+<!-- PARTNER 協力会社募集 -->
+<section class="partner" id="partner">
+  <div class="wrap rv">
+    <p class="h-label" style="color:var(--blue)">＋ PARTNER RECRUITMENT</p>
+    <h2 class="p-h">協力会社を募集しています<small>建設・設備部門｜New innovation ／ New creation</small></h2>
+    <p class="lead2">NIグループの建設・設備事業では、現場を共に担っていただける協力会社様を随時募集しています。まずはお気軽にお問い合わせください。担当より折り返しご連絡いたします。</p>
+    <p class="scope"><b>対象：</b>設備工事／内装／外壁工事／空調工事／建物メンテナンス・クリーニング　<b>エリア：</b>一都三県</p>
+    <p class="spec-h">REQUIREMENTS ／ 募集要項</p>
+    <dl class="spec">
+      <div class="r"><dt>募集する工種<small>WORK</small></dt><dd>設備工事／内装／外壁工事／空調工事／建物メンテナンス・クリーニング（その他の工種もご相談ください）</dd></div>
+      <div class="r"><dt>対応エリア<small>AREA</small></dt><dd>一都三県（東京・神奈川・埼玉・千葉）</dd></div>
+      <div class="r"><dt>対象<small>ELIGIBILITY</small></dt><dd>法人・個人事業主／建設業許可・各種保険をお持ちの方歓迎（無くてもまずはご相談ください）</dd></div>
+      <div class="r"><dt>応募の流れ<small>FLOW</small></dt><dd><div class="flow"><span class="s">お問い合わせ</span><span class="ar">→</span><span class="s">面談</span><span class="ar">→</span><span class="s">取引条件の確認</span><span class="ar">→</span><span class="s">協力会社登録</span><span class="ar">→</span><span class="s">発注</span></div></dd></div>
+    </dl>
+    <div class="grid2">
+      <div class="pitch">
+        <div class="pt"><span class="n">01</span><div><h4>継続した発注</h4><p>グループ内の設備・建設案件を継続的にお任せできる体制です。</p></div></div>
+        <div class="pt"><span class="n">02</span><div><h4>スピードと誠実な取引</h4><p>現場に近い判断と、明確な取引条件。長くお付き合いできる関係を大切にします。</p></div></div>
+        <div class="pt"><span class="n">03</span><div><h4>一都三県で幅広く</h4><p>設備・外壁・空調・内装・メンテまで、対応工種は問いません。</p></div></div>
+      </div>
+      <form class="form" id="pform" novalidate>
+        <p class="ttl">お問い合わせ</p>
+        <p class="fnote">1分で送れます。いただいた内容に担当より折り返します。</p>
+        <div class="row2">
+          <div class="field"><label>会社名<span class="req">必須</span></label><input name="company" required placeholder="株式会社◯◯"></div>
+          <div class="field"><label>ご担当者名<span class="req">必須</span></label><input name="cname" required placeholder="山田 太郎"></div>
+        </div>
+        <div class="row2">
+          <div class="field"><label>メールアドレス<span class="req">必須</span></label><input type="email" name="email" required placeholder="you@example.com"></div>
+          <div class="field"><label>電話番号<span class="opt">任意</span></label><input name="tel" placeholder="090-0000-0000"></div>
+        </div>
+        <div class="field">
+          <label>対応可能な工種<span class="opt">任意・複数可</span></label>
+          <div class="chips">
+            <label class="chip"><input type="checkbox" name="koshu" value="設備工事">設備工事</label>
+            <label class="chip"><input type="checkbox" name="koshu" value="内装">内装</label>
+            <label class="chip"><input type="checkbox" name="koshu" value="外壁工事">外壁工事</label>
+            <label class="chip"><input type="checkbox" name="koshu" value="空調工事">空調工事</label>
+            <label class="chip"><input type="checkbox" name="koshu" value="建物メンテ・清掃">建物メンテ・清掃</label>
+            <label class="chip"><input type="checkbox" name="koshu" value="その他">その他</label>
+          </div>
+          <input style="margin-top:10px" name="koshu_other" placeholder="「その他」の場合はこちらにご記入ください（任意）">
+        </div>
+        <div class="field"><label>お問い合わせ内容<span class="opt">任意</span></label><textarea name="message" placeholder="実績・ご希望などあればご記入ください"></textarea></div>
+        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+        <button type="submit" class="submit">送信する <span class="ar">→</span></button>
+        <p class="cfmsg" id="pfmsg" role="status" aria-live="polite"></p>
+        <p class="privacy">送信いただいた情報は、お問い合わせ対応の目的にのみ利用します。</p>
+      </form>
+    </div>
+  </div>
+</section>
 
 <!-- CONTACT -->
 <section class="contact" id="contact">
@@ -649,6 +753,24 @@ footer .f-cp{font-family:var(--en);font-size:.68rem;letter-spacing:.1em;color:rg
       note.className='cfmsg ng';
       btn.textContent=org; btn.disabled=false;
     });
+  });
+  /* 協力会社募集フォーム＝既存FORM_EPに相乗り（種別・工種・電話はmessageに格納） */
+  var pf=document.getElementById('pform');
+  pf&&pf.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!pf.checkValidity()){pf.reportValidity();return;}
+    var pv=function(n){var el=pf.querySelector('[name="'+n+'"]');return el?el.value.trim():'';};
+    var koshu=Array.prototype.map.call(pf.querySelectorAll('[name="koshu"]:checked'),function(el){return el.value;});
+    var other=pv('koshu_other'); if(other) koshu.push('その他：'+other);
+    var pbtn=pf.querySelector('button[type="submit"]');
+    var pnote=document.getElementById('pfmsg');
+    pbtn.disabled=true; var porg=pbtn.innerHTML; pbtn.textContent='送信中…';
+    pnote.textContent=''; pnote.className='cfmsg';
+    var pmsg='【協力会社募集のお問い合わせ】\n電話番号: '+(pv('tel')||'（未記入）')+'\n対応可能な工種: '+(koshu.length?koshu.join('、'):'（未選択）')+'\n--------\n'+(pv('message')||'（本文なし）');
+    fetch(FORM_EP,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body:JSON.stringify({name:pv('cname'),company:pv('company'),email:pv('email'),message:pmsg,website:pv('website')})})
+    .then(function(){pf.reset();pnote.textContent='送信しました。担当より折り返しご連絡いたします。';pnote.className='cfmsg ok';pbtn.innerHTML=porg;pbtn.disabled=false;})
+    .catch(function(){pnote.innerHTML='送信に失敗しました。お手数ですが <a href="mailto:info@ni-holdings.com">info@ni-holdings.com</a> まで直接ご連絡ください。';pnote.className='cfmsg ng';pbtn.innerHTML=porg;pbtn.disabled=false;});
   });
 </script>
 </body>
