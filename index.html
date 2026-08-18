@@ -235,6 +235,24 @@ img{display:block;max-width:100%}
 .partner .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .partner .flow .s{border:1px solid rgba(28,14,48,.22);background:#fff;padding:6px 13px;font-size:.82rem;font-weight:500}
 .partner .flow .ar{font-family:var(--en);color:var(--blue);font-weight:600}
+/* 募集要項リデザイン(2026-08-18) */
+.partner .req-head,.partner .flow-head{display:flex;align-items:baseline;gap:14px}
+.partner .req-head{margin-top:48px}
+.partner .req-head h3,.partner .flow-head h3{font-weight:900;font-size:1.15rem;letter-spacing:.02em;color:var(--ink)}
+.partner .req-head span,.partner .flow-head span{font-family:var(--en);font-weight:600;font-size:.66rem;letter-spacing:.24em;color:var(--blue)}
+.partner .reqs{margin-top:20px;border-top:2px solid var(--blue)}
+.partner .req-row{display:grid;grid-template-columns:154px 1fr;gap:30px;padding:24px 4px;border-bottom:1px solid rgba(28,14,48,.14);align-items:baseline}
+.partner .req-row .lab .en{display:block;font-family:var(--en);font-weight:800;font-size:1.1rem;color:transparent;-webkit-text-stroke:1px var(--blue);letter-spacing:.03em;line-height:1}
+.partner .req-row .lab .jp{display:block;font-weight:700;font-size:.9rem;margin-top:9px;color:var(--ink)}
+.partner .req-row .val{font-size:.95rem;color:#3d2f57;line-height:1.9}
+.partner .req-row .val .note{display:block;color:var(--mut);font-size:.84rem;margin-top:5px}
+.partner .flow-head{margin-top:44px}
+.partner .steps{list-style:none;margin-top:26px;display:flex;justify-content:space-between;position:relative}
+.partner .steps::before{content:"";position:absolute;left:10%;right:10%;top:15px;height:1.5px;background:rgba(131,29,232,.3)}
+.partner .steps li{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;align-items:center;gap:14px}
+.partner .steps .sn{width:30px;height:30px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--en);font-weight:700;font-size:.76rem}
+.partner .steps .st{font-size:.82rem;font-weight:600;color:var(--ink);text-align:center;line-height:1.4}
+@media(max-width:640px){.partner .req-row{grid-template-columns:1fr;gap:8px}.partner .steps{flex-wrap:wrap;gap:20px 0}.partner .steps::before{display:none}.partner .steps li{flex:0 0 33.3%}}
 .partner .grid2{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;margin-top:44px;align-items:start}
 .partner .pitch .pt{border-top:1px solid rgba(28,14,48,.18);padding:18px 0 16px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start}
 .partner .pitch .pt .n{font-family:var(--en);font-weight:800;font-size:1.2rem;color:transparent;-webkit-text-stroke:1.2px var(--blue);line-height:1.2}
@@ -561,14 +579,20 @@ footer .f-cp{font-family:var(--en);font-size:.68rem;letter-spacing:.1em;color:rg
     <p class="h-label" style="color:var(--blue)">＋ PARTNER RECRUITMENT</p>
     <h2 class="p-h">協力会社を募集しています<small>建設・設備部門｜New innovation ／ New creation</small></h2>
     <p class="lead2">NIグループの建設・設備事業では、現場を共に担っていただける協力会社様を随時募集しています。まずはお気軽にお問い合わせください。担当より折り返しご連絡いたします。</p>
-    <p class="scope"><b>対象：</b>設備工事／内装／外壁工事／空調工事／建物メンテナンス・クリーニング　<b>エリア：</b>一都三県</p>
-    <p class="spec-h">REQUIREMENTS ／ 募集要項</p>
-    <dl class="spec">
-      <div class="r"><dt>募集する工種<small>WORK</small></dt><dd>設備工事／内装／外壁工事／空調工事／建物メンテナンス・クリーニング（その他の工種もご相談ください）</dd></div>
-      <div class="r"><dt>対応エリア<small>AREA</small></dt><dd>一都三県（東京・神奈川・埼玉・千葉）</dd></div>
-      <div class="r"><dt>対象<small>ELIGIBILITY</small></dt><dd>法人・個人事業主／建設業許可・各種保険をお持ちの方歓迎（無くてもまずはご相談ください）</dd></div>
-      <div class="r"><dt>応募の流れ<small>FLOW</small></dt><dd><div class="flow"><span class="s">お問い合わせ</span><span class="ar">→</span><span class="s">面談</span><span class="ar">→</span><span class="s">取引条件の確認</span><span class="ar">→</span><span class="s">協力会社登録</span><span class="ar">→</span><span class="s">発注</span></div></dd></div>
-    </dl>
+    <div class="req-head"><h3>募集要項</h3><span>REQUIREMENTS</span></div>
+    <div class="reqs">
+      <div class="req-row"><div class="lab"><span class="en">WORK</span><span class="jp">募集する工種</span></div><div class="val">設備工事／内装／外壁工事／空調工事／建物メンテナンス・クリーニング<span class="note">その他の工種もご相談ください</span></div></div>
+      <div class="req-row"><div class="lab"><span class="en">AREA</span><span class="jp">対応エリア</span></div><div class="val">一都三県<span class="note">東京・神奈川・埼玉・千葉</span></div></div>
+      <div class="req-row"><div class="lab"><span class="en">ELIGIBILITY</span><span class="jp">対象</span></div><div class="val">法人・個人事業主／建設業許可・各種保険をお持ちの方歓迎<span class="note">無くてもまずはご相談ください</span></div></div>
+    </div>
+    <div class="flow-head"><h3>応募の流れ</h3><span>FLOW</span></div>
+    <ol class="steps">
+      <li><span class="sn">01</span><span class="st">お問い合わせ</span></li>
+      <li><span class="sn">02</span><span class="st">面談</span></li>
+      <li><span class="sn">03</span><span class="st">取引条件の確認</span></li>
+      <li><span class="sn">04</span><span class="st">協力会社登録</span></li>
+      <li><span class="sn">05</span><span class="st">発注</span></li>
+    </ol>
     <div class="grid2">
       <div class="pitch">
         <div class="pt"><span class="n">01</span><div><h4>継続した発注</h4><p>グループ内の設備・建設案件を継続的にお任せできる体制です。</p></div></div>
