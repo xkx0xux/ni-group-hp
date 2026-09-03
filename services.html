@@ -235,6 +235,16 @@ h1,h2,h3{font-feature-settings:"palt" 1}
 .tl .n{font-family:var(--en);font-weight:700;font-size:.7rem;letter-spacing:.22em;color:var(--blue)}
 .tl h3{font-weight:700;font-size:1.02rem;margin-top:6px;line-height:1.6}
 @media(max-width:900px){.issue-l,.svc-l,.tl{grid-template-columns:1fr;gap:0}.svc-l .c{grid-template-columns:72px 1fr;gap:14px;padding:26px 0 30px}.svc-l .no{font-size:2rem}.tl .col+.col{margin-top:10px}}
+/* ===== SUBSIDY v2（2026-09-03）＝「調べる→申請する→実績報告まで」を主役に ===== */
+.subsidy h2 em{font-style:normal;color:var(--blue)}
+.sub-steps{margin-top:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:0 48px;border-top:1px solid rgba(28,14,48,.18)}
+.sub-steps .s{padding:26px 0 30px;border-bottom:1px solid rgba(28,14,48,.18)}
+.sub-steps .n{font-family:var(--en);font-weight:800;font-size:2.4rem;color:transparent;-webkit-text-stroke:1.2px var(--blue);line-height:.9;transition:color .45s ease}
+.sub-steps .s:hover .n{color:var(--blue)}
+.sub-steps h3{font-weight:700;font-size:1.12rem;margin-top:14px;line-height:1.5}
+.sub-steps p{margin-top:10px;font-size:.88rem;line-height:2.05;color:#483A60}
+.sub-steps .n small{font-family:var(--en);font-weight:600;font-size:.62rem;letter-spacing:.22em;color:var(--mut);-webkit-text-stroke:0;margin-left:12px;vertical-align:middle}
+@media(max-width:900px){.sub-steps{grid-template-columns:1fr;gap:0}}
 </style>
 <script type="application/ld+json">
 {
@@ -306,7 +316,7 @@ h1,h2,h3{font-feature-settings:"palt" 1}
   <div class="in wrap">
     <p class="h-label">＋ DEVELOPMENT &amp; DX</p>
     <h1>その業務、<br><em>もっとシンプルにできるかもしれません。</em></h1>
-    <p class="lead">株式会社New innovationでは、企業ごとの課題に合わせた業務システム開発、業務自動化、AI活用、Web制作、広告・音楽・動画制作を行っています。導入内容に利用できる補助金・助成金があるか、申請支援業者を通じて確認することも可能です。</p>
+    <p class="lead">株式会社New innovationでは、企業ごとの課題に合わせた業務システム開発、業務自動化、AI活用、Web制作、広告・音楽・動画制作を行っています。導入に使える補助金・助成金は、制度の調査から申請・実績報告まで、申請支援業者と連携してサポートします。</p>
     <div class="acts">
       <a class="btn line" href="https://line.me/R/ti/p/@900zgikl" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 9.5 9.5 0 0 1-3.8-.8L3 21l1.3-4.2A8.38 8.38 0 0 1 3.5 11.5 8.5 8.5 0 0 1 12 3a8.5 8.5 0 0 1 9 8.5z"/></svg>
@@ -317,7 +327,7 @@ h1,h2,h3{font-feature-settings:"palt" 1}
     <p class="fv-note">ご相談段階で、作りたいものが明確に決まっていなくても問題ありません。</p>
   </div>
 </section>
-<div class="tick"><p class="in2">＋ 業務システム開発　　＋ 業務自動化　　＋ AI活用支援　　＋ Web制作・LP制作　　＋ 広告・音楽制作　　＋ 動画制作　　＋ 利用できる補助金・助成金の確認　　＋ 小規模〜中規模のシステムに個別対応　　＋ DEVELOPMENT ＆ DX　　</p></div>
+<div class="tick"><p class="in2">＋ 業務システム開発　　＋ 業務自動化　　＋ AI活用支援　　＋ Web制作・LP制作　　＋ 広告・音楽制作　　＋ 動画制作　　＋ 補助金・助成金は申請までサポート　　＋ 小規模〜中規模のシステムに個別対応　　＋ DEVELOPMENT ＆ DX　　</p></div>
 
 <!-- よくある課題 -->
 <section class="issues checker"><p class="vside">ISSUES ― よくある課題</p><div class="wrap">
@@ -431,12 +441,17 @@ h1,h2,h3{font-feature-settings:"palt" 1}
 </div></section>
 
 <!-- 補助金・助成金活用サポート -->
-<section class="subsidy checker"><p class="vside">SUBSIDY ― 補助金・助成金</p><div class="wrap">
+<section class="subsidy checker" id="subsidy"><p class="vside">SUBSIDY ― 補助金・助成金</p><div class="wrap">
   <p class="h-label rv" style="color:var(--blue)">＋ SUBSIDY SUPPORT</p>
-  <h2 class="sec-h2 rv">導入したい内容に、利用できる制度があるか確認します。</h2>
-  <p class="lead rv">システム開発や業務自動化、AI導入、Web制作等を検討している企業様について、利用可能な補助金・助成金があるか申請支援業者を通じて確認します。利用可能性のある制度が確認できた場合は、導入したい内容を詳しくお伺いし、開発・制作の実現可否、期間、費用を確認したうえでご提案します。</p>
+  <h2 class="sec-h2 rv">補助金・助成金は、調べるところから申請まで。<br><em>だから、申請しやすい。</em></h2>
+  <p class="lead rv">システム開発や業務自動化、AI導入、Web制作等の導入に使える補助金・助成金があるかを、申請支援業者を通じて調べます。利用できる制度が見つかれば、要件の整理・必要資料の準備・申請の手続き・採択後の実績報告まで、申請支援業者と連携してサポートします。「制度は気になるけれど、調べるのも申請も大変そう」という段階からご相談ください。</p>
+  <div class="sub-steps">
+    <div class="s rv"><p class="n">01<small>RESEARCH</small></p><h3>調べる</h3><p>所在地・業種・従業員数・導入内容・公募状況をもとに、使える制度があるかを申請支援業者が確認します。</p></div>
+    <div class="s rv"><p class="n">02<small>APPLY</small></p><h3>申請する</h3><p>制度の要件と導入内容をすり合わせ、必要資料の準備と申請の手続きを申請支援業者と連携して進めます。開発・制作の見積もこの段階で揃えます。</p></div>
+    <div class="s rv"><p class="n">03<small>REPORT</small></p><h3>実績報告まで</h3><p>採択後に必要となる実績報告にも、必要に応じて対応します。導入して終わりではなく、制度の手続きが終わるまで伴走します。</p></div>
+  </div>
   <div class="callout rv">
-    <p><b>私たちの立ち位置について：</b>株式会社New innovationは、制度の採択を判断・保証する立場にはありません。開発・制作のご相談をお受けし、利用可能な制度があるかを申請支援業者へ確認するところまでを担います。制度が利用できる場合は、導入の準備と申請の手続きを並行して進めていただけます。</p>
+    <p><b>私たちの立ち位置について：</b>株式会社New innovationは、制度の採択を判断・保証する立場にはありません。導入内容の整理・見積・開発・制作・納品を担い、制度の調査と申請の手続きは申請支援業者と連携してサポートします。制度が利用できる場合は、導入の準備と申請を並行して進められます。</p>
   </div>
 </div></section>
 
@@ -510,7 +525,7 @@ h1,h2,h3{font-feature-settings:"palt" 1}
     </details>
     <details>
       <summary><span class="q"><b>Q5</b><span>補助金の申請も株式会社New innovationが行いますか？</span></span><span class="icon">＋</span></summary>
-      <p class="a">制度の調査・申請支援は、申請支援業者と連携して対応します。株式会社New innovationは、主に導入内容の整理、見積、開発・制作および納品を担当します。</p>
+      <p class="a">申請の手続きは申請支援業者と連携して進めます。制度の調査から申請、採択後の実績報告までサポートしますので、はじめての申請でも進めやすい体制です。株式会社New innovationは、導入内容の整理・見積・開発・制作・納品を担当します。</p>
     </details>
     <details>
       <summary><span class="q"><b>Q6</b><span>相談後、すぐに契約や開発が始まりますか？</span></span><span class="icon">＋</span></summary>
@@ -540,7 +555,7 @@ h1,h2,h3{font-feature-settings:"palt" 1}
   <div class="in txt rv">
     <p class="h-label">＋ CONTACT</p>
     <h2>まずは、現在困っている業務をお聞かせください。</h2>
-    <p class="lead2">作りたいシステムや利用したい制度が決まっていなくても問題ありません。現在の業務内容や課題をお伺いし、開発・制作の可否と、利用可能な補助金・助成金があるかを確認します。</p>
+    <p class="lead2">作りたいシステムや利用したい制度が決まっていなくても問題ありません。現在の業務内容や課題をお伺いし、開発・制作の可否と、利用可能な補助金・助成金があるかを確認し、申請までサポートします。</p>
   </div>
   <div class="in">
     <div class="line-panel rv">
