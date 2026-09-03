@@ -315,6 +315,45 @@ footer .f-cp{font-family:var(--en);font-size:.68rem;letter-spacing:.1em;color:rg
   .news .g{display:block}.news .blk{margin:0}.news .ph{margin:16px 0 0}
   .contact .row{grid-template-columns:1fr;gap:0}.contact .row label:last-child{margin-top:16px}
 }
+/* ============================================================
+   MOTION UPGRADE (2026-09-03・追加モジュール／後で本番へ丸ごと移植可)
+   ・body.motion-on の時だけ有効（JSが付与）
+   ・prefers-reduced-motion / JS無効では一切効かず現状デザインへフォールバック
+   ・GSAPのScrollTrigger発火には戻さない＝IntersectionObserver方式
+   ============================================================ */
+/* 行マスク・リビール：見出しが罫線の裏から静かに立ち上がる */
+.motion-on .mln{overflow:hidden;padding-bottom:.1em}
+.motion-on .mln>.mln-i{display:inline-block;transform:translateY(120%);transition:transform 1.05s cubic-bezier(.16,1,.3,1)}
+.motion-on .mln.mln-b>.mln-i{display:block;transform:translateY(104%)}
+.motion-on .mln.on>.mln-i{transform:translateY(0)}
+
+/* HERO 起動シーケンス（load後に body.hero-in を付与して発火） */
+.motion-on .hero .crown{opacity:0;transform:translateY(12px);transition:opacity 1s cubic-bezier(.16,1,.3,1) .15s,transform 1s cubic-bezier(.16,1,.3,1) .15s}
+.motion-on.hero-in .hero .crown{opacity:.85;transform:none}
+.motion-on .hero .tick{opacity:0;transform:translateY(100%);transition:opacity .9s cubic-bezier(.16,1,.3,1) 1s,transform .9s cubic-bezier(.16,1,.3,1) 1s}
+.motion-on.hero-in .hero .tick{opacity:1;transform:none}
+/* edge ラベルは translateY(-50%) の中央寄せを壊さないよう translate() で合成 */
+.motion-on .hero .edge{opacity:0;transition:opacity 1s cubic-bezier(.16,1,.3,1) 1.15s,transform 1s cubic-bezier(.16,1,.3,1) 1.15s}
+.motion-on .hero .edge.l{transform:translate(-16px,-50%)}
+.motion-on .hero .edge.r{transform:translate(16px,-50%)}
+.motion-on.hero-in .hero .edge{opacity:.85}
+.motion-on.hero-in .hero .edge.l,.motion-on.hero-in .hero .edge.r{transform:translateY(-50%)}
+/* ワードマーク＝文字間が広→狭へ"収まる"（大型Interで最も上品に効く動き） */
+.motion-on .hero h1{letter-spacing:.24em}
+.motion-on .hero h1.mln.on{letter-spacing:.08em;transition:letter-spacing 1.35s cubic-bezier(.16,1,.3,1)}
+
+/* WHY アウトライン番号：行が出た後にひと呼吸置いて番号が settle */
+.motion-on .why .c .n{opacity:0;transform:translateY(18px);transition:opacity .9s cubic-bezier(.16,1,.3,1) .16s,transform .9s cubic-bezier(.16,1,.3,1) .16s,color .45s ease,-webkit-text-stroke-color .45s ease}
+.motion-on .why .c.on .n{opacity:1;transform:none}
+/* 番号ホバーで輪郭→ベタ塗り（micro-interaction・motion無関係でも効く） */
+.why .c .n{transition:color .45s ease,-webkit-text-stroke-color .45s ease}
+.why .c:hover .n{color:var(--blue);-webkit-text-stroke-color:var(--blue)}
+
+@media (prefers-reduced-motion:reduce){
+  .motion-on .mln>.mln-i,
+  .motion-on .hero .crown,.motion-on .hero .tick,.motion-on .hero .edge,
+  .motion-on .why .c .n{opacity:1 !important;transform:none !important;transition:none !important}
+}
 </style>
 <script type="application/ld+json">
 {
@@ -804,6 +843,61 @@ footer .f-cp{font-family:var(--en);font-size:.68rem;letter-spacing:.1em;color:rg
     .then(function(){pf.reset();pnote.textContent='送信しました。担当より折り返しご連絡いたします。';pnote.className='cfmsg ok';pbtn.innerHTML=porg;pbtn.disabled=false;})
     .catch(function(){pnote.innerHTML='送信に失敗しました。お手数ですが <a href="mailto:info@ni-holdings.com">info@ni-holdings.com</a> まで直接ご連絡ください。';pnote.className='cfmsg ng';pbtn.innerHTML=porg;pbtn.disabled=false;});
   });
+</script>
+<!-- MOTION UPGRADE module (2026-09-03) -->
+<script>
+(function(){
+  var d=document, b=d.body, root=d.documentElement;
+  if(!root.classList.contains('js')) return;
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  b.classList.add('motion-on');
+
+  function maskWrap(el,block){
+    if(!el||el.querySelector('.mln-i')) return;
+    var s=d.createElement('span'); s.className='mln-i';
+    while(el.firstChild) s.appendChild(el.firstChild);
+    el.appendChild(s);
+    el.classList.add('mln'); if(block) el.classList.add('mln-b');
+  }
+  /* 大見出しをマスク化（既存のブロック・スライドと役割が被らない所を選ぶ） */
+  d.querySelectorAll('.bz h2, .sys h2, .partner .p-h').forEach(function(el){maskWrap(el,true);});
+  var h1=d.querySelector('.hero h1');  maskWrap(h1,false);
+  var sub=d.querySelector('.hero .sub'); maskWrap(sub,false);
+
+  /* スクロールで見出しマスクを発火（親ブロックが先に不透明化→マスクが見える閾値差） */
+  var mo=new IntersectionObserver(function(es){
+    es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('on'); mo.unobserve(en.target);} });
+  },{threshold:.25, rootMargin:'0px 0px -8% 0px'});
+  d.querySelectorAll('.mln').forEach(function(el){ if(!el.closest('.hero')) mo.observe(el); });
+  /* 保険：IOが発火しない環境でも、スクロール時に位置を直接見て発火（"透明のまま"事故の二重防止） */
+  function sweep(){ d.querySelectorAll('.mln:not(.on)').forEach(function(el){ if(el.closest('.hero')) return;
+    var r=el.getBoundingClientRect(); if(r.top<innerHeight*.92 && r.bottom>0){ el.classList.add('on'); mo.unobserve(el);} }); }
+  addEventListener('scroll', sweep, {passive:true}); addEventListener('load', sweep); setTimeout(sweep, 500);
+
+  /* HERO 起動シーケンス */
+  function heroIn(){
+    b.classList.add('hero-in');
+    setTimeout(function(){ h1 && h1.classList.add('on'); }, 340);
+    setTimeout(function(){ sub && sub.classList.add('on'); }, 620);
+  }
+  requestAnimationFrame(function(){ requestAnimationFrame(heroIn); });
+
+  /* ショーリール（?reel）：ヒーロー後に一定速で自動スクロール＝録画用 */
+  if(/reel/.test(location.search)){
+    setTimeout(function(){
+      var start=null, dur=19000;
+      var max=function(){return Math.max(1, d.documentElement.scrollHeight - innerHeight);};
+      function step(ts){
+        if(start===null) start=ts;
+        var p=Math.min(1,(ts-start)/dur);
+        var e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2; /* easeInOutQuad */
+        scrollTo(0, e*max());
+        if(p<1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }, 2600);
+  }
+})();
 </script>
 </body>
 </html>
