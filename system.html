@@ -102,7 +102,8 @@ img{display:block;max-width:100%}
 .wk .g{display:grid;grid-template-columns:repeat(12,1fr)}
 .wk .fig{position:relative;z-index:1;margin-top:56px;background:#fff;border:1px solid rgba(28,14,48,.18);aspect-ratio:16/10;overflow:hidden}
 .wk.l .fig{grid-column:1/8}.wk.r .fig{grid-column:6/13}
-.wk .fig svg{width:100%;height:100%;display:block}
+.wk .fig img{width:100%;height:100%;object-fit:cover;object-position:left top;display:block}
+.wk .figcap{position:absolute;right:0;bottom:-26px;font-family:var(--en);font-weight:600;font-size:.62rem;letter-spacing:.22em;color:var(--mut)}
 .wk .blk{position:relative;z-index:2;background:var(--blue);color:#fff;padding:40px 44px 44px}
 .wk.r .blk{background:var(--navy)}
 .wk.l .blk{grid-column:7/13;margin-top:-40px}
@@ -316,7 +317,7 @@ footer a:hover{color:#BF8FFF}
 <section class="pintro"><div class="wrap">
   <p class="h-label">＋ MONTHLY PLAN</p>
   <h2>ゼロから作らなくていい場合もあります。</h2>
-  <p>NI Groupが自社のために開発し、いま毎日動かしている業務システム。この4つは<strong>すでに完成している</strong>ので、月額プランでそのままお使いいただけます。まず既製品で足りるかを見て、足りない部分だけ作る——それがいちばん早くて、安く済みます。</p>
+  <p>NI Groupが自社のために開発し、いま毎日動かしている業務システム。この3つは<strong>すでに完成している</strong>ので、月額プランでそのままお使いいただけます。まず既製品で足りるかを見て、足りない部分だけ作る——それがいちばん早くて、安く済みます。</p>
 </div></section>
 
 <section class="works checker" id="works"><p class="vside">SYSTEMS ― 月額で使えるシステム</p><div class="wrap">
@@ -324,22 +325,7 @@ footer a:hover{color:#BF8FFF}
   <div class="wk l rv">
     <p class="bgword">INVOICE</p>
     <div class="g">
-      <div class="fig">
-        <svg viewBox="0 0 480 300" role="img" aria-label="請求書のイメージ図">
-          <rect width="480" height="300" fill="#F1EFF6"/>
-          <rect x="96" y="34" width="288" height="232" fill="#fff" stroke="#1C0E30" stroke-opacity=".18"/>
-          <rect x="126" y="66" width="104" height="9" fill="#831DE8"/>
-          <rect x="126" y="94" width="164" height="6" fill="#1C0E30" fill-opacity=".18"/>
-          <g fill="#1C0E30" fill-opacity=".13">
-            <rect x="126" y="132" width="228" height="5"/><rect x="126" y="152" width="228" height="5"/>
-            <rect x="126" y="172" width="228" height="5"/><rect x="126" y="192" width="176" height="5"/>
-          </g>
-          <rect x="246" y="216" width="108" height="26" fill="#831DE8" fill-opacity=".14"/>
-          <rect x="246" y="216" width="4" height="26" fill="#831DE8"/>
-          <circle cx="330" cy="72" r="17" fill="none" stroke="#831DE8" stroke-width="2"/>
-          <path d="M322 72l6 6 12-13" fill="none" stroke="#831DE8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
+      <div class="fig"><img src="assets/img/systems/invoice-print.jpg" alt="請求書管理システムの印刷プレビュー画面（サンプルデータ）" width="1440" height="900" loading="lazy"></div>
       <div class="blk">
         <p class="no">＋ SYSTEM 01</p>
         <h3>請求書管理システム<small>INVOICE</small></h3>
@@ -353,20 +339,7 @@ footer a:hover{color:#BF8FFF}
   <div class="wk r rv">
     <p class="bgword">CONSTRUCTION</p>
     <div class="g">
-      <div class="fig">
-        <svg viewBox="0 0 480 300" role="img" aria-label="現場ごとの工程管理イメージ図">
-          <rect width="480" height="300" fill="#F1EFF6"/>
-          <g stroke="#1C0E30" stroke-opacity=".12"><path d="M150 40v220M230 40v220M310 40v220M390 40v220"/></g>
-          <g fill="#1C0E30" fill-opacity=".16">
-            <rect x="60" y="74" width="62" height="7"/><rect x="60" y="128" width="62" height="7"/>
-            <rect x="60" y="182" width="62" height="7"/><rect x="60" y="236" width="62" height="7"/>
-          </g>
-          <rect x="150" y="66" width="150" height="22" fill="#831DE8"/>
-          <rect x="196" y="120" width="182" height="22" fill="#180A36" fill-opacity=".8"/>
-          <rect x="150" y="174" width="112" height="22" fill="#831DE8" fill-opacity=".55"/>
-          <rect x="262" y="228" width="150" height="22" fill="#831DE8"/>
-        </svg>
-      </div>
+      <div class="fig"><img src="assets/img/systems/const-project.jpg" alt="建設業務管理システムの現場詳細画面。請求・原価・粗利と工程表（サンプルデータ）" width="1440" height="900" loading="lazy"></div>
       <div class="blk">
         <p class="no">＋ SYSTEM 02</p>
         <h3>建設業務管理システム<small>CONSTRUCTION ERP</small></h3>
@@ -380,19 +353,7 @@ footer a:hover{color:#BF8FFF}
   <div class="wk l rv">
     <p class="bgword">MANAGEMENT</p>
     <div class="g">
-      <div class="fig">
-        <svg viewBox="0 0 480 300" role="img" aria-label="経営数値のダッシュボードイメージ図">
-          <rect width="480" height="300" fill="#F1EFF6"/>
-          <g fill="#fff" stroke="#1C0E30" stroke-opacity=".18">
-            <rect x="56" y="44" width="112" height="58"/><rect x="184" y="44" width="112" height="58"/><rect x="312" y="44" width="112" height="58"/>
-          </g>
-          <g fill="#831DE8"><rect x="70" y="62" width="40" height="10"/><rect x="198" y="62" width="56" height="10"/><rect x="326" y="62" width="30" height="10"/></g>
-          <g fill="#1C0E30" fill-opacity=".14"><rect x="70" y="82" width="66" height="5"/><rect x="198" y="82" width="66" height="5"/><rect x="326" y="82" width="66" height="5"/></g>
-          <rect x="56" y="126" width="368" height="132" fill="#fff" stroke="#1C0E30" stroke-opacity=".18"/>
-          <path d="M78 226l62-30 58 16 62-52 60 22 62-42" fill="none" stroke="#831DE8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M78 240l62-14 58 12 62-24 60 10 62-20" fill="none" stroke="#180A36" stroke-opacity=".45" stroke-width="2" stroke-dasharray="6 6" stroke-linecap="round"/>
-        </svg>
-      </div>
+      <div class="fig"><img src="assets/img/systems/keikaku-home.jpg" alt="ケイカクコンパスの経営サマリー画面（サンプルデータ）" width="1180" height="557" loading="lazy"></div>
       <div class="blk">
         <p class="no">＋ SYSTEM 03　経営ダッシュボード</p>
         <h3>ケイカクコンパス<small>KEIKAKU COMPASS</small></h3>
@@ -403,6 +364,7 @@ footer a:hover{color:#BF8FFF}
     </div>
   </div>
 
+  <p class="more rv" style="margin-top:70px;border-left:0;padding-left:0;font-family:var(--en);font-weight:600;font-size:.66rem;letter-spacing:.22em;color:var(--mut)">ACTUAL SCREENS ― 上の画像はすべて実際の画面です（表示はサンプルデータ）</p>
   <p class="more rv">どのシステムも、御社の業務に合わせた調整ができます。「この部分だけ変えたい」「この機能を足したい」もご相談ください。月額プランの詳細はお問い合わせいただければお伝えします。</p>
 </div></section>
 

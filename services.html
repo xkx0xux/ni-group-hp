@@ -107,21 +107,10 @@ img{display:block;max-width:100%}
 
 /* よくある課題 */
 .issues{padding:120px 0 40px;position:relative}
-.issue-grid{margin-top:50px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.issue-grid .c{border:1px solid rgba(28,14,48,.18);background:rgba(255,255,255,.62);padding:26px 24px 24px}
-.issue-grid .n{font-family:var(--en);font-weight:800;font-size:1.3rem;color:transparent;-webkit-text-stroke:1px var(--blue);line-height:1}
-.issue-grid p{margin-top:14px;font-size:.86rem;line-height:1.85;color:var(--ink)}
 .more{margin-top:44px;font-size:.92rem;line-height:2.1;color:var(--ink);border-left:4px solid var(--blue);padding:6px 0 6px 22px;max-width:74ch}
 
 /* 対応サービス */
 .svc{padding:120px 0 40px;position:relative}
-.svc-grid{margin-top:50px;display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
-.svc-grid .c{border:1px solid rgba(28,14,48,.18);background:rgba(255,255,255,.68);padding:38px 40px 36px;position:relative}
-.svc-grid .no{font-family:var(--en);font-weight:800;font-size:1.9rem;color:transparent;-webkit-text-stroke:1.2px var(--blue);line-height:1}
-.svc-grid h3{font-weight:900;font-size:1.15rem;margin-top:16px;line-height:1.5}
-.svc-grid ul{list-style:none;margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
-.svc-grid li{font-size:.78rem;border:1px solid rgba(28,14,48,.22);padding:6px 12px;color:#3d2f57;line-height:1.5}
-.svc-grid .note{margin-top:20px;font-size:.78rem;color:var(--mut);border-top:1px solid rgba(28,14,48,.14);padding-top:14px}
 .svc .position{margin-top:40px;font-size:.92rem;line-height:2.1;color:var(--ink);border-left:4px solid var(--blue);padding:6px 0 6px 22px;max-width:76ch}
 
 /* 補助金・助成金 */
@@ -141,10 +130,6 @@ img{display:block;max-width:100%}
 
 /* ご相談から納品までの流れ */
 .flow{padding:120px 0 40px;position:relative}
-.tl{margin-top:52px;display:grid;grid-template-columns:repeat(4,1fr);gap:30px 26px}
-.tl .s{border-top:2px solid var(--blue);padding-top:18px}
-.tl .n{font-family:var(--en);font-weight:800;font-size:.98rem;color:var(--blue);letter-spacing:.12em}
-.tl h3{font-weight:700;font-size:.92rem;margin-top:10px;line-height:1.6}
 .flow .note{margin-top:40px;font-size:.88rem;color:var(--mut);line-height:2.05;max-width:70ch}
 
 /* 対応可能か分からない相談について */
@@ -210,9 +195,6 @@ footer a{color:rgba(255,255,255,.85);text-decoration:none}
 footer a:hover{color:#BF8FFF}
 
 @media(max-width:900px){
-  .issue-grid{grid-template-columns:repeat(2,1fr)}
-  .svc-grid{grid-template-columns:1fr}
-  .tl{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:820px){
   .wrap{padding:0 22px}.vside{display:none}
@@ -225,11 +207,34 @@ footer a:hover{color:#BF8FFF}
   .notebox{padding:28px 24px 26px}
 }
 @media(max-width:560px){
-  .issue-grid{grid-template-columns:1fr}
-  .tl{grid-template-columns:1fr}
   .faq-list summary{font-size:.9rem}
   .faq-list .a{padding-left:0;margin-top:12px}
 }
+/* ===== SERVICES v2（2026-09-03）＝均一な箱をやめ、罫線＋大きな番号の編集的リストへ ===== */
+h1,h2,h3{font-feature-settings:"palt" 1}
+.issue-l{margin-top:44px;display:grid;grid-template-columns:1fr 1fr;gap:0 64px;border-top:1px solid rgba(28,14,48,.18)}
+.issue-l .c{display:grid;grid-template-columns:64px 1fr;gap:16px;align-items:baseline;padding:22px 0;border-bottom:1px solid rgba(28,14,48,.18)}
+.issue-l .n{font-family:var(--en);font-weight:800;font-size:1.9rem;color:transparent;-webkit-text-stroke:1px var(--blue);line-height:.9;transition:color .45s ease}
+.issue-l .c:hover .n{color:var(--blue)}
+.issue-l p{font-size:.95rem;font-weight:500;line-height:1.85;color:var(--ink)}
+.svc-l{margin-top:44px;display:grid;grid-template-columns:1fr 1fr;gap:0 64px}
+.svc-l .c{border-top:1px solid rgba(28,14,48,.18);padding:34px 0 40px;display:grid;grid-template-columns:96px 1fr;gap:20px;align-items:baseline}
+.svc-l .no{font-family:var(--en);font-weight:800;font-size:2.6rem;color:transparent;-webkit-text-stroke:1.2px var(--blue);line-height:.9;transition:color .45s ease}
+.svc-l .c:hover .no{color:var(--blue)}
+.svc-l h3{font-weight:700;font-size:1.2rem;line-height:1.5}
+.svc-l ul{list-style:none;margin-top:14px;font-size:.86rem;line-height:2.1;color:#483A60}
+.svc-l li{display:inline}
+.svc-l li:not(:last-child)::after{content:"／";color:rgba(28,14,48,.35);margin:0 .3em}
+.svc-l .note{margin-top:12px;font-size:.78rem;color:var(--mut)}
+.tl{margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:0 80px}
+.tl .col{position:relative;padding-left:36px}
+.tl .col::before{content:"";position:absolute;left:6px;top:44px;bottom:26px;width:1px;background:rgba(28,14,48,.25)}
+.tl .ph{font-family:var(--en);font-weight:600;font-size:.66rem;letter-spacing:.24em;color:var(--mut);margin-bottom:14px;margin-left:-36px}
+.tl .s{position:relative;padding:12px 0 22px}
+.tl .s::before{content:"";position:absolute;left:-36px;top:18px;width:13px;height:13px;background:var(--blue);border:3px solid var(--paper);border-radius:50%}
+.tl .n{font-family:var(--en);font-weight:700;font-size:.7rem;letter-spacing:.22em;color:var(--blue)}
+.tl h3{font-weight:700;font-size:1.02rem;margin-top:6px;line-height:1.6}
+@media(max-width:900px){.issue-l,.svc-l,.tl{grid-template-columns:1fr;gap:0}.svc-l .c{grid-template-columns:72px 1fr;gap:14px;padding:26px 0 30px}.svc-l .no{font-size:2rem}.tl .col+.col{margin-top:10px}}
 </style>
 <script type="application/ld+json">
 {
@@ -319,7 +324,7 @@ footer a:hover{color:#BF8FFF}
   <p class="h-label rv" style="color:var(--blue)">＋ ISSUES</p>
   <h2 class="sec-h2 rv">よくある課題</h2>
   <p class="sec-lead rv">相談のきっかけは、こんな「面倒くさい」がほとんどです。</p>
-  <div class="issue-grid">
+  <div class="issue-l">
     <div class="c rv"><p class="n">01</p><p>手作業の入力・転記が多い</p></div>
     <div class="c rv"><p class="n">02</p><p>Excel管理が複雑になっている</p></div>
     <div class="c rv"><p class="n">03</p><p>顧客・案件情報が複数の場所に分散している</p></div>
@@ -336,9 +341,10 @@ footer a:hover{color:#BF8FFF}
 <section class="svc"><p class="vside">SERVICES ― 対応サービス</p><div class="wrap">
   <p class="h-label rv" style="color:var(--blue)">＋ SERVICES</p>
   <h2 class="sec-h2 rv">対応サービス</h2>
-  <div class="svc-grid">
+  <div class="svc-l">
     <div class="c rv">
       <p class="no">01</p>
+      <div>
       <h3>業務システム・社内ツール</h3>
       <ul>
         <li>顧客管理</li><li>案件管理</li><li>営業管理</li><li>予約・申込管理</li>
@@ -346,9 +352,11 @@ footer a:hover{color:#BF8FFF}
         <li>その他、業務に合わせた個別システム</li>
       </ul>
       <p class="note">相談内容に応じて個別に設計します。</p>
+      </div>
     </div>
     <div class="c rv">
       <p class="no">02</p>
+      <div>
       <h3>業務自動化</h3>
       <ul>
         <li>データ入力・転記の自動化</li><li>Excel・スプレッドシート業務の効率化</li>
@@ -357,9 +365,11 @@ footer a:hover{color:#BF8FFF}
         <li>毎月・毎週繰り返す定型業務の自動化</li>
       </ul>
       <p class="note">相談内容に応じて個別に設計します。</p>
+      </div>
     </div>
     <div class="c rv">
       <p class="no">03</p>
+      <div>
       <h3>AI活用</h3>
       <ul>
         <li>文章作成</li><li>情報整理</li><li>社内情報の検索</li>
@@ -367,33 +377,40 @@ footer a:hover{color:#BF8FFF}
         <li>データの分類・要約</li><li>既存業務へのAI機能の組み込み</li>
       </ul>
       <p class="note">相談内容に応じて個別に設計します。</p>
+      </div>
     </div>
     <div class="c rv">
       <p class="no">04</p>
+      <div>
       <h3>Web制作</h3>
       <ul>
         <li>コーポレートサイト</li><li>ホームページ</li><li>LP</li><li>採用サイト</li>
         <li>予約・申込ページ</li><li>問い合わせフォーム</li><li>簡易EC</li><li>既存サイトのリニューアル</li>
       </ul>
       <p class="note">相談内容に応じて個別に設計します。</p>
+      </div>
     </div>
     <div class="c rv">
       <p class="no">05</p>
+      <div>
       <h3>広告・音楽制作</h3>
       <ul>
         <li>広告・CM用BGM</li><li>企業ソング制作（歌入り）</li><li>著作権譲渡BGM制作</li><li>動画・SNS用BGM</li>
         <li>店舗・イベント用BGM</li><li>ジングル・効果音</li><li>オリジナル楽曲制作</li>
       </ul>
       <p class="note">相談内容に応じて個別に対応します。</p>
+      </div>
     </div>
     <div class="c rv">
       <p class="no">06</p>
+      <div>
       <h3>動画制作</h3>
       <ul>
         <li>YouTubeショート・TikTok</li><li>SNS用PR動画</li><li>CM動画</li>
         <li>撮影対応</li><li>サムネイル制作</li><li>オリジナルBGM込みの制作</li>
       </ul>
       <p class="note">相談内容に応じて個別に対応します。</p>
+      </div>
     </div>
   </div>
   <p class="position rv">大規模な基幹システムを一式構築するのではなく、企業ごとの具体的な業務課題を聞き取り、小規模〜中規模のシステム・ツール・自動化・Web制作を個別に設計・構築するのが私たちの強みです。</p>
@@ -445,18 +462,22 @@ footer a:hover{color:#BF8FFF}
   <p class="h-label rv" style="color:var(--blue)">＋ FLOW</p>
   <h2 class="sec-h2 rv">ご相談から納品までの流れ</h2>
   <div class="tl">
+    <div class="col"><p class="ph">01 – 06　ご相談から確認まで</p>
     <div class="s rv"><p class="n">STEP 01</p><h3>LINE・フォームでご相談</h3></div>
     <div class="s rv"><p class="n">STEP 02</p><h3>会社情報・希望内容のご記入</h3></div>
     <div class="s rv"><p class="n">STEP 03</p><h3>申請支援業者による制度調査</h3></div>
     <div class="s rv"><p class="n">STEP 04</p><h3>調査結果のご案内</h3></div>
     <div class="s rv"><p class="n">STEP 05</p><h3>導入内容の詳細ヒアリング</h3></div>
     <div class="s rv"><p class="n">STEP 06</p><h3>実現可否・期間・概算費用の確認</h3></div>
+    </div>
+    <div class="col"><p class="ph">07 – 12　ご提案から納品まで</p>
     <div class="s rv"><p class="n">STEP 07</p><h3>ご提案・お見積り</h3></div>
     <div class="s rv"><p class="n">STEP 08</p><h3>制度条件・着手時期の確認</h3></div>
     <div class="s rv"><p class="n">STEP 09</p><h3>ご契約・開発開始</h3></div>
     <div class="s rv"><p class="n">STEP 10</p><h3>確認・修正</h3></div>
     <div class="s rv"><p class="n">STEP 11</p><h3>納品</h3></div>
     <div class="s rv"><p class="n">STEP 12</p><h3>必要に応じた申請・実績報告対応</h3></div>
+    </div>
   </div>
   <p class="note rv">申請手順、必要資料、契約・着手・支払いの時期は制度ごとに異なります。</p>
 </div></section>
