@@ -40,7 +40,7 @@ img{display:block;max-width:100%}
 .h-label{font-family:var(--en);font-weight:600;font-size:.8rem;letter-spacing:.22em}
 .h-label::before{content:"";display:inline-block;width:9px;height:9px;background:currentColor;margin-right:12px;vertical-align:1px}
 .vside{position:absolute;right:28px;top:110px;writing-mode:vertical-rl;font-family:var(--en);font-weight:600;font-size:.64rem;letter-spacing:.34em;color:rgba(28,14,48,.34);user-select:none}
-.js .rv{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1)}
+.js .rv{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
 .js .rv.on{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.js .rv{opacity:1 !important;transform:none !important;transition:none !important}}
 
@@ -71,7 +71,7 @@ img{display:block;max-width:100%}
 .hero .h-label{color:#C69FFF}
 .hero h1{font-weight:900;font-size:clamp(2rem,5vw,3.6rem);line-height:1.45;letter-spacing:.01em;margin-top:22px}
 .hero h1 em{font-style:normal;color:#BF8FFF}
-.hero .lead{margin-top:26px;font-size:.95rem;line-height:2.1;color:rgba(255,255,255,.85);max-width:60ch}
+.hero .lead{margin-top:26px;font-size:.95rem;line-height:2.10526;color:rgba(255,255,255,.85);max-width:60ch}
 .hero .acts{margin-top:40px;display:flex;flex-wrap:wrap;gap:14px}
 .hero .fv-note{margin-top:22px;font-size:.8rem;color:rgba(255,255,255,.65)}
 .hero .edge{position:absolute;z-index:3;right:34px;top:50%;transform:translateY(-50%);writing-mode:vertical-rl;font-family:var(--en);font-weight:600;font-size:.68rem;letter-spacing:.3em;color:rgba(255,255,255,.6)}
@@ -94,7 +94,7 @@ img{display:block;max-width:100%}
 
 /* 見出し共通 */
 .sec-h2{font-weight:900;font-size:clamp(1.5rem,3vw,2.2rem);line-height:1.5;margin-top:14px}
-.sec-lead{margin-top:18px;font-size:.94rem;color:var(--mut);max-width:68ch;line-height:2.05}
+.sec-lead{margin-top:18px;font-size:.94rem;color:var(--mut);max-width:68ch;line-height:2.12766}
 
 /* 製品セクションの導入（帯・middle CTA 用に流用） */
 .pintro{background:var(--navy);color:#fff;padding:80px 0;position:relative;overflow:hidden}
@@ -102,22 +102,22 @@ img{display:block;max-width:100%}
 .pintro .wrap{position:relative;z-index:2}
 .pintro .h-label{color:#C69FFF}
 .pintro h2{font-weight:900;font-size:clamp(1.4rem,3vw,2.1rem);line-height:1.5;margin-top:14px}
-.pintro p{margin-top:14px;font-size:.93rem;line-height:2.05;color:rgba(255,255,255,.85);max-width:66ch}
+.pintro p{margin-top:14px;font-size:.93rem;line-height:2.15054;color:rgba(255,255,255,.85);max-width:66ch}
 .pintro .acts{margin-top:32px;display:flex;flex-wrap:wrap;gap:14px}
 
 /* よくある課題 */
 .issues{padding:120px 0 40px;position:relative}
-.more{margin-top:44px;font-size:.92rem;line-height:2.1;color:var(--ink);border-left:4px solid var(--blue);padding:6px 0 6px 22px;max-width:74ch}
+.more{margin-top:44px;font-size:.92rem;line-height:2.17391;color:var(--ink);border-left:4px solid var(--blue);padding:6px 0 6px 22px;max-width:74ch}
 
 /* 対応サービス */
 .svc{padding:120px 0 40px;position:relative}
-.svc .position{margin-top:40px;font-size:.92rem;line-height:2.1;color:var(--ink);border-left:4px solid var(--blue);padding:6px 0 6px 22px;max-width:76ch}
+.svc .position{margin-top:40px;font-size:.92rem;line-height:2.17391;color:var(--ink);border-left:4px solid var(--blue);padding:6px 0 6px 22px;max-width:76ch}
 
 /* 補助金・助成金 */
 .subsidy{padding:120px 0 40px;position:relative}
-.subsidy .lead{margin-top:18px;font-size:.94rem;line-height:2.1;max-width:72ch;color:#3d2f57}
+.subsidy .lead{margin-top:18px;font-size:.94rem;line-height:2.12766;max-width:72ch;color:#3d2f57}
 .callout{margin-top:34px;border-left:4px solid var(--blue);background:rgba(255,255,255,.55);padding:28px 32px;max-width:76ch}
-.callout p{font-size:.88rem;line-height:2.05;color:#3d2f57}
+.callout p{font-size:.88rem;line-height:1.98864;color:#3d2f57}
 .callout b{color:var(--ink)}
 
 /* 注意事項 */
@@ -125,12 +125,12 @@ img{display:block;max-width:100%}
 .notebox{border:1px solid rgba(28,14,48,.3);background:rgba(255,255,255,.55);padding:36px 38px 34px;max-width:860px}
 .notebox .h-label{color:var(--blue);margin-bottom:2px}
 .notebox ul{list-style:none;margin-top:22px;display:grid;gap:14px}
-.notebox li{font-size:.85rem;line-height:1.95;color:#483A60;padding-left:20px;position:relative}
+.notebox li{font-size:.85rem;line-height:2.05882;color:#483A60;padding-left:20px;position:relative}
 .notebox li::before{content:"";position:absolute;left:0;top:.72em;width:6px;height:6px;background:var(--blue)}
 
 /* ご相談から納品までの流れ */
 .flow{padding:120px 0 40px;position:relative}
-.flow .note{margin-top:40px;font-size:.88rem;color:var(--mut);line-height:2.05;max-width:70ch}
+.flow .note{margin-top:40px;font-size:.88rem;color:var(--mut);line-height:1.98864;max-width:70ch}
 
 /* 対応可能か分からない相談について */
 .unsure{padding:0 0 120px;position:relative}
@@ -139,13 +139,13 @@ img{display:block;max-width:100%}
 .faq{padding:120px 0 60px;position:relative}
 .faq-list{margin-top:50px;border-top:1px solid rgba(28,14,48,.18);max-width:920px}
 .faq-list details{border-bottom:1px solid rgba(28,14,48,.18);padding:22px 0}
-.faq-list summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:baseline;gap:20px;font-weight:700;font-size:.94rem;line-height:1.7}
+.faq-list summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:baseline;gap:20px;font-weight:700;font-size:.94rem;line-height:1.59574}
 .faq-list summary::-webkit-details-marker{display:none}
 .faq-list summary .q{display:flex;gap:14px}
 .faq-list summary .q b{font-family:var(--en);font-weight:800;color:var(--blue);font-size:.86rem;flex:0 0 auto}
 .faq-list summary .icon{font-family:var(--en);font-weight:600;font-size:1.2rem;color:var(--blue);flex:0 0 auto;transition:transform .25s;line-height:1}
 .faq-list details[open] summary .icon{transform:rotate(45deg)}
-.faq-list .a{margin-top:16px;font-size:.87rem;line-height:2;color:var(--mut);padding-left:38px}
+.faq-list .a{margin-top:16px;font-size:.87rem;line-height:2.01149;color:var(--mut);padding-left:38px}
 
 /* CONTACT（フォーム付き） */
 .contact{background:var(--navy);color:#fff;padding:120px 0 110px;position:relative;overflow:hidden}
@@ -169,14 +169,14 @@ img{display:block;max-width:100%}
 .contact button{margin-top:26px;width:100%;background:var(--blue);color:#fff;border:0;font-family:inherit;font-weight:700;font-size:.95rem;padding:16px;cursor:pointer;transition:background .3s}
 .contact button:hover{background:var(--blue-d)}
 .contact .note{margin-top:14px;font-size:.74rem;color:rgba(255,255,255,.55);text-align:center}
-.contact .cfmsg{margin-top:16px;font-size:.86rem;line-height:1.8;text-align:center;min-height:1px}
+.contact .cfmsg{margin-top:16px;font-size:.86rem;line-height:1.74419;text-align:center;min-height:1px}
 .contact .cfmsg.ok{color:#BF8FFF;font-weight:700}
 .contact .note a{color:#BF8FFF}
 /* LINE 相談パネル */
 .line-panel{margin-top:44px;border:1.5px solid #06C755;background:rgba(6,199,85,.1);padding:34px 32px 32px;text-align:center}
 .line-panel .lp-tag{display:inline-block;font-family:var(--en);font-weight:700;font-size:.68rem;letter-spacing:.16em;color:#4be07f;border:1px solid #06C755;padding:3px 13px;border-radius:20px}
 .line-panel .lp-t{font-weight:900;font-size:1.3rem;color:#fff;margin-top:16px}
-.line-panel .lp-d{margin-top:12px;font-size:.86rem;color:rgba(255,255,255,.82);line-height:1.95;max-width:46ch;margin-left:auto;margin-right:auto}
+.line-panel .lp-d{margin-top:12px;font-size:.86rem;color:rgba(255,255,255,.82);line-height:2.03488;max-width:46ch;margin-left:auto;margin-right:auto}
 .line-panel .lp-btn{margin-top:24px;font-size:1rem;padding:17px 46px}
 .line-panel .lp-id{margin-top:16px;font-size:.74rem;color:rgba(255,255,255,.5);font-family:var(--en);letter-spacing:.06em}
 .line-alt{margin-top:40px;padding-top:30px;border-top:1px solid rgba(255,255,255,.15);font-size:.84rem;color:rgba(255,255,255,.64);text-align:center}
@@ -216,13 +216,13 @@ h1,h2,h3{font-feature-settings:"palt" 1}
 .issue-l .c{display:grid;grid-template-columns:64px 1fr;gap:16px;align-items:baseline;padding:22px 0;border-bottom:1px solid rgba(28,14,48,.18)}
 .issue-l .n{font-family:var(--en);font-weight:800;font-size:1.9rem;color:transparent;-webkit-text-stroke:1px var(--blue);line-height:.9;transition:color .45s ease}
 .issue-l .c:hover .n{color:var(--blue)}
-.issue-l p{font-size:.95rem;font-weight:500;line-height:1.85;color:var(--ink)}
+.issue-l p{font-size:.95rem;font-weight:500;line-height:1.84211;color:var(--ink)}
 .svc-l{margin-top:44px;display:grid;grid-template-columns:1fr 1fr;gap:0 64px}
 .svc-l .c{border-top:1px solid rgba(28,14,48,.18);padding:34px 0 40px;display:grid;grid-template-columns:96px 1fr;gap:20px;align-items:baseline}
 .svc-l .no{font-family:var(--en);font-weight:800;font-size:2.6rem;color:transparent;-webkit-text-stroke:1.2px var(--blue);line-height:.9;transition:color .45s ease}
 .svc-l .c:hover .no{color:var(--blue)}
-.svc-l h3{font-weight:700;font-size:1.2rem;line-height:1.5}
-.svc-l ul{list-style:none;margin-top:14px;font-size:.86rem;line-height:2.1;color:#483A60}
+.svc-l h3{font-weight:700;font-size:1.2rem;line-height:1.45833}
+.svc-l ul{list-style:none;margin-top:14px;font-size:.86rem;line-height:2.03488;color:#483A60}
 .svc-l li{display:inline}
 .svc-l li:not(:last-child)::after{content:"／";color:rgba(28,14,48,.35);margin:0 .3em}
 .svc-l .note{margin-top:12px;font-size:.78rem;color:var(--mut)}
@@ -233,7 +233,7 @@ h1,h2,h3{font-feature-settings:"palt" 1}
 .tl .s{position:relative;padding:12px 0 22px}
 .tl .s::before{content:"";position:absolute;left:-36px;top:18px;width:13px;height:13px;background:var(--blue);border:3px solid var(--paper);border-radius:50%}
 .tl .n{font-family:var(--en);font-weight:700;font-size:.7rem;letter-spacing:.22em;color:var(--blue)}
-.tl h3{font-weight:700;font-size:1.02rem;margin-top:6px;line-height:1.6}
+.tl h3{font-weight:700;font-size:1.02rem;margin-top:6px;line-height:1.71569}
 @media(max-width:900px){.issue-l,.svc-l,.tl{grid-template-columns:1fr;gap:0}.svc-l .c{grid-template-columns:72px 1fr;gap:14px;padding:26px 0 30px}.svc-l .no{font-size:2rem}.tl .col+.col{margin-top:10px}}
 /* ===== SUBSIDY v2（2026-09-03）＝「調べる→申請する→実績報告まで」を主役に ===== */
 .subsidy h2 em{font-style:normal;color:var(--blue)}
@@ -241,8 +241,8 @@ h1,h2,h3{font-feature-settings:"palt" 1}
 .sub-steps .s{padding:26px 0 30px;border-bottom:1px solid rgba(28,14,48,.18)}
 .sub-steps .n{font-family:var(--en);font-weight:800;font-size:2.4rem;color:transparent;-webkit-text-stroke:1.2px var(--blue);line-height:.9;transition:color .45s ease}
 .sub-steps .s:hover .n{color:var(--blue)}
-.sub-steps h3{font-weight:700;font-size:1.12rem;margin-top:14px;line-height:1.5}
-.sub-steps p{margin-top:10px;font-size:.88rem;line-height:2.05;color:#483A60}
+.sub-steps h3{font-weight:700;font-size:1.12rem;margin-top:14px;line-height:1.5625}
+.sub-steps p{margin-top:10px;font-size:.88rem;line-height:1.98864;color:#483A60}
 .sub-steps .n small{font-family:var(--en);font-weight:600;font-size:.62rem;letter-spacing:.22em;color:var(--mut);-webkit-text-stroke:0;margin-left:12px;vertical-align:middle}
 @media(max-width:900px){.sub-steps{grid-template-columns:1fr;gap:0}}
 </style>
