@@ -148,10 +148,13 @@ h1,h2,h3{font-feature-settings:"palt" 1}
 .fig .cap{font-family:var(--en);font-weight:600;font-size:.66rem;letter-spacing:.22em;color:var(--mut);margin-top:12px;text-align:right}
 .shots{position:relative;padding-bottom:13%}
 .shots img{border:1px solid rgba(28,14,48,.18);background:#fff;height:auto}
+.shots a{display:block}
 .shots .s1{width:74%}
 .shots .s2{position:absolute;right:0;bottom:0;width:58%}
+.shots a:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
 @media(max-width:900px){.fl .row{grid-template-columns:88px 1fr;gap:18px;padding:26px 0}.fl .mark{display:none}.fl .num{font-size:2.4rem}}
 @media(max-width:820px){
+ .hero{padding:120px 0 70px}
  .hero .in{grid-template-columns:1fr;gap:40px;align-items:start}
  .fig .diagram{padding:14px 12px 10px;overflow-x:auto;-webkit-overflow-scrolling:touch}.fig .diagram svg{min-width:640px}
  .shotsblk{margin-top:40px}
@@ -332,10 +335,10 @@ h1,h2,h3{font-feature-settings:"palt" 1}
   </div>
   <div class="fig rv shotsblk">
     <div class="shots">
-      <img class="s1" src="../assets/img/systems/const-project.jpg" alt="現場の詳細画面。請求・原価・粗利と工程表がひとつの画面に並ぶ（サンプルデータ）" width="1440" height="900" loading="lazy">
-      <img class="s2" src="../assets/img/systems/const-dashboard.jpg" alt="ダッシュボード画面。今月の売上・原価・粗利・未入金（サンプルデータ）" width="1440" height="900" loading="lazy">
+      <a href="../assets/img/systems/const-project.jpg" target="_blank" rel="noopener" class="s1"><img src="../assets/img/systems/const-project.jpg" alt="現場の詳細画面。請求・原価・粗利と工程表がひとつの画面に並ぶ（サンプルデータ）" width="1440" height="900" loading="lazy"></a>
+      <a href="../assets/img/systems/const-dashboard.jpg" target="_blank" rel="noopener" class="s2"><img src="../assets/img/systems/const-dashboard.jpg" alt="ダッシュボード画面。今月の売上・原価・粗利・未入金（サンプルデータ）" width="1440" height="900" loading="lazy"></a>
     </div>
-    <p class="cap">ACTUAL SCREENS ― 実際の画面です（表示はサンプルデータ）</p>
+    <p class="cap">ACTUAL SCREENS ― 実際の画面です（表示はサンプルデータ・画像を押すと全体を表示）</p>
   </div>
   <div class="price rv">
     <div>
@@ -372,8 +375,11 @@ h1,h2,h3{font-feature-settings:"palt" 1}
   var io=new IntersectionObserver(function(es){es.forEach(function(en){if(!en.isIntersecting)return;en.target.classList.add('on');io.unobserve(en.target);});},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
   document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
   var ov=document.getElementById('ov'),btn=document.getElementById('menuBtn');
-  btn.addEventListener('click',function(){ov.classList.toggle('on');});
-  ov.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){ov.classList.remove('on');});});
+  function menuSet(on){ov.classList.toggle('on',on);btn.setAttribute('aria-expanded',on?'true':'false');if(on){var f=ov.querySelector('a');if(f)setTimeout(function(){f.focus();},60);}else{btn.focus();}}
+  btn.setAttribute('aria-controls','ov');btn.setAttribute('aria-expanded','false');
+  btn.addEventListener('click',function(){menuSet(!ov.classList.contains('on'));});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('on'))menuSet(false);});
+  ov.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){menuSet(false);});});
 </script>
 </body>
 </html>

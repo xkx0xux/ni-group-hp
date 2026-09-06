@@ -83,8 +83,8 @@ img{display:block;max-width:100%}
 .btn.l{background:#fff;color:var(--blue)}
 .btn.l:hover{background:var(--paper)}
 .btn svg{width:15px;height:15px}
-.btn.line{background:#06C755;color:#fff}
-.btn.line:hover{background:#05A648}
+.btn.line{background:var(--blue);color:#fff}
+.btn.line:hover{background:var(--blue-d)}
 .btn.line svg{width:18px;height:18px}
 /* ティッカー */
 .tick{position:relative;z-index:4;background:var(--blue);color:#fff;overflow:hidden;height:52px;display:flex;align-items:center}
@@ -568,7 +568,7 @@ h1,h2,h3{font-feature-settings:"palt" 1}
       </a>
       <p class="lp-id">LINE ID：@900zgikl</p>
     </div>
-    <p class="line-alt rv">LINEを使わない場合や、補助金の確認まで詳しく相談したい場合は、下記フォームからどうぞ。分かる範囲のご記入で構いません。</p>
+    <p class="line-alt rv">LINEを使わない場合や、補助金の確認まで詳しく相談したい場合は、下記フォームからどうぞ。分かる範囲のご記入で構いません。<br>送信ボタンを押すと、入力内容が入ったメールがお使いのメールソフトで開きます。そのまま送信してください。</p>
     <form id="sform" novalidate>
       <div class="row">
         <label>会社名 <em>*</em><input name="company" required placeholder="株式会社〇〇"></label>
@@ -606,7 +606,7 @@ h1,h2,h3{font-feature-settings:"palt" 1}
       <label>事業内容 <em>*</em><textarea name="business" required placeholder="主な事業内容をご記入ください"></textarea></label>
       <label>補助金を活用してやりたいこと <em>*</em><textarea name="goal" required placeholder="例：ホームページを作成したい／業務システムを導入したい／補助金があれば設備投資したい／補助金があれば広告宣伝したい　など"></textarea><small style="display:block;margin-top:8px;font-size:.72rem;color:rgba(255,255,255,.55);line-height:1.7">やりたいことを詳しく書いていただくほど、利用できる制度をお調べしやすくなります。</small></label>
       <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
-      <button type="submit">この内容で相談する →</button>
+      <button type="submit">メールを作成して送る</button>
       <p class="cfmsg" id="sfmsg" role="status" aria-live="polite"></p>
       <p class="note">入力は分かる範囲で構いません。担当者より折り返しご連絡いたします。<br>補助金・助成金については、お客様の状況に合わせて該当する制度や要件を個別に確認するため、情報の調査・確認に概ね3営業日〜1週間程度のお時間をいただきます。<br>お急ぎの場合は <a href="mailto:info@ni-holdings.com">info@ni-holdings.com</a> まで直接どうぞ。</p>
     </form>
@@ -621,8 +621,11 @@ h1,h2,h3{font-feature-settings:"palt" 1}
   },{threshold:.12,rootMargin:'0px 0px -6% 0px'});
   document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
   var ov=document.getElementById('ov'),btn=document.getElementById('menuBtn');
-  btn.addEventListener('click',function(){ov.classList.toggle('on');});
-  ov.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){ov.classList.remove('on');});});
+  function menuSet(on){ov.classList.toggle('on',on);btn.setAttribute('aria-expanded',on?'true':'false');if(on){var f=ov.querySelector('a');if(f)setTimeout(function(){f.focus();},60);}else{btn.focus();}}
+  btn.setAttribute('aria-controls','ov');btn.setAttribute('aria-expanded','false');
+  btn.addEventListener('click',function(){menuSet(!ov.classList.contains('on'));});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('on'))menuSet(false);});
+  ov.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){menuSet(false);});});
 
   /* お問い合わせフォーム（mailto方式・依存ゼロ） */
   var sf=document.getElementById('sform');
@@ -651,7 +654,7 @@ h1,h2,h3{font-feature-settings:"palt" 1}
       +'?subject='+encodeURIComponent(subject)
       +'&body='+encodeURIComponent(body);
     var note=document.getElementById('sfmsg');
-    note.textContent='メールソフトを開きました。開かない場合は info@ni-holdings.com まで直接お送りください。';
+    note.textContent='メールソフトを開いています。開かない場合は、同じ内容を info@ni-holdings.com まで直接お送りください。';
     note.className='cfmsg ok';
   });
 </script>
