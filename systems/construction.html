@@ -245,10 +245,30 @@ section,article[id]{scroll-margin-top:105px}.dark{color:var(--paper)}
 @media(max-width:699px){.build-hero{padding-top:110px}.build-heading{grid-template-columns:1fr;gap:25px;margin-top:28px}.build-heading h1{font-size:37px}.build-heading__aside{font-size:19px;line-height:36px;margin-left:32px}.build-hero__base{padding:25px 0 35px}.build-hero__base>div{align-items:flex-start;flex-direction:column;gap:16px}.build-site{padding:60px var(--gut)}.build-site__head{display:block}.build-site__head h2{margin-top:22px}.project-spine{margin:35px 0 32px;padding-left:22px}.project-spine__root{font-size:27px}.project-spine__branches{flex-wrap:wrap;gap:20px 34px;padding-top:20px}.project-spine__branches span{font-size:20px}.build-site__detail{grid-template-columns:1fr;gap:30px}.build-site__detail h3{font-size:27px}.build-operations{padding:65px var(--gut)}.build-operations__head{grid-template-columns:1fr;gap:22px}.build-line{grid-template-columns:1fr;gap:22px;margin-top:32px}.build-line__number{font-size:60px;display:flex;align-items:end;gap:25px}.build-line__number small{margin-top:0}.build-line h3{font-size:27px}.build-line__path{gap:12px}.build-small{grid-template-columns:1fr;gap:32px;margin-top:40px}.build-preflight{grid-template-columns:1fr;gap:20px;padding:55px var(--gut)}.build-preflight__sign{font-size:60px}.build-preflight h2{font-size:29px}.build-price{padding:65px var(--gut)}.build-price__head{display:block}.build-price__head h2{margin-top:20px}.build-price__grid{grid-template-columns:1fr;gap:35px}.build-price__right{border-left:0;border-top:1px solid var(--hair);padding:25px 0 0}}
 
 
-/* Actual screens: full image proportions and equal page gutters. */
-.build-hero__screen{margin:50px 0 0;width:100%;position:relative}
-.build-site__detail>.screen{margin:0;box-shadow:0 20px 60px #1b0f3010}
-@media(max-width:699px){.build-hero__screen{margin-top:32px}}
+/* Semantic crops use source-pixel boundaries, never an arbitrary viewport height.
+   Source files remain intact behind VIEW FULL. Plan source ends mid-MQ chart:
+   show its complete navigation section instead of presenting a severed diagram. */
+.screen{isolation:isolate}
+.screen>a{box-shadow:0 22px 60px #1b0f3026;position:relative;background:var(--paper)}
+.screen__bar{position:relative;z-index:1;align-items:center}
+.screen__bar>span:first-child{min-width:0;letter-spacing:.04em}
+.screen__image{position:relative;box-sizing:content-box;aspect-ratio:var(--crop-w) / var(--crop-h);height:auto!important}
+.screen .screen__image img{position:absolute;max-width:none;width:calc(var(--source-w) / var(--crop-w) * 100%);height:auto;left:calc(var(--crop-x) / var(--crop-w) * -100%);top:calc(var(--crop-y) / var(--crop-h) * -100%);transform:none!important}
+.screen--invoice-dash{--source-w:1440;--crop-w:1200;--crop-h:378;--crop-x:240;--crop-y:0}
+.screen--invoice-print{--source-w:1440;--crop-w:886;--crop-h:754;--crop-x:277;--crop-y:92}
+.screen--project{--source-w:1440;--crop-w:1180;--crop-h:808;--crop-x:250;--crop-y:58}
+.screen--construction-dash{--source-w:1440;--crop-w:1200;--crop-h:720;--crop-x:240;--crop-y:0}
+.screen--home{--source-w:1180;--crop-w:1060;--crop-h:280;--crop-x:80;--crop-y:0}
+.screen--chart{--source-w:1180;--crop-w:1100;--crop-h:567;--crop-x:60;--crop-y:0}
+.screen--plan{--source-w:1180;--crop-w:1060;--crop-h:148;--crop-x:80;--crop-y:0}
+.screen--home .screen__image,.screen--plan .screen__image{border-top:12px solid #fff;border-bottom:12px solid #fff}
+@media(max-width:699px){.screen__bar{padding:10px;gap:8px;font-size:9px}.screen__bar>span:first-child{line-height:1.7}.screen__bar>span:last-child{font-size:8px;letter-spacing:0}}
+@media(prefers-reduced-motion:reduce){.screen{rotate:none!important}.screen__image,.screen__image img{transform:none!important;clip-path:none!important}}
+/* A drawing-board composition, inset from the page edges. */
+.build-hero__screen{margin:65px 3% 24px 7%;width:90%;position:relative;rotate:-1.2deg}
+.build-hero__screen::before{content:"";position:absolute;inset:18px -16px -18px 16px;border:1px solid var(--acc-lt);z-index:-1}
+.build-site__detail>.screen{width:94%;margin:24px 0 0 3%;rotate:1.3deg}
+@media(max-width:699px){.build-hero__screen{width:96%;margin:38px 2% 20px;rotate:-.7deg}.build-hero__screen::before{inset:10px -7px -10px 7px}.build-site__detail>.screen{width:96%;margin:12px 0 0 2%;rotate:.8deg}}
 </style></head><body>
 <a class="skip" href="#main">本文へ移動</a><div class="grain" aria-hidden="true"></div><div class="ui-progress" aria-hidden="true"></div>
 <header class="hd">
@@ -281,12 +301,12 @@ section,article[id]{scroll-margin-top:105px}.dark{color:var(--paper)}
 <main id="main">
 <section class="build-hero dark" id="top" data-sec><div class="page-topline eyebrow"><a href="../system.html">← Systems / 02</a><span>Construction ERP — NI GROUP</span></div>
 <div class="build-heading"><div><p class="eyebrow accent">One project. Every operation.</p><h1 data-type>建設業務管理<small>建設業務管理システム / CONSTRUCTION ERP</small></h1></div><p class="build-heading__aside">現場の利益を、<br>締める前に。</p></div>
-<div class="build-hero__screen"><figure class="screen "><a href="../assets/img/systems/const-project.jpg" data-screen aria-label="PROJECT / 原価・粗利・工程表を拡大"><span class="screen__bar"><span>PROJECT / 原価・粗利・工程表</span><span>VIEW FULL ↗</span></span><span class="screen__image" data-develop="left"><img src="../assets/img/systems/const-project.jpg" alt="PROJECT / 原価・粗利・工程表（実際の画面・サンプルデータ）" width="1440" height="900" fetchpriority="high" decoding="async"><span class="screen__wash" aria-hidden="true"></span></span></a></figure></div>
+<div class="build-hero__screen"><figure class="screen screen--project"><a href="../assets/img/systems/const-project.jpg" data-screen aria-label="01 / 案件詳細・工程表を拡大"><span class="screen__bar"><span>01 / 案件詳細・工程表</span><span>VIEW FULL ↗</span></span><span class="screen__image" data-develop="left"><img src="../assets/img/systems/const-project.jpg" alt="01 / 案件詳細・工程表（実際の画面・サンプルデータ）" width="1440" height="900" fetchpriority="high" decoding="async"><span class="screen__wash" aria-hidden="true"></span></span></a></figure></div>
 <div class="build-hero__base"><p class="copy">見積・発注・請求・原価を、現場単位でひとつに。<br>発注と請求を入れた時点で、現場ごとの残り利益が見えます。</p><div><p class="caption">ACTUAL SCREEN / SAMPLE DATA<br>実際の画面。画像を押すと全体を表示。</p><a class="cta" href="../index.html#contact">このシステムを相談する <span class="ar">→</span></a></div></div>
 </section>
 <section class="build-site" id="project" data-sec data-theme="light"><div class="build-site__head"><p class="sl">01 / Project structure</p><h2 class="section-title" data-type>現場を軸に、<br>数字も、段取りも。</h2></div>
 <div class="project-spine"><p class="project-spine__root"><small>PROJECT / すべての起点</small>現場（案件）</p><div class="project-spine__branches" aria-label="現場に紐づく情報"><span>見積<small>ESTIMATE</small></span><span>発注<small>ORDER</small></span><span>請求<small>BILLING</small></span><span>原価<small>COST</small></span><span>粗利<small>GROSS PROFIT</small></span></div></div>
-<div class="build-site__detail"><figure class="screen "><a href="../assets/img/systems/const-dashboard.jpg" data-screen aria-label="OVERVIEW / 売上・原価・粗利・未入金を拡大"><span class="screen__bar"><span>OVERVIEW / 売上・原価・粗利・未入金</span><span>VIEW FULL ↗</span></span><span class="screen__image" data-develop="left"><img src="../assets/img/systems/const-dashboard.jpg" alt="OVERVIEW / 売上・原価・粗利・未入金（実際の画面・サンプルデータ）" width="1440" height="900" loading="lazy" decoding="async"><span class="screen__wash" aria-hidden="true"></span></span></a><figcaption class="caption">ACTUAL SCREEN — 表示はサンプルデータ。画像を押すと全体を表示。</figcaption></figure><div><p class="feature-code">COST → PROFIT</p><h3>入れるたびに、<br>粗利が更新される。</h3><p class="copy muted">材料・外注・経費を積み上げ、現場ごとの原価を管理。請求は、出来高・完成に合わせて。</p><ul class="build-site__list"><li>工程表と工事カレンダーで、現場の段取りと全現場の予定を確認。</li><li>協力会社は自分で登録申請。数字は試算表まで自動で積み上がります。</li></ul></div></div></section>
+<div class="build-site__detail"><figure class="screen screen--construction-dash"><a href="../assets/img/systems/const-dashboard.jpg" data-screen aria-label="02 / ダッシュボード・全現場を拡大"><span class="screen__bar"><span>02 / ダッシュボード・全現場</span><span>VIEW FULL ↗</span></span><span class="screen__image" data-develop="left"><img src="../assets/img/systems/const-dashboard.jpg" alt="02 / ダッシュボード・全現場（実際の画面・サンプルデータ）" width="1440" height="900" loading="lazy" decoding="async"><span class="screen__wash" aria-hidden="true"></span></span></a><figcaption class="caption">ACTUAL SCREEN — 表示はサンプルデータ。画像を押すと全体を表示。</figcaption></figure><div><p class="feature-code">COST → PROFIT</p><h3>入れるたびに、<br>粗利が更新される。</h3><p class="copy muted">材料・外注・経費を積み上げ、現場ごとの原価を管理。請求は、出来高・完成に合わせて。</p><ul class="build-site__list"><li>工程表と工事カレンダーで、現場の段取りと全現場の予定を確認。</li><li>協力会社は自分で登録申請。数字は試算表まで自動で積み上がります。</li></ul></div></div></section>
 <section class="build-operations dark" id="operations" data-sec><div class="build-operations__head"><div><p class="sl">02 / Field operations</p><h2 class="section-title" data-type>現場が動く。<br>事務も、止めない。</h2></div><p class="copy">自社の建設事業で使うからこそ、<br>書類の引き継ぎから<br>止まっている案件の確認まで。</p></div>
 <article class="build-line"><p class="build-line__number" aria-hidden="true">01<small>LINE / FOLLOW-UP</small></p><div><h3>「今日やること」を、<br>毎朝LINEで。</h3><p class="copy">現場のLINEグループを紐付けると、止まっている案件だけ毎朝LINEで知らせます。取引先のグループには送らない設計です。</p><div class="build-line__path" aria-label="LINE連携の流れ"><span>現場グループを紐付け</span><b>→</b><span>止まっている案件を確認</span><b>→</b><span>毎朝お知らせ</span></div></div></article>
 <div class="build-small"><article><p class="feature-code">02 / PDF READING</p><h3>見積PDFを、<br>大項目と明細へ。</h3><p class="copy">AI読み取りで自動構造化。読めないときは、従来の解析に自動で切り替わります。見積の内訳は、そのまま協力会社への発注に引き継げます。</p></article><article><p class="feature-code">03 / DOCUMENTS</p><h3>発注書・注文書・請書を、<br>ひとつのPDFに。</h3><p class="copy">3つの帳票をまとめて印刷・保存。現場の書類を、個別につくり直す手間を減らします。</p></article></div></section>
