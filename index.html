@@ -505,10 +505,6 @@ html:not(.js) .hd__menu{display:none}
 .req-row .val{font-size:.95rem;line-height:2}
 .req-row .note{display:block;font-size:.77rem;color:var(--mut);margin-top:8px}
 .partner-full__flow{margin:8vh 0}
-.steps{list-style:none;display:flex;border-top:1px solid var(--hair);padding-top:24px;gap:24px;justify-content:space-between}
-.steps li{display:flex;flex-direction:column;gap:10px}
-.steps .sn{font-family:var(--mono);font-size:.65rem;color:var(--acc-d)}
-.steps .st{font-size:.85rem}
 .partner-full__apply{display:grid;grid-template-columns:1fr 1.6fr;gap:8vw;padding-top:8vh;border-top:1px solid var(--hair)}
 .partner-full__pitch .pt{display:grid;grid-template-columns:2rem 1fr;gap:16px;margin-bottom:45px}
 .pt>.n{font-family:var(--mono);font-size:.62rem;color:var(--acc-d);padding-top:6px}
@@ -606,8 +602,8 @@ html:not(.js) .hd__menu{display:none}
  .partner-full__title small{font-size:.72rem}.partner-full__head>p{margin-top:26px}
  .partner-full__requirements{margin:50px 0 0}.req-row{grid-template-columns:1fr;gap:16px;padding:23px 0}
  .req-row .lab{flex-direction:row;align-items:baseline;gap:16px}.req-row .val{font-size:.9rem}
- .partner-full__flow{margin:48px 0}.steps{flex-direction:column;gap:0;padding-top:0}
- .steps li{flex-direction:row;gap:22px;border-bottom:1px solid var(--hair);padding:14px 0}
+ .partner-full__flow{margin:48px 0}
+
  .partner-full__apply{grid-template-columns:1fr;gap:32px;padding-top:45px}
  .partner-full__pitch .pt{margin-bottom:30px}.pt p{max-width:none}
  #pform .row2,#cform .row{grid-template-columns:1fr;gap:0}
@@ -628,6 +624,32 @@ html:not(.js) .hd__menu{display:none}
  .cursor{display:none!important}
 }
 
+/* Process diagrams: shared rail, nodes and editorial numbering. */
+ol.process-diagram{--process-columns:4;display:grid;grid-template-columns:repeat(var(--process-columns),minmax(0,1fr));gap:0;list-style:none;border:0;padding:0;margin:48px 0 24px}
+.process-diagram>li{position:relative;display:block;min-width:0;margin:0;padding:30px 24px 0 0;border:0;border-top:1px solid var(--hair)}
+.process-diagram>li::before{content:"";position:absolute;top:-5px;left:0;width:9px;height:9px;border-radius:50%;background:var(--acc)}
+.process-diagram>li:not(:last-child)::after{content:"";position:absolute;top:-4px;right:16px;bottom:auto;width:7px;height:7px;padding:0;border-top:1px solid var(--acc);border-right:1px solid var(--acc);background:none;transform:rotate(45deg)}
+.process-diagram>li:last-child{border-top-color:transparent}
+.process-diagram .process-no{display:block;font:400 clamp(30px,3.2vw,46px)/1.2 var(--mono);letter-spacing:-.05em;color:var(--acc-d);margin:0 0 22px;white-space:nowrap}
+.process-diagram .process-label{display:block;font:400 clamp(17px,1.65vw,24px)/1.7 var(--serif);letter-spacing:.04em;color:var(--ink);margin:0 0 12px;overflow-wrap:anywhere}
+.process-diagram .process-copy{font-size:12px;line-height:2;color:var(--mut);margin:0;max-width:25em}
+.process-diagram .process-caption{display:block;font:400 10px/2 var(--mono);letter-spacing:.12em;color:var(--mut);margin:-12px 0 16px}
+@media(max-width:700px){
+ ol.process-diagram{grid-template-columns:1fr;margin:32px 0 24px;padding-left:5px}
+ .process-diagram>li,.process-diagram>li:last-child{display:grid;grid-template-columns:48px minmax(0,1fr);align-items:start;gap:0 20px;border:0;border-left:1px solid var(--hair);padding:0 0 36px 25px}
+ .process-diagram>li:last-child{border-left-color:transparent;padding-bottom:0}
+ .process-diagram>li::before{left:-5px;top:15px}
+ .process-diagram>li:last-child::after{content:"";position:absolute;top:0;left:-1px;width:1px;height:19px;background:var(--hair)}
+ .process-diagram>li:not(:last-child)::after{top:auto;right:auto;bottom:14px;left:-4px;transform:rotate(135deg)}
+ .process-diagram .process-no{grid-column:1;grid-row:1 / span 3;font-size:30px;margin:0}
+ .process-diagram .process-label{grid-column:2;font-size:20px;margin:0 0 8px}
+ .process-diagram .process-copy{grid-column:2;max-width:none}
+ .process-diagram .process-caption{grid-column:2;margin:0 0 8px}
+}
+@media(prefers-reduced-motion:reduce){.process-diagram,.process-diagram *,.process-diagram>li::before,.process-diagram>li::after{animation:none!important;transition:none!important}}
+
+.steps.process-diagram{--process-columns:5}
+@media(min-width:701px){.steps.process-diagram .process-label{font-size:18px}}
 </style>
 <script type="application/ld+json">
 {
@@ -978,12 +1000,12 @@ html:not(.js) .hd__menu{display:none}
 <div class="req-row"><div class="lab"><span class="en">WORK</span><span class="jp">募集する工種</span></div><div class="val">設備工事／内装／外壁工事／空調工事／建物メンテナンス・クリーニング<span class="note">その他の工種もご相談ください</span></div></div>
 <div class="req-row"><div class="lab"><span class="en">AREA</span><span class="jp">対応エリア</span></div><div class="val">一都三県<span class="note">東京・神奈川・埼玉・千葉</span></div></div>
 <div class="req-row"><div class="lab"><span class="en">ELIGIBILITY</span><span class="jp">対象</span></div><div class="val">法人・個人事業主／建設業許可・各種保険をお持ちの方歓迎<span class="note">無くてもまずはご相談ください</span></div></div>
-</div></div><div class="partner-full__flow"><div class="flow-head"><h3>応募の流れ</h3><span class="mono">Flow</span></div><ol class="steps">
-<li><span class="sn">01</span><span class="st">お問い合わせ</span></li>
-<li><span class="sn">02</span><span class="st">面談</span></li>
-<li><span class="sn">03</span><span class="st">取引条件の確認</span></li>
-<li><span class="sn">04</span><span class="st">協力会社登録</span></li>
-<li><span class="sn">05</span><span class="st">発注</span></li>
+</div></div><div class="partner-full__flow"><div class="flow-head"><h3>応募の流れ</h3><span class="mono">Flow</span></div><ol class="steps process-diagram">
+<li><span class="sn process-no">01</span><span class="st process-label">お問い合わせ</span></li>
+<li><span class="sn process-no">02</span><span class="st process-label">面談</span></li>
+<li><span class="sn process-no">03</span><span class="st process-label">取引条件の確認</span></li>
+<li><span class="sn process-no">04</span><span class="st process-label">協力会社登録</span></li>
+<li><span class="sn process-no">05</span><span class="st process-label">発注</span></li>
 </ol></div><div class="partner-full__apply"><div class="partner-full__pitch">
 <div class="pt"><span class="n">01</span><div><h4>継続した発注</h4><p>グループ内の設備・建設案件を継続的にお任せできる体制です。</p></div></div>
 <div class="pt"><span class="n">02</span><div><h4>スピードと誠実な取引</h4><p>現場に近い判断と、明確な取引条件。長くお付き合いできる関係を大切にします。</p></div></div>
