@@ -14,8 +14,7 @@ concepts/purple-*.html
 # 旧デザインの下書き（氏名・写真を含み、非表示の判断が効かないため公開しない）
 concepts/
 
-# 一時非表示中の代表写真（削除禁止・復帰時に git add で戻す）
-assets/img/leaders/abe.jpg
+# 阿部さんの代表写真は 2026-09-19 に公開（下の許可リストに !abe.jpg を追加済み）
 
 # 作業用ファイル（公開不要・サービスIDやメモを含むため）
 _tools_*
@@ -32,7 +31,15 @@ Icon
 assets/img/leaders/*
 !assets/img/leaders/kasahara.jpg
 !assets/img/leaders/ishiyama.jpg
+!assets/img/leaders/abe.jpg
 
 # 事業写真の中間素材（公開しているのは *-warm.jpg のみ）
 assets/img/gen/*
 !assets/img/gen/*-warm.jpg
+
+# 引き継ぎ・エージェント設定・バックアップ・Iconは公開しない（2026-09-19追加＝うっかり公開の再発防止）
+HANDOVER*.md
+AGENTS.md
+.codex/
+.backup-*/
+Icon?
