@@ -94,8 +94,8 @@ p{hanging-punctuation:allow-end}
 
 /* ---------- カーソル（fine pointerのみ・JSで有効化） ---------- */
 .cursor{position:fixed;left:0;top:0;z-index:95;pointer-events:none;color:var(--acc-lt);opacity:0;transition:opacity .5s}
-.has-cursor .cursor{opacity:1}
-.has-cursor,.has-cursor a,.has-cursor button{cursor:none}
+.cursor{display:none!important}
+
 body.th-light .cursor{color:var(--acc)}
 .cursor__dot{position:absolute;left:0;top:0;width:5px;height:5px;margin:-2.5px 0 0 -2.5px;background:currentColor;transition:transform .4s var(--ease)}
 .cursor__ring{position:absolute;left:0;top:0;width:34px;height:34px;margin:-17px 0 0 -17px;border:1px solid currentColor;
@@ -489,7 +489,6 @@ button.cta[type="submit"]:hover{background:var(--acc-d);border-color:var(--acc-d
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js"></script>
 <script>
 (()=>{'use strict';
 const d=document, body=d.body, reduce=matchMedia('(prefers-reduced-motion: reduce)');let lenis=null;
